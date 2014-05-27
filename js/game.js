@@ -5,6 +5,9 @@ if (!canvas.getContext) {
 
 var ctx = canvas.getContext('2d');
 
+canvas.width = window.innerWidth-60;
+canvas.height = window.innerHeight-60;
+
 function Square(w, h) {
 	this.toRandomLocation = function() {
 		this.x = Math.random()*(canvas.width-this.width);
@@ -64,14 +67,14 @@ var enemy_size = 15;
 var accel = 7;
 
 var playerCube = new Square(cube_size, cube_size);
-playerCube.color = '#FF0000';
+playerCube.color = '#ecf0f1';
 
 var targetCube = new Square(cube_size, cube_size);
-targetCube.color = '#0000FF';
+targetCube.color = '#e74c3c';
 var enemies = [];
 for (var i = 0; i < num_enemies; i++) {
 	var enemy = new Square(enemy_size, enemy_size);
-	enemy.color = '#BADA55';
+	enemy.color = '#27ae60';
 	enemies.push(enemy);
 }
 
