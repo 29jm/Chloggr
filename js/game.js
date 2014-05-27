@@ -58,7 +58,7 @@ function Square(w, h) {
 	this.toRandomLocation();
 }
 
-var enemy_ratio = 30/Math.pow(800*600, 2); // <-- 30 enemies on a 800*600 screen
+var enemy_ratio = 10/Math.pow(800*600, 2); // <-- 10 enemies on a 800*600 screen
 var px_num = canvas.width*canvas.height;
 var num_enemies = Math.round(enemy_ratio*(px_num*px_num));
 
@@ -79,12 +79,14 @@ for (var i = 0; i < num_enemies; i++) {
 }
 
 respawn();
+var interval = setInterval(loop, 3);
+playTimer();
 
 var finished = false;
-var interval = setInterval(loop, 3);
 var keys = {};
 var score = 0;
 var last_time = Date.now();
+var paused = false;
 
 function respawn() {
 	targetCube.toRandomLocation();
@@ -113,10 +115,12 @@ function loop() {
 }
 
 function update(dt) {
+	if (paused) {
+		return;
+	}
+
 	handleInput(); // input.js
-
 	playerCube.update(dt);
-
 	collisionDetection();
 }
 
@@ -153,10 +157,24 @@ function collisionDetection() {
 }
 
 function draw() {
+	if (paused) {
+		return;
+	}
+
 	playerCube.draw();
 	targetCube.draw();
 
 	for (var i = 0; i < num_enemies; i++) {
 		enemies[i].draw();
+	}
+}
+
+function onPauseButton() {
+	paused = (paused ? false : true); // Toggles paused var
+	if (paused) {
+		stopTimer();
+	}
+	else {
+		playTimer();
 	}
 }
