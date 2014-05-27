@@ -5,8 +5,8 @@ if (!canvas.getContext) {
 
 var ctx = canvas.getContext('2d');
 
-canvas.width = window.innerWidth-60;
-canvas.height = window.innerHeight-60;
+canvas.width = window.innerWidth -20;
+canvas.height = window.innerHeight-20;
 
 function Square(w, h) {
 	this.toRandomLocation = function() {
@@ -30,12 +30,12 @@ function Square(w, h) {
 			this.speed_x = (this.speed_x > 0 ?
 				this.max_speed : -this.max_speed);
 		}
- 
+
 		if (Math.abs(this.speed_y) > this.max_speed) {
 			this.speed_y = (this.speed_y > 0 ?
 				this.max_speed : -this.max_speed);
 		}
- 
+
 		this.x += this.speed_x*delta_t;
 		this.y += this.speed_y*delta_t;
 	}
@@ -54,7 +54,7 @@ function Square(w, h) {
 	this.max_speed = 300;
 	this.speed_x = 0;
 	this.speed_y = 0;
- 
+
 	this.toRandomLocation();
 }
 
