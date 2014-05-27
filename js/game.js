@@ -4,19 +4,13 @@ if (!canvas.getContext) {
 }
 
 var ctx = canvas.getContext('2d');
- 
-// Marcheras pas sous IE - balec'
-const num_enemies = 25;
-const cube_size = 40;
-const enemy_size = 15;
-const accel = 7;
- 
+
 function Square(w, h) {
 	this.toRandomLocation = function() {
 		this.x = Math.random()*(canvas.width-this.width);
 		this.y = Math.random()*(canvas.height-this.height);
 	}
- 
+
 	this.intersects = function(square) {
 		if(square.x >= this.x+this.width ||
 			square.x+square.width <= this.x ||
@@ -24,7 +18,7 @@ function Square(w, h) {
 			square.y+square.height <= this.y) {
 			return false;
 		}
- 
+
 		return true;
 	}
 
@@ -61,12 +55,16 @@ function Square(w, h) {
 	this.toRandomLocation();
 }
 
+var num_enemies = 30;
+var cube_size = 40;
+var enemy_size = 15;
+var accel = 7;
+
 var playerCube = new Square(cube_size, cube_size);
 playerCube.color = '#FF0000';
 
 var targetCube = new Square(cube_size, cube_size);
 targetCube.color = '#0000FF';
-
 var enemies = [];
 for (var i = 0; i < num_enemies; i++) {
 	var enemy = new Square(enemy_size, enemy_size);
@@ -81,14 +79,6 @@ var interval = setInterval(loop, 3); // *1000 = second to millisecond conv
 var keys = {};
 var score = 0;
 var last_time = Date.now();
-
-document.addEventListener('keydown', function(event) {
-	keys[event.keyCode] = true;
-});
-
-document.addEventListener('keyup', function(event) {
-	delete keys[event.keyCode];
-});
 
 function respawn() {
 	targetCube.toRandomLocation();
@@ -109,28 +99,15 @@ function loop() {
 	canvas.width = canvas.width; // Clear canvas
 
 	var now = Date.now();
-	var delta_t = (now - last_time) / 1000;
+	var delta_t = (now - last_time) / 1000; // second to millisecond conv
 	last_time = now;
-
-	console.log(delta_t);
 
 	update(delta_t);
 	draw();
 }
 
 function update(dt) {
-	if (37 in keys) {
-		playerCube.speed_x -= accel;
-	}
-	if (39 in keys) {
-		playerCube.speed_x += accel;
-	}
-	if (38 in keys) {
-		playerCube.speed_y -= accel;
-	}
-	if (40 in keys) {
-		playerCube.speed_y += accel;
-	}
+	handleInput(); // input.js
 
 	playerCube.update(dt);
 

@@ -1,3 +1,11 @@
+document.addEventListener('keydown', function(event) {
+	keys[event.keyCode] = true;
+});
+
+document.addEventListener('keyup', function(event) {
+	delete keys[event.keyCode];
+});
+
 function handleInput() {
 	// Arrow keys
 	if (37 in keys) {
