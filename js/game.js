@@ -55,7 +55,10 @@ function Square(w, h) {
 	this.toRandomLocation();
 }
 
-var num_enemies = 30;
+var enemy_ratio = 0.00000000013020833333; // 30/(800*600)² <-- 30 enemies on a 800*600 screen
+var px_num = canvas.width*canvas.height;
+var num_enemies = Math.round(enemy_ratio*(px_num*px_num));
+
 var cube_size = 40;
 var enemy_size = 15;
 var accel = 7;
@@ -75,7 +78,7 @@ for (var i = 0; i < num_enemies; i++) {
 respawn();
 
 var finished = false;
-var interval = setInterval(loop, 3); // *1000 = second to millisecond conv
+var interval = setInterval(loop, 3);
 var keys = {};
 var score = 0;
 var last_time = Date.now();
