@@ -58,7 +58,7 @@ function Square(w, h) {
 	this.toRandomLocation();
 }
 
-var enemy_ratio = 0.00000000013020833333; // 30/(800*600)² <-- 30 enemies on a 800*600 screen
+var enemy_ratio = 30/Math.pow(800*600, 2); // <-- 30 enemies on a 800*600 screen
 var px_num = canvas.width*canvas.height;
 var num_enemies = Math.round(enemy_ratio*(px_num*px_num));
 
