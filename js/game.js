@@ -177,8 +177,10 @@ function onPauseButton() {
 	paused = (paused ? false : true); // Toggles paused var
 	if (paused) {
 		stopTimer();
+		document.getElementById("button").innerHTML = "Play";
 	}
 	else {
 		playTimer();
+		document.getElementById("button").innerHTML = "Paused";
 	}
 }
