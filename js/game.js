@@ -40,9 +40,9 @@ function Square(w, h) {
 		this.y += this.speed_y*delta_t;
 	}
 
-	this.draw = function() {
-		ctx.fillStyle = this.color;
-		ctx.fillRect(this.x, this.y, this.width, this.height);
+	this.draw = function(context) {
+		context.fillStyle = this.color;
+		context.fillRect(this.x, this.y, this.width, this.height);
 	}
 
 	this.x = 0;
@@ -111,7 +111,7 @@ function loop() {
 	last_time = now;
 
 	update(delta_t);
-	draw();
+	draw(ctx);
 }
 
 function update(dt) {
@@ -156,20 +156,20 @@ function collisionDetection() {
 	}
 }
 
-function draw() {
+function draw(context) {
 	// Drawed every time
-	playerCube.draw();
+	playerCube.draw(context);
 
-	ctx.font = "20px Georgia";
-	ctx.fillText(hours + ":" + minutes + ":" + seconds, 20, 20);
+	context.font = "20px Georgia";
+	context.fillText(hours + ":" + minutes + ":" + seconds, 20, 20);
 
-	ctx.font = "20px Georgia";
-	ctx.fillText(score, 100, 20);
+	context.font = "20px Georgia";
+	context.fillText(score, 100, 20);
 
-	targetCube.draw();
+	targetCube.draw(context);
 
 	for (var i = 0; i < num_enemies; i++) {
-		enemies[i].draw();
+		enemies[i].draw(context);
 	}
 }
 
