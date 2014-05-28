@@ -181,6 +181,6 @@ function onPauseButton() {
 	}
 	else {
 		playTimer();
-		document.getElementById("button").innerHTML = "Paused";
+		document.getElementById("button").innerHTML = "Pause";
 	}
 }
