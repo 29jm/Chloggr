@@ -7,6 +7,9 @@ document.addEventListener('keyup', function(event) {
 });
 
 function handleInput() {
+	var temp_x = playerCube.speed_x;
+	var temp_y = playerCube.speed_y;
+
 	// Arrow keys
 	if (37 in keys) {
 		playerCube.speed_x -= accel;
@@ -32,6 +35,11 @@ function handleInput() {
 	}
 	if (83 in keys) {
 		playerCube.speed_y += accel;
+	}
+
+	if (playerCube.speed_x != temp_x ||
+		playerCube.speed_y != temp_y) {
+		has_moved = true;
 	}
 
 	// Touchscreen stuff...

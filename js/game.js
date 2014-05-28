@@ -40,6 +40,23 @@ function Square(w, h) {
 		this.y += this.speed_y*delta_t;
 	}
 
+	this.slowdown = function() {
+		var len = Math.sqrt((this.speed_x*this.speed_x)
+							+ (this.speed_y*this.speed_y));
+
+		if (Math.round(len) == 0) {
+			this.speed_x = 0;
+			this.speed_y = 0;
+			return;
+		}
+
+		var unit_x = this.speed_x / len;
+		var unit_y = this.speed_y / len;
+
+		this.speed_x = unit_x*(len-this.slowing_speed);
+		this.speed_y = unit_y*(len-this.slowing_speed);
+	}
+
 	this.draw = function(context) {
 		context.fillStyle = this.color;
 		context.fillRect(this.x, this.y, this.width, this.height);
@@ -52,6 +69,7 @@ function Square(w, h) {
 	this.color = '#FFFFFF';
 
 	this.max_speed = 300;
+	this.slowing_speed = 0.7;
 	this.speed_x = 0;
 	this.speed_y = 0;
 
@@ -65,6 +83,7 @@ var num_enemies = Math.round(enemy_ratio*(px_num*px_num));
 var cube_size = 40;
 var enemy_size = 15;
 var accel = 7;
+var has_moved = false;
 
 var playerCube = new Square(cube_size, cube_size);
 playerCube.color = '#ecf0f1';
@@ -117,6 +136,13 @@ function loop() {
 function update(dt) {
 	if (paused) {
 		return;
+	}
+
+	if (!has_moved) {
+		playerCube.slowdown();
+	}
+	else {
+		has_moved = false;
 	}
 
 	handleInput(); // input.js
