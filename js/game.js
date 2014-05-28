@@ -164,7 +164,7 @@ function draw(context) {
 	context.fillText(hours + ":" + minutes + ":" + seconds, 20, 20);
 
 	context.font = "20px Georgia";
-	context.fillText(score, 100, 20);
+	context.fillText("Score: " + score, 100, 20);
 
 	targetCube.draw(context);
 
