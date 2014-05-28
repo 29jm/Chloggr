@@ -2,7 +2,7 @@
 
 *{
 	margin: 0px;
-	background-color: #bdc3c7 ;
+	background-color: #bdc3c7;
 	font-family: 'Open Sans', sans-serif;
 }
 body{
@@ -11,8 +11,8 @@ body{
 }
 #canvas{
 	overflow: hidden;
-	display:block;
-	border:10px solid #2c3e50;
+	display: block;
+	border: 10px solid #2c3e50;
 	background-color: #34495e;
 	-moz-box-shadow:    inset 0 0 10px #000000;
    	-webkit-box-shadow: inset 0 0 10px #000000;
@@ -20,17 +20,20 @@ body{
 }
 #button{
 	width: 100%;
-	height: 50px;
-	background-color:#2ecc71 ;
+	height:50px;
+	background-color: #2ecc71;
 	color: #ecf0f1;
-	font-size: 1.2em;
+	font-size: 1.57em;
 	border-top: 0px;
 	border-right: 10px solid #2c3e50;
-	border-left:10px solid #2c3e50;
-	border-bottom:10px solid #2c3e50;
-	-webkit-transition: background-color 0.2s; /* For Safari 3.1 to 6.0 */
-	transition: background-color 0.2s;
+	border-left: 10px solid #2c3e50;
+	border-bottom: 10px solid #2c3e50;
+	-webkit-transition: background-color 0.4s; /* For Safari 3.1 to 6.0 */
+	transition: background-color 0.4s;
 }
 #button:hover{
 	background-color: #27ae60;
+	-moz-box-shadow:    inset 0 0 10px #000000;
+   	-webkit-box-shadow: inset 0 0 10px #000000;
+   	box-shadow:         inset 0 0 10px #000000;
 }
