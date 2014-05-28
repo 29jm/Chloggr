@@ -8,7 +8,7 @@ function timeCount()
 {
    seconds = seconds + 1;
    intervalSeconds = setTimeout("timeCount()", 1000);
-   document.getElementById("time").value = hours + ":" + minutes + ":" + seconds;
+
    if (seconds >= 60)
    {
       minutes = Math.floor (seconds / 60) + minutes;
