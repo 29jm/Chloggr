@@ -43,6 +43,12 @@ function Square(w, h) {
 	this.draw = function() {
 		ctx.fillStyle = this.color;
 		ctx.fillRect(this.x, this.y, this.width, this.height);
+
+		ctx.font="20px Georgia";
+   		ctx.fillText( hours + ":" + minutes + ":" + seconds , 20, 20);
+
+   		ctx.font="20px Georgia";
+   		ctx.fillText( score, 100 ,20);
 	}
 
 	this.x = 0;
@@ -147,6 +153,7 @@ function collisionDetection() {
 		playerCube.speed_x = 0;
 		playerCube.speed_y = 0;
 		respawn();
+
 	}
 
 	for (var i = 0; i < num_enemies; i++) {
