@@ -6,7 +6,7 @@ if (!canvas.getContext) {
 var ctx = canvas.getContext('2d');
 
 canvas.width = window.innerWidth-20;
-canvas.height = window.innerHeight-60;
+canvas.height = window.innerHeight-70;
 
 function Square(w, h) {
 	this.toRandomLocation = function() {
