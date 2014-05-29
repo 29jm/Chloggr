@@ -1,16 +1,35 @@
-<!DOCTYPE HTML>
+<DOCTYPE html>
 <html>
 	<head>
-		<title>Chloggr</title>
-		<link rel="stylesheet" type="text/css" href="style.css">
+		<title>Main menu</title>
+		<link rel="stylesheet" type="text/css" href="menu/menu.css">
+		<link rel="stylesheet" media="only screen and (color)" href="menu/queries.css" />
 	</head>
 
 	<body>
-	   <canvas id="canvas"></canvas>
-	   <button id="button" onclick="onPauseButton()">Pause</button>
-	   <script src="js/timer.js"></script>
-	   <script src="js/input.js"></script>
-	   <script src="js/game.js"></script>
-	   <script src="js/vector.js"></script>
+		<header>
+			<p>Chloggr</p>
+		</header>
+
+		<div id="container">
+			<div id="death">death</div>
+			<div id="highScore">score</div>
+		</div>
+
+
+		<a href="game.html"><div id="play">PLAY!</div></a>
+
+		<div class="player"></div>
+
+		<div class="target"></div>
+
+		<div class="enemy"></div>
+		
+		<footer>
+			<a href="#"><div id="settings">Settings</div></a>
+			<a href="#"><div id="help">help</div></a>
+			<a href="#"><div id="achievements">Achievements</div></a>
+			<a href="#"><div id="aboutUs">aboutUs</div></a>
+		</footer>
 	</body>
 </html>
