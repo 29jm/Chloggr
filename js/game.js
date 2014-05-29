@@ -77,6 +77,7 @@ function Square(w, h) {
 }
 
 var enemy_density = 6; // Allows scaling to small screens (fuck high-res ones)
+var max_density = 15;
 var num_enemies = 0;
 setEnemyDensity(enemy_density, 800*600);
 
@@ -181,7 +182,9 @@ function collisionDetection() {
 
 	if (playerCube.intersects(targetCube)) {
 		score++;
-		enemy_density += 1;
+		if (enemy_density < max_density) {
+			enemy_density++;
+		}
 		setEnemyDensity(enemy_density, 800*600);
 		playerCube.speed_x = 0;
 		playerCube.speed_y = 0;
