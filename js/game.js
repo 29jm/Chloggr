@@ -8,6 +8,13 @@ var ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth-20;
 canvas.height = window.innerHeight-70;
 
+window.addEventListener('resize', function(event){
+	canvas.width = window.innerWidth-20;
+	canvas.height = window.innerHeight-70;
+
+	respawn();
+});
+
 function Square(w, h) {
 	this.toRandomLocation = function() { // Specialization
 		this.x = Math.random()*(canvas.width-this.width);
@@ -214,6 +221,7 @@ function draw(context) {
 		enemies[i].draw(context);
 	}
 
+	context.fillStyle = '#FFFFFF';
 	context.font = "20px Open Sans";
 	context.fillText(hours + ":" + minutes + ":" + seconds, 20, 25);
 
