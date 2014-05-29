@@ -208,11 +208,11 @@ function draw(context) {
 		enemies[i].draw(context);
 	}
 
-	context.font = "20px Georgia";
-	context.fillText(hours + ":" + minutes + ":" + seconds, 20, 20);
+	context.font = "20px Open Sans";
+	context.fillText(hours + ":" + minutes + ":" + seconds, 20, 25);
 
-	context.font = "20px Georgia";
-	context.fillText("Score: " + score, 100, 20);
+	context.font = "20px Open Sans";
+	context.fillText("Score: " + score, 100, 25);
 }
 
 function onPauseButton() {
