@@ -76,14 +76,13 @@ function Square(w, h) {
 	this.toRandomLocation();
 }
 
-var enemy_ratio = 6/Math.pow(800*600, 2); // <-- 10 enemies on a 800*600 screen
-var px_num = canvas.width*canvas.height;
-var num_enemies = Math.round(enemy_ratio*(px_num*px_num));
+var enemy_density = 6; // Allows scaling to small screens (fuck high-res ones)
+var num_enemies = 0;
+setEnemyDensity(enemy_density, 800*600);
 
 var cube_size = 40;
 var enemy_size = 15;
 var accel = 7;
-var has_moved = false;
 
 var playerCube = new Square(cube_size, cube_size);
 playerCube.color = '#ecf0f1';
@@ -91,11 +90,7 @@ playerCube.color = '#ecf0f1';
 var targetCube = new Square(cube_size, cube_size);
 targetCube.color = '#e74c3c';
 var enemies = [];
-for (var i = 0; i < num_enemies; i++) {
-	var enemy = new Square(enemy_size, enemy_size);
-	enemy.color = '#27ae60';
-	enemies.push(enemy);
-}
+createEnemies();
 
 respawn();
 var interval = setInterval(loop, 3);
@@ -107,7 +102,28 @@ var score = 0;
 var last_time = Date.now();
 var paused = false;
 
+function createEnemies() {
+	console.log("Enemies recreated "+num_enemies);
+
+	enemies = []
+	for (var i = 0; i < num_enemies; i++) {
+		var enemy = new Square(enemy_size, enemy_size);
+		enemy.color = '#27ae60';
+		enemies.push(enemy);
+	}
+}
+
+function setEnemyDensity(num, area) {
+	var enemy_ratio = num/Math.pow(area, 2);
+	var px_num = canvas.width*canvas.height;
+	num_enemies = Math.round(enemy_ratio*(px_num*px_num));
+}
+
 function respawn() {
+	if (enemies.length != num_enemies) { // Density changed
+		createEnemies();
+	}
+
 	targetCube.toRandomLocation();
 	for (var i = 0; i < num_enemies; i++) {
 		enemies[i].toRandomLocation();
@@ -138,12 +154,7 @@ function update(dt) {
 		return;
 	}
 
-	if (!has_moved) {
-		playerCube.slowdown();
-	}
-	else {
-		has_moved = false;
-	}
+	playerCube.slowdown();
 
 	handleInput(); // input.js
 	playerCube.update(dt);
@@ -170,6 +181,8 @@ function collisionDetection() {
 
 	if (playerCube.intersects(targetCube)) {
 		score++;
+		enemy_density += 1;
+		setEnemyDensity(enemy_density, 800*600);
 		playerCube.speed_x = 0;
 		playerCube.speed_y = 0;
 		respawn();
@@ -186,17 +199,17 @@ function draw(context) {
 	// Drawed every time
 	playerCube.draw(context);
 
-	context.font = "20px Georgia";
-	context.fillText(hours + ":" + minutes + ":" + seconds, 20, 20);
-
-	context.font = "20px Georgia";
-	context.fillText("Score: " + score, 100, 20);
-
 	targetCube.draw(context);
 
 	for (var i = 0; i < num_enemies; i++) {
 		enemies[i].draw(context);
 	}
+
+	context.font = "20px Georgia";
+	context.fillText(hours + ":" + minutes + ":" + seconds, 20, 20);
+
+	context.font = "20px Georgia";
+	context.fillText("Score: " + score, 100, 20);
 }
 
 function onPauseButton() {
