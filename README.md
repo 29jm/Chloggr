@@ -14,3 +14,8 @@ Todo list
 * Create different class for enemies, play and target, inheriting from Square
 * Add onDead() and onTarget() method to replace hacks here and there
 * Proper vector class for player movement
+
+* Make menu for pause in game.html
+* Add Cookies 
+* Add highScore and Death number on Main Menu
+* Add page for settings
