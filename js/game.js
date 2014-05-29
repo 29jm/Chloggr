@@ -9,7 +9,7 @@ canvas.width = window.innerWidth-20;
 canvas.height = window.innerHeight-70;
 
 function Square(w, h) {
-	this.toRandomLocation = function() {
+	this.toRandomLocation = function() { // Specialization
 		this.x = Math.random()*(canvas.width-this.width);
 		this.y = Math.random()*(canvas.height-this.height);
 	}
@@ -25,7 +25,7 @@ function Square(w, h) {
 		return true;
 	}
 
-	this.update = function(delta_t) {
+	this.update = function(delta_t) { // Specialization
 		if (Math.abs(this.speed_x) > this.max_speed) {
 			this.speed_x = (this.speed_x > 0 ?
 				this.max_speed : -this.max_speed);
@@ -40,7 +40,7 @@ function Square(w, h) {
 		this.y += this.speed_y*delta_t;
 	}
 
-	this.slowdown = function() {
+	this.slowdown = function() { // Specialization
 		var len = Math.sqrt((this.speed_x*this.speed_x)
 							+ (this.speed_y*this.speed_y));
 
@@ -58,6 +58,11 @@ function Square(w, h) {
 	}
 
 	this.draw = function(context) {
+		if (this.dead) {
+			context.drawImage(this.deadImage, this.x, this.y);
+			return;
+		}
+
 		context.fillStyle = this.color;
 		context.fillRect(this.x, this.y, this.width, this.height);
 	}
@@ -68,12 +73,14 @@ function Square(w, h) {
 	this.height = h;
 	this.color = '#FFFFFF';
 
-	this.max_speed = 300;
-	this.slowing_speed = 0.7;
-	this.speed_x = 0;
-	this.speed_y = 0;
-
-	this.toRandomLocation();
+	this.dead = false; // Specialization
+	this.deadImage = new Image();
+	this.deadImage.src = "menu/deadPlayer.png";
+	this.max_speed = 300; // Specialization
+	this.slowing_speed = 0.7; // Specialization
+	this.speed_x = 0; // Specialization
+	this.speed_y = 0; // Specialization
+	this.toRandomLocation(); // Specialization
 }
 
 var enemy_density = 6; // Allows scaling to small screens (fuck high-res ones)
@@ -136,11 +143,12 @@ function respawn() {
 }
 
 function loop() {
-	if (finished) {
-		clearInterval(interval);
-	}
-
 	canvas.width = canvas.width; // Clear canvas
+
+	if (paused || finished) {
+		draw(ctx);
+		return;
+	}
 
 	var now = Date.now();
 	var delta_t = (now - last_time) / 1000; // second to millisecond conv
@@ -151,10 +159,6 @@ function loop() {
 }
 
 function update(dt) {
-	if (paused) {
-		return;
-	}
-
 	playerCube.slowdown();
 
 	handleInput(); // input.js
@@ -194,6 +198,8 @@ function collisionDetection() {
 	for (var i = 0; i < num_enemies; i++) {
 		if (playerCube.intersects(enemies[i])) {
 			finished = true;
+			playerCube.dead = true;
+			stopTimer();
 		}
 	}
 }
