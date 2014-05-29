@@ -24,40 +24,75 @@
 
 }
 /****smartphone****/
+
 @media (max-width: 640px) {
-  	#settings, #help, #achievements, #aboutUs{
+	header p{
+  		font-size: 4em;
+	}
+	header{
+	    width: 100%;
+	    height: 90px;
+	    background-color: #36495e;
+	    text-align: center;
+	    color: white;
+	}
+  	#settings, #help, #achievements, #aboutUs, #play{
   		width:100%;
   		padding: 20px 0px 20px 0px;
 		font-size: 1.2em;
 		text-align: center;
 		position: relative;
-		margin-top: 10px;
-
 		background-color: #34495e;
+		margin-top: 5px;
 		-webkit-transition: background-color 0.6s; /* For Safari 3.1 to 6.0 */
 		-moz-transition: background-color 0.6s; /* For mozilla */
 		-o-transition: background-color 0.6s; /* For opera */
 		transition: background-color 0.6s;
 	}
+	#container{
+	    width: 100%;
+	    height:60px;
+	    background-color: #2ecc71;
+	}
+	#death{
+	    padding: 20px 20px 0px 10px;
+	    float: left;
+	    color: black;
+	    line-height:50%;
+	    font-size: 1.5em;
+	}
+	#death:before{
+	    content:none;
+	    background-image: none;
+	}
+	#highScore{
+	    float: right;
+	    padding: 20px 20px 20px 20px;
+	    font-size: 1.5em;
+	    line-height:50%;
+	}
+	#playContainer{
+	  	position: fixed;
+	  	width: 100%;
+	}
 	#play{
 		background-color: #e74c3c;
-		color: white;
+		width:100%;
+  		padding: 20px 0px 20px 0px;
+		font-size: 1.2em;
 		text-align: center;
-		margin-left: auto;
-		margin-right: auto;
+		position: relative;
+		margin-top: 10px;
 	}
-
 }
-/********tablets**********/
 @media (max-width: 1024px) {
   	#settings, #help, #achievements, #aboutUs{
-  		width:100%;
-  		padding: 20px 0px 20px 0px;
-		font-size: 1.2em;
-		text-align: center;
+ 
+  		padding: 0px 0px 0px 0px;
+		font-size: 1em;
 		position: relative;
 		margin-top: 10px;
-		bottom: 0;
+		font-size: 2em;
 		background-color: #34495e;
 		-webkit-transition: background-color 0.6s; /* For Safari 3.1 to 6.0 */
 		-moz-transition: background-color 0.6s; /* For mozilla */
@@ -65,12 +100,8 @@
 		transition: background-color 0.6s;
 	}
 	#play{
-		width: 500px;
-		height: 500px;
-		margin-top: 100px;
 		background-color: #e74c3c;
 		color: white;
-		position: relative;
 		text-align: center;
 		margin-left: auto;
 		margin-right: auto;
