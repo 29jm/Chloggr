@@ -65,7 +65,7 @@ function Square(w, h) {
 	}
 
 	this.draw = function(context) {
-		if (this.dead) {
+		if (this.dead) { // Specialization
 			context.drawImage(this.deadImage, this.x, this.y);
 			return;
 		}
@@ -116,6 +116,12 @@ var keys = {};
 var score = 0;
 var last_time = Date.now();
 var paused = false;
+
+var highScore = Cookies.get('highScore');
+if (highScore == undefined) {
+	highScore = 0;
+	Cookies.set('highScore', 0, { expires: 600 });
+}
 
 function createEnemies() {
 	console.log("Enemies recreated "+num_enemies);
@@ -193,9 +199,15 @@ function collisionDetection() {
 
 	if (playerCube.intersects(targetCube)) {
 		score++;
+		if (score > highScore) {
+			highScore = score;
+			Cookies.set('highScore', highScore);
+		}
+
 		if (enemy_density < max_density) {
 			enemy_density++;
 		}
+
 		setEnemyDensity(enemy_density, 800*600);
 		playerCube.speed_x = 0;
 		playerCube.speed_y = 0;
