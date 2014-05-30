@@ -8,7 +8,6 @@ document.addEventListener('keyup', function(event) {
 
 var start_x = 0;
 var start_y = 0;
-var start_time = Date.now();
 var move_x = 0;
 var move_y = 0;
 
