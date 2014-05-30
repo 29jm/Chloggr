@@ -90,6 +90,7 @@ function Square(w, h) {
 	this.toRandomLocation(); // Specialization
 }
 
+// Prevent double initialization
 var enemy_density = undefined;
 var max_density = undefined;
 var num_enemies = undefined;
@@ -100,7 +101,7 @@ var playerCube = undefined;
 var targetCube = undefined;
 var enemies = undefined;
 var interval = undefined;
-var finished = false;
+var finished = undefined;
 var keys = undefined;
 var score = undefined;
 var last_time = undefined;
