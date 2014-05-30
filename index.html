@@ -14,6 +14,15 @@
 		<div id="container">
 			<div id="death">death</div>
 			<div id="highScore">score</div>
+			<script src="js/cookie.js"></script> <!-- to access readCookie() -->
+		<script>
+			var highScore = readCookie("highScore");
+			if (highScore == null) {
+				highScore = 0;
+			}
+
+			document.getElementById("highScore").innerHTML = highScore;
+		</script>
 		</div>
 
 
