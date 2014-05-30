@@ -1,110 +1,409 @@
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:300);
-/***stupid old phones****/
-@media (max-width: 320px) {
-  	#settings, #help, #achievements, #aboutUs{
- 
-  		padding: 0px 0px 0px 0px;
-		font-size: 1em;
-		position: relative;
-		margin-top: 10px;
-
-		background-color: #34495e;
-		-webkit-transition: background-color 0.6s; /* For Safari 3.1 to 6.0 */
-		-moz-transition: background-color 0.6s; /* For mozilla */
-		-o-transition: background-color 0.6s; /* For opera */
-		transition: background-color 0.6s;
-	}
-	#play{
-		background-color: #e74c3c;
-		color: white;
-		text-align: center;
-		margin-left: auto;
-		margin-right: auto;
+/*IPHONE 4*/
+@media only screen and (max-device-width: 480px), only screen and (min-device-width: 560px) and (max-device-width: 1136px) and (-webkit-min-device-pixel-ratio: 2) {
+    /************************RESETS*****************/
+	* {
+	  font-family: inherit;
+	  font-style: inherit;
+	  padding: 0;
+	  margin: 0;
+	  font-family: 'Open Sans', sans-serif;
 	}
 
-}
-/****smartphone****/
+	/*********************GENERAL STYLING***************/
+	body{
+	  background-color: #95a5a6;
+	}
+	img{
+	  position: absolute;
+	}
+	a{
+	  text-decoration: none;
+	  text-transform: none;
+	  color: white;
+	}
 
-@media (max-width: 640px) {
-	header p{
-  		font-size: 4em;
-	}
-	header{
-	    width: 100%;
-	    height: 90px;
-	    background-color: #36495e;
-	    text-align: center;
-	    color: white;
-	}
-  	#settings, #help, #achievements, #aboutUs, #play{
-  		width:100%;
-  		padding: 20px 0px 20px 0px;
-		font-size: 1.2em;
-		text-align: center;
-		position: relative;
-		background-color: #34495e;
-		margin-top: 5px;
-		-webkit-transition: background-color 0.6s; /* For Safari 3.1 to 6.0 */
-		-moz-transition: background-color 0.6s; /* For mozilla */
-		-o-transition: background-color 0.6s; /* For opera */
-		transition: background-color 0.6s;
-	}
+	/*****************MAIN STYLING******************/
 	#container{
-	    width: 100%;
-	    height:60px;
-	    background-color: #2ecc71;
+	  height: auto;
+	  width: auto;
 	}
-	#death{
-	    padding: 20px 20px 0px 10px;
-	    float: left;
-	    color: black;
-	    line-height:50%;
-	    font-size: 1.5em;
+	header p{
+	  height: 130px;
+	  width: 100%;
+	  background-color: #34495e;
+	  text-align: center;
+	  font-size: 5em;
+	  color: white;
 	}
-	#death:before{
-	    content:none;
-	    background-image: none;
+	article #death, #highScore{
+	  float: left;
+	  text-align: center;
+	  height: 60px;
+	  width: 50%;
+	  font-size: 2.0em;
 	}
-	#highScore{
-	    float: right;
-	    padding: 20px 20px 20px 20px;
-	    font-size: 1.5em;
-	    line-height:50%;
+	article #death{
+	  background-color: #2ecc71;
 	}
-	#playContainer{
-	  	position: fixed;
-	  	width: 100%;
+	article #highScore{
+	  background-color: #3498db;
 	}
-	#play{
-		background-color: #e74c3c;
-		width:100%;
-  		padding: 20px 0px 20px 0px;
-		font-size: 1.2em;
-		text-align: center;
-		position: relative;
-		margin-top: 10px;
+	footer{
+	  font-size: 2em;
 	}
-}
-@media (max-width: 1024px) {
-  	#settings, #help, #achievements, #aboutUs{
- 
-  		padding: 0px 0px 0px 0px;
-		font-size: 1em;
-		position: relative;
-		margin-top: 10px;
-		font-size: 2em;
-		background-color: #34495e;
-		-webkit-transition: background-color 0.6s; /* For Safari 3.1 to 6.0 */
-		-moz-transition: background-color 0.6s; /* For mozilla */
-		-o-transition: background-color 0.6s; /* For opera */
-		transition: background-color 0.6s;
+	footer #play,#settings, #help, #achievements, #aboutUs{
+	  width: 100%;
+	  font-size: 0.9em;
+	  margin-top: 10px;
+	  height: 40px;
+	  transition: background-color 0.5s;
+	  -webkit-transition: background-color 0.5s;
+	  -moz-transition: background-color 0.5s;
+	  -o-transition: background-color 0.5s;
 	}
-	#play{
-		background-color: #e74c3c;
-		color: white;
-		text-align: center;
-		margin-left: auto;
-		margin-right: auto;
+	footer #play{
+	  background-color: #e74c3c;
+	  text-align: center;
+	  margin-top: 75px;
+	  margin-bottom: 15px;
+	  opacity: 0.8;
+	}
+	footer #settings{
+	  background-color: #34495e;
+	  text-align: center;
+	}
+	#settings:hover{
+	  background-color: #3498db;
 	}
 
+	footer #help{
+	  background-color: #34495e;
+	  text-align: center;
+	}
+	#help:hover{
+	  background-color: #3498db;
+	}
+
+	footer #achievements{
+	  background-color: #34495e;
+	  text-align: center;
+	}
+	#achievements:hover{
+	  background-color: #3498db;
+	}
+
+	footer #aboutUs{
+	  background-color: #34495e;
+	  text-align: center;
+	}
+	#aboutUs:hover{
+	  background-color: #3498db;
+	}
+
+}
+/*IPHONE 5*/
+@media (device-height : 568px) and (device-width : 320px) and (-webkit-min-device-pixel-ratio: 2){
+	* {
+	  font-family: inherit;
+	  font-style: inherit;
+	  padding: 0;
+	  margin: 0;
+	  font-family: 'Open Sans', sans-serif;
+	}
+
+	/*********************GENERAL STYLING***************/
+	body{
+	  background-color: #95a5a6;
+	}
+	img{
+	  position: absolute;
+	}
+	a{
+	  text-decoration: none;
+	  text-transform: none;
+	  color: white;
+	}
+
+	/*****************MAIN STYLING******************/
+	#container{
+	  height: auto;
+	  width: auto;
+	}
+	header p{
+	  height: 150px;
+	  width: 100%;
+	  background-color: #34495e;
+	  text-align: center;
+	  font-size: 5.5em;
+	  color: white;
+	}
+	article #death, #highScore{
+	  float: left;
+	  text-align: center;
+	  height: 60px;
+	  width: 50%;
+	}
+	article #death{
+	  background-color: #2ecc71;
+	}
+	article #highScore{
+	  background-color: #3498db;
+	}
+	footer{
+	  font-size: 2em;
+	}
+	footer #play,#settings, #help, #achievements, #aboutUs{
+	  width: 100%;
+	  font-size: 1.2em;
+	  margin-top: 10px;
+	  height: 55px;
+	  transition: background-color 0.5s;
+	  -webkit-transition: background-color 0.5s;
+	  -moz-transition: background-color 0.5s;
+	  -o-transition: background-color 0.5s;
+	}
+	footer #play{
+	  background-color: #e74c3c;
+	  text-align: center;
+	  margin-top: 75px;
+	  margin-bottom: 15px;
+	  opacity: 0.8;
+	}
+	footer #settings{
+	  background-color: #34495e;
+	  text-align: center;
+	}
+	#settings:hover{
+	  background-color:  #2ecc71;
+	}
+
+	footer #help{
+	  background-color: #34495e;
+	  text-align: center;
+
+	}
+	#help:hover{
+	  background-color:  #2ecc71;
+	}
+
+	footer #achievements{
+	  background-color: #34495e;
+	  text-align: center;
+
+	}
+	#achievements:hover{
+	  background-color:  #2ecc71;
+	}
+
+	footer #aboutUs{
+	  background-color: #34495e;
+	  text-align: center;
+	}
+	#aboutUs:hover{
+	  background-color:  #2ecc71;
+	}
+}
+
+@media screen and (max-width : 800px) {
+	* {
+	  font-family: inherit;
+	  font-style: inherit;
+	  padding: 0;
+	  margin: 0;
+	  font-family: 'Open Sans', sans-serif;
+	}
+
+	/*********************GENERAL STYLING***************/
+	body{
+	  background-color: #95a5a6;
+	}
+	img{
+	  position: absolute;
+	}
+	a{
+	  text-decoration: none;
+	  text-transform: none;
+	  color: white;
+	}
+
+	/*****************MAIN STYLING******************/
+	#container{
+	  height: auto;
+	  width: auto;
+	}
+	header p{
+	  height: 160px;
+	  width: 100%;
+	  background-color: #34495e;
+	  text-align: center;
+	  font-size: 6em;
+	  color: white;
+	}
+	article #death, #highScore{
+	  float: left;
+	  text-align: center;
+	  height: 60px;
+	  width: 50%;
+	}
+	article #death{
+	  background-color: #2ecc71;
+	}
+	article #highScore{
+	  background-color: #3498db;
+	}
+	footer{
+	  font-size: 2em;
+	}
+	footer #play,#settings, #help, #achievements, #aboutUs{
+	  width: 100%;
+	  font-size: 1.2em;
+	  margin-top: 10px;
+	  height: 55px;
+	  transition: background-color 0.5s;
+	  -webkit-transition: background-color 0.5s;
+	  -moz-transition: background-color 0.5s;
+	  -o-transition: background-color 0.5s;
+	}
+	footer #play{
+	  background-color: #e74c3c;
+	  text-align: center;
+	  margin-top: 75px;
+	  margin-bottom: 15px;
+	  opacity: 0.8;
+	}
+	footer #settings{
+	  background-color: #34495e;
+	  text-align: center;
+	}
+	#settings:hover{
+	  background-color:  #2ecc71;
+	}
+
+	footer #help{
+	  background-color: #34495e;
+	  text-align: center;
+
+	}
+	#help:hover{
+	  background-color:  #2ecc71;
+	}
+
+	footer #achievements{
+	  background-color: #34495e;
+	  text-align: center;
+
+	}
+	#achievements:hover{
+	  background-color:  #2ecc71;
+	}
+
+	footer #aboutUs{
+	  background-color: #34495e;
+	  text-align: center;
+	}
+	#aboutUs:hover{
+	  background-color:  #2ecc71;
+	}
+}
+@media only screen and (min-width:769px){
+		* {
+	  font-family: inherit;
+	  font-style: inherit;
+	  padding: 0;
+	  margin: 0;
+	  font-family: 'Open Sans', sans-serif;
+	}
+
+	/*********************GENERAL STYLING***************/
+	body{
+	  background-color: #95a5a6;
+	}
+	img{
+	  position: absolute;
+	}
+	a{
+	  text-decoration: none;
+	  text-transform: none;
+	  color: white;
+	}
+
+	/*****************MAIN STYLING******************/
+	#container{
+	  height: auto;
+	  width: auto;
+	}
+	header p{
+	  height: 160px;
+	  width: 100%;
+	  background-color: #34495e;
+	  text-align: center;
+	  font-size: 6em;
+	  color: white;
+	}
+	article #death, #highScore{
+	  float: left;
+	  text-align: center;
+	  height: 60px;
+	  width: 50%;
+	  font-size: 2.3em;
+	}
+	article #death{
+	  background-color: #2ecc71;
+	}
+	article #highScore{
+	  background-color: #3498db;
+	}
+	footer{
+	  font-size: 2em;
+	}
+	footer #play,#settings, #help, #achievements, #aboutUs{
+	  width: 100%;
+	  font-size: 1.2em;
+	  margin-top: 10px;
+	  height: 55px;
+	  transition: background-color 0.5s;
+	  -webkit-transition: background-color 0.5s;
+	  -moz-transition: background-color 0.5s;
+	  -o-transition: background-color 0.5s;
+	}
+	footer #play{
+	  background-color: #e74c3c;
+	  text-align: center;
+	  margin-top: 75px;
+	  margin-bottom: 15px;
+	  opacity: 0.8;
+	}
+	footer #settings{
+	  background-color: #34495e;
+	  text-align: center;
+	}
+	#settings:hover{
+	  background-color:  #2ecc71;
+	}
+
+	footer #help{
+	  background-color: #34495e;
+	  text-align: center;
+
+	}
+	#help:hover{
+	  background-color:  #2ecc71;
+	}
+
+	footer #achievements{
+	  background-color: #34495e;
+	  text-align: center;
+
+	}
+	#achievements:hover{
+	  background-color:  #2ecc71;
+	}
+
+	footer #aboutUs{
+	  background-color: #34495e;
+	  text-align: center;
+	}
+	#aboutUs:hover{
+	  background-color:  #2ecc71;
+	}
 }
