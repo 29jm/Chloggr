@@ -13,12 +13,12 @@ var move_x = 0;
 var move_y = 0;
 
 canvas.addEventListener('touchstart', function(event) {
-	var touchobj = e.changedTouches[0];
+	var touchobj = event.changedTouches[0];
 	move_x = 0;
 	move_y = 0;
 	start_x = touchobj.pageX;
 	start_y = touchobj.pageY;
-	e.preventDefault();
+	event.preventDefault();
 });
 
 canvas.addEventListener('touchmove', function(event) {
@@ -26,14 +26,12 @@ canvas.addEventListener('touchmove', function(event) {
 });
 
 canvas.addEventListener('touchend', function(event) {
-	var touchobj = e.changedTouches[0];
+	var touchobj = event.changedTouches[0];
 	move_x = touchobj.pageX - start_x;
 	move_y = touchobj.pageY - start_Y;
-	var len = Math.sqrt(move_x*move_x + move_y*move_y);
-	// check that elapsed time is within specified, horizontal dist traveled >= threshold, and vertical dist traveled <= 100
 	playerCube.speed_x += move_x;
 	playerCube.speed_y += move_y;
-	e.preventDefault();
+	event.preventDefault();
 });
 
 function handleInput() {
