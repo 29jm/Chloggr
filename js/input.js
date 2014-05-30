@@ -19,20 +19,20 @@ canvas.addEventListener('touchstart', function(event) {
 	start_x = touchobj.pageX;
 	start_y = touchobj.pageY;
 	event.preventDefault();
-});
+}, false);
 
 canvas.addEventListener('touchmove', function(event) {
 	event.preventDefault();
-});
+}, false);
 
 canvas.addEventListener('touchend', function(event) {
 	var touchobj = event.changedTouches[0];
 	move_x = touchobj.pageX - start_x;
-	move_y = touchobj.pageY - start_Y;
+	move_y = touchobj.pageY - start_y;
 	playerCube.speed_x += move_x;
 	playerCube.speed_y += move_y;
 	event.preventDefault();
-});
+}, false);
 
 function handleInput() {
 	// Arrow keys
