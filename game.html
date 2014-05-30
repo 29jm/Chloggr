@@ -6,7 +6,23 @@
 	</head>
 
 	<body>
-	   <canvas id="canvas"></canvas>
+		<canvas id="canvas"></canvas>
+		<div id="menuLose">
+			<p>YOU LOSE!</p>
+			<a href="index.html">go home, you're drunk!</a>
+		</div>
+
+		<a onClick="location.reload()">
+			<div id="replay">Restart</div>
+		</a>
+
+		<div id="menuPause">
+		    <p>Pause</p>
+			<span>Hey</span>
+		</div>
+
+		<a onClick="location.reload()"><div id="replay">REPLAY</div></a>
+
 	   <button id="button" onclick="onPauseButton()">Pause</button>
 	   <script src="js/cookies.js"></script>
 	   <script src="js/timer.js"></script>

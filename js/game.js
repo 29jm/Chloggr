@@ -219,6 +219,7 @@ function collisionDetection() {
 			finished = true;
 			playerCube.dead = true;
 			stopTimer();
+			loseMenu();
 		}
 	}
 }
@@ -241,14 +242,48 @@ function draw(context) {
 	context.fillText("Score: " + score, 100, 25);
 }
 
+//adds pause menu
+function pauseMenu(){
+	var menuPause = document.getElementById("menuPause");
+	menuPause.style.display = "inline-block";
+
+	var replay = document.getElementById("replay");
+	replay.style.display = "inline-block";
+	replay.style.backgroundColor =" #e74c3c";
+}
+//closes pause menu
+function quitMenu(){
+	var menuPause = document.getElementById("menuPause");
+	menuPause.style.display = "none";
+
+	var replay = document.getElementById("replay");
+	replay.style.display = "none";
+}
+//adds lose menu when you die
+function loseMenu(){
+	var menuLose = document.getElementById("menuLose");
+	menuLose.style.display = "inline-block";
+
+	var replay = document.getElementById("replay");
+	replay.style.display = "inline-block";
+	replay.style.backgroundColor =" #e74c3c";
+}
+
 function onPauseButton() {
 	paused = (paused ? false : true); // Toggles paused var
 	if (paused) {
+		if(paused && finished){  //can't open the 2 at the same time
+			alert("you can't do that");
+		}
+		else{
+			pauseMenu();
+		}
 		stopTimer();
 		document.getElementById("button").innerHTML = "Play";
 	}
 	else {
 		playTimer();
 		document.getElementById("button").innerHTML = "Pause";
+		quitMenu();
 	}
 }
