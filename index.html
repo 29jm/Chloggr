@@ -14,15 +14,6 @@
 		<div id="container">
 			<div id="death">death</div>
 			<div id="highScore">score</div>
-			<script src="js/cookie.js"></script> <!-- to access readCookie() -->
-		<script>
-			var highScore = readCookie("highScore");
-			if (highScore == null) {
-				highScore = 0;
-			}
-
-			document.getElementById("highScore").innerHTML = highScore;
-		</script>
 		</div>
 
 
@@ -40,5 +31,15 @@
 			<a href="#"><div id="achievements">Achievements</div></a>
 			<a href="#"><div id="aboutUs">aboutUs</div></a>
 		</footer>
+
+		<script src="js/cookies.js"></script> <!-- to access readCookie() -->
+		<script>
+		var highScore = Cookies.get("highScore");
+		if (highScore == undefined) {
+			highScore = 0;
+		}
+
+		document.getElementById("highScore").innerHTML = highScore;
+		</script>
 	</body>
 </html>

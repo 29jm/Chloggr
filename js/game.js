@@ -101,7 +101,6 @@ var playerCube = undefined;
 var targetCube = undefined;
 var enemies = undefined;
 var interval = undefined;
-var finished = undefined;
 var keys = undefined;
 var score = undefined;
 var last_time = undefined;
@@ -133,7 +132,6 @@ function init() {
 	interval = setInterval(loop, 3);
 	playTimer();
 
-	finished = false;
 	keys = {};
 	score = 0;
 	last_time = Date.now();
@@ -181,7 +179,7 @@ function respawn() {
 function loop() {
 	canvas.width = canvas.width; // Clear canvas
 
-	if (paused || finished) {
+	if (paused || playerCube.dead) { // Draw but stop updating
 		draw(ctx);
 		return;
 	}
@@ -221,30 +219,37 @@ function collisionDetection() {
 	}
 
 	if (playerCube.intersects(targetCube)) {
-		score++;
-		if (score > highScore) {
-			highScore = score;
-			Cookies.set('highScore', highScore);
-		}
-
-		if (enemy_density < max_density) {
-			enemy_density++;
-		}
-
-		setEnemyDensity(enemy_density, 800*600);
-		playerCube.speed_x = 0;
-		playerCube.speed_y = 0;
-		respawn();
+		onTarget();
 	}
 
 	for (var i = 0; i < num_enemies; i++) {
 		if (playerCube.intersects(enemies[i])) {
-			finished = true;
-			playerCube.dead = true;
-			stopTimer();
-			loseMenu();
+			onDead();
 		}
 	}
+}
+
+function onTarget() {
+	score++;
+	if (score > highScore) {
+		highScore = score;
+		Cookies.set('highScore', highScore);
+	}
+
+	if (enemy_density < max_density) {
+		enemy_density++;
+	}
+
+	setEnemyDensity(enemy_density, 800*600);
+	playerCube.speed_x = 0;
+	playerCube.speed_y = 0;
+	respawn();
+}
+
+function onDead() {
+	playerCube.dead = true; // Specialization
+	stopTimer();
+	loseMenu();
 }
 
 function draw(context) {
@@ -295,18 +300,13 @@ function loseMenu(){
 function onPauseButton() {
 	paused = (paused ? false : true); // Toggles paused var
 	if (paused) {
-		if(paused && finished){  //can't open the 2 at the same time
-			alert("you can't do that");
-		}
-		else{
-			pauseMenu();
-		}
+		pauseMenu();
 		stopTimer();
 		document.getElementById("button").innerHTML = "Play";
 	}
 	else {
 		playTimer();
-		document.getElementById("button").innerHTML = "Pause";
 		quitMenu();
+		document.getElementById("button").innerHTML = "Pause";
 	}
 }
