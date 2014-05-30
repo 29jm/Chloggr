@@ -4,41 +4,30 @@
 		<title>Main menu</title>
 		<link rel="stylesheet" type="text/css" href="menu/menu.css">
 		<link rel="stylesheet" media="only screen and (color)" href="menu/queries.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<script src="js/cookie.js"></script>
 	</head>
 
 	<body>
-		<header>
-			<p>Chloggr</p>
-		</header>
-
 		<div id="container">
-			<div id="death">death</div>
-			<div id="highScore">score</div>
-			<script src="js/cookie.js"></script> <!-- to access readCookie() -->
-		<script>
-			var highScore = readCookie("highScore");
-			if (highScore == null) {
-				highScore = 0;
-			}
 
-			document.getElementById("highScore").innerHTML = highScore;
-		</script>
+			<header>
+				<p>Chloggr</p>
+			</header>
+
+			<article>
+				<div id="death">death</div>
+				<div id="highScore">highScore</div>
+			</article>
+
+			<footer>
+				<a href="game.html"><div id="play">PLAY!</div></a>
+				<a href="#"><div id="settings">Settings</div></a>
+				<a href="#"><div id="help">help</div></a>
+				<a href="#"><div id="achievements">Achievements</div></a>
+				<a href="#"><div id="aboutUs">aboutUs</div></a>
+			</footer>
+
 		</div>
-
-
-		<a href="game.html"><div id="play">PLAY!</div></a>
-
-		<div class="player"></div>
-
-		<div class="target"></div>
-
-		<div class="enemy"></div>
-		
-		<footer>
-			<a href="#"><div id="settings">Settings</div></a>
-			<a href="#"><div id="help">help</div></a>
-			<a href="#"><div id="achievements">Achievements</div></a>
-			<a href="#"><div id="aboutUs">aboutUs</div></a>
-		</footer>
 	</body>
 </html>
