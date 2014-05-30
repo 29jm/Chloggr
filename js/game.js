@@ -57,11 +57,8 @@ function Square(w, h) {
 			return;
 		}
 
-		var unit_x = this.speed_x / len;
-		var unit_y = this.speed_y / len;
-
-		this.speed_x = unit_x*(len-this.slowing_speed);
-		this.speed_y = unit_y*(len-this.slowing_speed);
+		this.speed_x = (this.speed_x / len)*(len-this.slowing_speed);
+		this.speed_y = (this.speed_y / len)*(len-this.slowing_speed);
 	}
 
 	this.draw = function(context) {
