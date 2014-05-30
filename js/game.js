@@ -90,37 +90,59 @@ function Square(w, h) {
 	this.toRandomLocation(); // Specialization
 }
 
-var enemy_density = 6; // Allows scaling to small screens (fuck high-res ones)
-var max_density = 15;
-var num_enemies = 0;
-setEnemyDensity(enemy_density, 800*600);
-
-var cube_size = 40;
-var enemy_size = 15;
-var accel = 7;
-
-var playerCube = new Square(cube_size, cube_size);
-playerCube.color = '#ecf0f1';
-
-var targetCube = new Square(cube_size, cube_size);
-targetCube.color = '#e74c3c';
-var enemies = [];
-createEnemies();
-
-respawn();
-var interval = setInterval(loop, 3);
-playTimer();
-
+var enemy_density = undefined;
+var max_density = undefined;
+var num_enemies = undefined;
+var cube_size = undefined;
+var enemy_size = undefined;
+var accel = undefined;
+var playerCube = undefined;
+var targetCube = undefined;
+var enemies = undefined;
+var interval = undefined;
 var finished = false;
-var keys = {};
-var score = 0;
-var last_time = Date.now();
-var paused = false;
+var keys = undefined;
+var score = undefined;
+var last_time = undefined;
+var paused = undefined;
+var highScore = undefined;
 
-var highScore = Cookies.get('highScore');
-if (highScore == undefined) {
-	highScore = 0;
-	Cookies.set('highScore', 0, { expires: 600 });
+// Only function called when (re)starting
+init();
+
+function init() {
+	enemy_density = 6; // Allows scaling to small screens (fuck high-res ones)
+	max_density = 15;
+	num_enemies = 0;
+	setEnemyDensity(enemy_density, 800*600);
+
+	cube_size = 40;
+	enemy_size = 15;
+	accel = 7;
+
+	playerCube = new Square(cube_size, cube_size);
+	playerCube.color = '#ecf0f1';
+
+	targetCube = new Square(cube_size, cube_size);
+	targetCube.color = '#e74c3c';
+	enemies = [];
+	createEnemies();
+
+	respawn();
+	interval = setInterval(loop, 3);
+	playTimer();
+
+	finished = false;
+	keys = {};
+	score = 0;
+	last_time = Date.now();
+	paused = false;
+
+	highScore = Cookies.get('highScore');
+	if (highScore == undefined) {
+		highScore = 0;
+		Cookies.set('highScore', 0, { expires: 600 });
+	}
 }
 
 function createEnemies() {
