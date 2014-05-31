@@ -143,7 +143,7 @@ function init() {
 }
 
 function createEnemies() {
-	console.log("Enemies recreated "+num_enemies);
+	console.log(num_enemies+" created");
 
 	enemies = []
 	for (var i = 0; i < num_enemies; i++) {
@@ -155,7 +155,7 @@ function createEnemies() {
 
 function updateEnemyDensity() {
 	var enemy_ratio = enemy_density/Math.pow(800*600, 2);
-	var px_num = canvas.width*canvas.height;
+	var px_num = (canvas.width*window.devicePixelRatio)*(canvas.height*window.devicePixelRatio);
 	num_enemies = Math.round(enemy_ratio*(px_num*px_num));
 	createEnemies();
 }
