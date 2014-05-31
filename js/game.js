@@ -12,6 +12,7 @@ window.addEventListener('resize', function(event){
 	canvas.width = window.innerWidth;
 	canvas.height = window.innerHeight-50;
 
+	updateEnemyDensity();
 	respawn();
 });
 
@@ -57,11 +58,8 @@ function Square(w, h) {
 			return;
 		}
 
-		var unit_x = this.speed_x / len;
-		var unit_y = this.speed_y / len;
-
-		this.speed_x = unit_x*(len-this.slowing_speed);
-		this.speed_y = unit_y*(len-this.slowing_speed);
+		this.speed_x = (this.speed_x / len)*(len-this.slowing_speed);
+		this.speed_y = (this.speed_y / len)*(len-this.slowing_speed);
 	}
 
 	this.draw = function(context) {
@@ -111,12 +109,12 @@ var highScore = undefined;
 init();
 
 function init() {
-	quitMenu();
+	hideMenu();
 	resetTimer();
 	enemy_density = 6; // Allows scaling to small screens (fuck high-res ones)
 	max_density = 15;
 	num_enemies = 0;
-	setEnemyDensity(enemy_density, 800*600);
+	updateEnemyDensity();
 
 	cube_size = 40;
 	enemy_size = 15;
@@ -146,7 +144,7 @@ function init() {
 }
 
 function createEnemies() {
-	console.log("Enemies recreated "+num_enemies);
+	console.log(num_enemies+" created");
 
 	enemies = []
 	for (var i = 0; i < num_enemies; i++) {
@@ -156,10 +154,13 @@ function createEnemies() {
 	}
 }
 
-function setEnemyDensity(num, area) {
-	var enemy_ratio = num/Math.pow(area, 2);
-	var px_num = canvas.width*canvas.height;
+function updateEnemyDensity() {
+	var enemy_ratio = enemy_density/Math.pow(800*600, 2);
+	var px_num = (canvas.width*window.devicePixelRatio)*(canvas.height*window.devicePixelRatio);
 	num_enemies = Math.round(enemy_ratio*(px_num*px_num));
+
+	createEnemies();
+	
 }
 
 function respawn() {
@@ -168,7 +169,7 @@ function respawn() {
 	}
 
 	targetCube.toRandomLocation();
-	for (var i = 0; i < num_enemies; i++) {
+	for (var i = 0; i < enemies.length; i++) {
 		enemies[i].toRandomLocation();
 		while (targetCube.intersects(enemies[i]) ||
 			   playerCube.intersects(enemies[i])) {
@@ -239,9 +240,9 @@ function onTarget() {
 
 	if (enemy_density < max_density) {
 		enemy_density++;
+		updateEnemyDensity();
 	}
 
-	setEnemyDensity(enemy_density, 800*600);
 	playerCube.speed_x = 0;
 	playerCube.speed_y = 0;
 	respawn();
@@ -271,7 +272,6 @@ function draw(context) {
 	context.fillText("Score: " + score, 100, 25);
 }
 
-//adds pause menu
 function pauseMenu(){
 	var menuPause = document.getElementById("menuPause");
 	menuPause.style.display = "inline-block";
@@ -284,8 +284,8 @@ function pauseMenu(){
 	replay.style.display = "inline-block";
 	replay.style.backgroundColor =" #e74c3c";
 }
-//closes pause menu
-function quitMenu(){
+
+function hideMenu(){
 	var menuPause = document.getElementById("menuPause");
 	menuPause.style.display = "none";
 
@@ -298,7 +298,7 @@ function quitMenu(){
 	var quit = document.getElementById("quit");
 	quit.style.display = "none";
 }
-//adds lose menu when you die
+
 function loseMenu(){
 	var menuLose = document.getElementById("menuLose");
 	menuLose.style.display = "inline-block";
@@ -321,7 +321,7 @@ function onPauseButton() {
 	}
 	else {
 		playTimer();
-		quitMenu();
+		hideMenu();
 		document.getElementById("button").innerHTML = "Pause";
 	}
 }
