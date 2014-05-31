@@ -12,6 +12,7 @@ window.addEventListener('resize', function(event){
 	canvas.width = window.innerWidth-20;
 	canvas.height = window.innerHeight-70;
 
+	updateEnemyDensity();
 	respawn();
 });
 
@@ -111,7 +112,7 @@ function init() {
 	enemy_density = 6; // Allows scaling to small screens (fuck high-res ones)
 	max_density = 15;
 	num_enemies = 0;
-	setEnemyDensity(enemy_density, 800*600);
+	updateEnemyDensity();
 
 	cube_size = 40;
 	enemy_size = 15;
@@ -152,19 +153,16 @@ function createEnemies() {
 	}
 }
 
-function setEnemyDensity(num, area) {
-	var enemy_ratio = num/Math.pow(area, 2);
+function updateEnemyDensity() {
+	var enemy_ratio = enemy_density/Math.pow(800*600, 2);
 	var px_num = canvas.width*canvas.height;
 	num_enemies = Math.round(enemy_ratio*(px_num*px_num));
+	createEnemies();
 }
 
 function respawn() {
-	if (enemies.length != num_enemies) { // Density changed
-		createEnemies();
-	}
-
 	targetCube.toRandomLocation();
-	for (var i = 0; i < num_enemies; i++) {
+	for (var i = 0; i < enemies.length; i++) {
 		enemies[i].toRandomLocation();
 		while (targetCube.intersects(enemies[i]) ||
 			   playerCube.intersects(enemies[i])) {
@@ -235,9 +233,9 @@ function onTarget() {
 
 	if (enemy_density < max_density) {
 		enemy_density++;
+		updateEnemyDensity();
 	}
 
-	setEnemyDensity(enemy_density, 800*600);
 	playerCube.speed_x = 0;
 	playerCube.speed_y = 0;
 	respawn();
