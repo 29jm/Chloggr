@@ -4,30 +4,38 @@
 		<title>Chloggr</title>
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 	</head>
 
 	<body>
 		<canvas id="canvas"></canvas>
 		<div id="menuLose">
 			<p>YOU LOSE!</p>
-			<a href="index.html">go home, you're drunk!</a>
+			<h2>Too bad for you!</h2>
 		</div>
-
-		<a onClick="location.reload()">
-			<div id="replay">Restart</div>
-		</a>
 
 		<div id="menuPause">
 		    <p>Pause</p>
-			<span>Hey</span>
+			<h2>Hey</h2>
 		</div>
+		
+		<a href="index.html" id="aQuit">
+			<div id="quit">Quit</div>
+		</a>
+		
+		<a onClick="init()">
+			<div id="replay">Restart</div>
+		</a>
 
 		<a onClick="location.reload()"><div id="replay">REPLAY</div></a>
-
-	   <button id="button" onclick="onPauseButton()">Pause</button>
-	   <script src="js/cookies.js"></script>
-	   <script src="js/timer.js"></script>
-	   <script src="js/input.js"></script>
-	   <script src="js/game.js"></script>
+		
+	    <a onclick="onPauseButton()" id="aButton">
+	    	<div id="button">Pause</div>
+	    </a>
+	    
+	    <script src="js/cookies.js"></script>
+	    <script src="js/timer.js"></script>
+	    <script src="js/input.js"></script>
+	    <script src="js/game.js"></script>
 	</body>
 </html>

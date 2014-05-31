@@ -11,48 +11,53 @@ body{
 }
 
 /*************GAME STYLING***********/
+
+
+	/*canvas*/
 #canvas{
 	overflow: hidden;
 	display: block;
-	border: 10px solid #2c3e50;
 	background-color: #34495e;
 	-o-box-shadow:    inset 0 0 10px #000000;
 	-moz-box-shadow:    inset 0 0 10px #000000;
    	-webkit-box-shadow: inset 0 0 10px #000000;
    	box-shadow:         inset 0 0 10px #000000;
 }
-#button{
+
+
+	/*button*/
+a #button{
 	width: 100%;
 	height:50px;
 	background-color: #2ecc71;
 	color: #ecf0f1;
-	font-size: 1.57em;
-	border-top: 0px;
-	border-right: 10px solid #2c3e50;
-	border-left: 10px solid #2c3e50;
-	border-bottom: 10px solid #2c3e50;
+	font-size: 2em;
+	border:none;
+	text-align: center;
 	-webkit-transition: background-color 0.2s; /* For Safari 3.1 to 6.0 */
 	-moz-transition: background-color 0.2s; /* For mozilla */
 	-o-transition: background-color 0.2s; /* For opera */
 	transition: background-color 0.2s;
+	cursor: pointer
 }
-#button:hover{
+a #button:hover{
 	background-color: #27ae60;
-  border-top: 0px;
-	border-right: 10px solid #2c3e50;
-	border-left: 10px solid #2c3e50;
-	border-bottom: 10px solid #2c3e50;
+	-o-box-shadow:    inset 0 0 10px #000000;
+	-moz-box-shadow:    inset 0 0 10px #000000;
+   	-webkit-box-shadow: inset 0 0 10px #000000;
+   	box-shadow:         inset 0 0 10px #000000;
 }
+
+
+	/*Lose Menu*/
 #menuLose{
+	top: 200px;
 	position:fixed;
 	display:none;
 	width: 100%;
-	top: 100px;
-	height: 20%;
-	backround-color: #3498db;
+	height: 200px;
 	opacity: 0.5;
 	text-align: center;
-
 }
 #menuLose p{
 	font-size: 5em;
@@ -61,14 +66,18 @@ body{
 	font-size: 2em;
 	color: black;
 }
+#menuLose h2{
+font-size: 2em;
+}
 
+
+	/*Pause Menu*/
 #menuPause{
+	top: 200px;
 	position:fixed;
 	display:none;
 	width: 100%;
-	top: 100px;
-	height: 20%;
-	backround-color: #3498db;
+	height: 200px;
 	opacity: 0.5;
 	text-align: center;
 }
@@ -80,7 +89,97 @@ body{
 	color: black;
 }
 
+
+	/*Replay Button*/
 #replay{
+	top: 450px;
+	width: 100%;
+	height: 50px;
+	position:fixed;
+	display:none;
+	text-align: center;
+	cursor: pointer;
+	font-size: 2em;
+	color: white;
+}
+a #replay{
+	cursor: pointer;
+	background-color: #1abc9c;
+}
+#quit{
+	top: 400px;
+	width: 100%;
+	height: 50px;
+	position:fixed;
+	display:none;
+	text-align: center;
+	cursor: pointer;
+	font-size: 2em;
+	color: white;
+}
+a #quit{
+	cursor: pointer;
+	color: white;
+	background-color: #e74c3c;
+}
+
+@media (max-device-width : 780px) and (-webkit-min-device-pixel-ratio: 2){
+	/*Lose Menu*/
+#menuLose{
+	position:fixed;
+	display:none;
+	width: 100%;
+	top: 100px;
+	height: 20%;
+	opacity: 0.5;
+	text-align: center;
+
+}
+#menuLose p{
+	font-size: 3.8em;
+}
+#menuLose a{
+	font-size: 2em;
+	color: black;
+}
+
+
+	/*Pause Menu*/
+#menuPause{
+	position:fixed;
+	display:none;
+	width: 100%;
+	top: 100px;
+	height: 20%;
+	opacity: 0.5;
+	text-align: center;
+}
+#menuPause p{
+	font-size: 3.8em;
+}
+#menuPause h2{
+	font-size: 2em;
+	color: black;
+}
+
+
+	/*Replay Button*/
+#replay{
+	width: 100%;
+	height: 50px;
+	position:fixed;
+	display:none;
+	top:350px;
+	text-align: center;
+	cursor: pointer;
+	font-size: 2em;
+	color: white;
+}
+a #replay{
+	cursor: pointer;
+	background-color: #e74c3c;
+}
+#quit{
 	width: 100%;
 	height: 50px;
 	position:fixed;
@@ -91,7 +190,10 @@ body{
 	font-size: 2em;
 	color: white;
 }
-a #replay{
+#quit a{
 	cursor: pointer;
-	backround-color: #e74c3c;
+
+	color: white;
+}
+
 }

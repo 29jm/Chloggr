@@ -35,3 +35,12 @@ function stopTimer()//activates when user clicks on the "Pause" button.
    clearTimeout(intervalSeconds);
    timerIsOn = 0;
 }
+function resetTimer()
+{
+   seconds = 0;
+   minutes = 0;
+   hours = 0;
+   intervalSeconds;
+   timerIsOn = 0;
+   playTimer();
+}
