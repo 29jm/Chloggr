@@ -129,6 +129,11 @@ function init() {
 	createEnemies();
 
 	respawn();
+
+	if (interval != undefined) {
+		clearInterval(interval);
+	}
+
 	interval = setInterval(loop, 3);
 
 	keys = {};
@@ -160,7 +165,6 @@ function updateEnemyDensity() {
 	num_enemies = Math.round(enemy_ratio*(px_num*px_num));
 
 	createEnemies();
-	
 }
 
 function respawn() {
