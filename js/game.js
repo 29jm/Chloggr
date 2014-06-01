@@ -160,9 +160,10 @@ function createEnemies() {
 }
 
 function updateEnemyDensity() {
-	var enemy_ratio = enemy_density/Math.pow(800*600, 2);
-	var px_num = (canvas.width*window.devicePixelRatio)*(canvas.height*window.devicePixelRatio);
-	num_enemies = Math.round(enemy_ratio*(px_num*px_num));
+	var enemy_ratio = enemy_density/Math.pow(10, 2);
+	var screen_size = getUnits(document.body, "width").cm
+						* getUnits(document.body, "height").cm;
+	num_enemies = Math.round(enemy_ratio*screen_size);
 
 	createEnemies();
 }
