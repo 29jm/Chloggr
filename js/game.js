@@ -114,8 +114,6 @@ function init() {
 	playerCube.deadImage.src = 'assets/deadPlayer.png'
 	playerCube.img = new Image();
 	playerCube.img.src = 'assets/playerCube.png';
-	playerCube.img.width = cube_size;
-	playerCube.img.height = cube_size;
 	playerCube.draw = function(context) {
 		if (this.dead) {
 			context.drawImage(this.deadImage, this.x, this.y);
@@ -125,10 +123,10 @@ function init() {
 	}
 
 	targetCube = new Square(cube_size, cube_size);
-	targetCube.color = '#e74c3c';
+	targetCube.img = new Image();
+	targetCube.img.src = 'assets/targetCube.png';
 	targetCube.draw = function(context) {
-		context.fillStyle = this.color;
-		context.fillRect(this.x, this.y, this.width, this.height);
+		context.drawImage(this.img, this.x, this.y);
 	}
 
 	enemies = [];
