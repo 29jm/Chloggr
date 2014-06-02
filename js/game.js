@@ -276,8 +276,8 @@ function draw(context) {
 		enemies[i].draw(context);
 	}
 	
-	document.getElementById("timer").innerHTML = hours + ":" + minutes + ":" + seconds;
-	document.getElementById("score").innerHTML =  score ;
+	document.getElementById("timer").innerHTML = "Time: " + hours + ":" + minutes + ":" + seconds;
+	document.getElementById("score").innerHTML = "score: "+ score ;
 }
 
 function pauseMenu(){

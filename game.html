@@ -9,6 +9,10 @@
 
 	<body>
 		<canvas id="canvas"></canvas>
+
+		<div id="timer">0</div>
+		<div id="score">0</div>
+
 		<div id="menuLose">
 			<p>YOU LOSE!</p>
 			<h2>Too bad for you!</h2>
@@ -18,13 +22,13 @@
 		    <p>Pause</p>
 			<h2>Hey</h2>
 		</div>
+
+		<a onClick="init()">
+			<div id="replay">Restart</div>
+		</a>
 		
 		<a href="index.html" id="aQuit">
 			<div id="quit">Quit</div>
-		</a>
-		
-		<a onClick="init()">
-			<div id="replay">Restart</div>
 		</a>
 
 		<a onClick="location.reload()"><div id="replay">REPLAY</div></a>

@@ -125,7 +125,7 @@ a #quit{
 #timer{
 	position: absolute;
 	top: 10px;
-	left: 15px;
+	left: 1em;
 	background-color: #34495e;
 	font-size: 2em;
 	color: white;
@@ -133,7 +133,7 @@ a #quit{
 #score{
 	position: absolute;
 	top: 10px;
-	left: 25px;
+	left: 7em;
 	background-color: #34495e;
 	font-size: 2em;
 	color: white;
