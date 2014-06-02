@@ -126,7 +126,7 @@ a #quit{
 	position: absolute;
 	top: 10px;
 	left: 1em;
-	background-color: #34495e;
+	background-color: transparent;
 	font-size: 2em;
 	color: white;
 }
@@ -134,7 +134,7 @@ a #quit{
 	position: absolute;
 	top: 10px;
 	left: 7em;
-	background-color: #34495e;
+	background-color: transparent;
 	font-size: 2em;
 	color: white;
 }
