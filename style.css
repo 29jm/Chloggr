@@ -38,6 +38,11 @@ a #button{
 	-moz-transition: background-color 0.2s; /* For mozilla */
 	-o-transition: background-color 0.2s; /* For opera */
 	transition: background-color 0.2s;
+
+	-webkit-transition: box-shadow 0.2s; /* For Safari 3.1 to 6.0 */
+	-moz-transition: box-shadow 0.2s; /* For mozilla */
+	-o-transition: box-shadow 0.2s; /* For opera */
+	transition: box-shadow 0.2s;
 	cursor: pointer
 }
 a #button:hover{
@@ -92,7 +97,7 @@ font-size: 2em;
 
 	/*Replay Button*/
 #replay{
-	bottom: 100px;
+	bottom: 500px;
 	width: 100%;
 	height: 50px;
 	position:fixed;
@@ -107,7 +112,7 @@ a #replay{
 	background-color: #1abc9c;
 }
 #quit{
-	bottom: 50px;
+	bottom: 450px;
 	width: 100%;
 	height: 50px;
 	position:fixed;
@@ -208,6 +213,24 @@ a #quit{
 	#quit a{
 		cursor: pointer;
 
+		color: white;
+	}
+
+	#timer{
+		position: absolute;
+		top: 10px;
+		left: 1em;
+		background-color: transparent;
+		font-size: 1em;
+		color: white;
+	}
+
+	#score{
+		position: absolute;
+		top: 10px;
+		left: 7em;
+		background-color: transparent;
+		font-size: 1em;
 		color: white;
 	}
 
