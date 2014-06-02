@@ -275,13 +275,9 @@ function draw(context) {
 	for (var i = 0; i < num_enemies; i++) {
 		enemies[i].draw(context);
 	}
-
-	context.fillStyle = '#FFFFFF';
-	context.font = "20px Open Sans";
-	context.fillText(hours + ":" + minutes + ":" + seconds, 20, 25);
-
-	context.font = "20px Open Sans";
-	context.fillText("Score: " + score, 100, 25);
+	
+	document.getElementById("timer").innerHTML = hours + ":" + minutes + ":" + seconds;
+	document.getElementById("score").innerHTML =  score ;
 }
 
 function pauseMenu(){

@@ -51,7 +51,7 @@ a #button:hover{
 
 	/*Lose Menu*/
 #menuLose{
-	top: 200px;
+	top: 10%;
 	position:fixed;
 	display:none;
 	width: 100%;
@@ -73,7 +73,7 @@ font-size: 2em;
 
 	/*Pause Menu*/
 #menuPause{
-	top: 200px;
+	top: 10%;
 	position:fixed;
 	display:none;
 	width: 100%;
@@ -92,7 +92,7 @@ font-size: 2em;
 
 	/*Replay Button*/
 #replay{
-	top: 450px;
+	top: 35%;
 	width: 100%;
 	height: 50px;
 	position:fixed;
@@ -107,7 +107,7 @@ a #replay{
 	background-color: #1abc9c;
 }
 #quit{
-	top: 400px;
+	top:30%;
 	width: 100%;
 	height: 50px;
 	position:fixed;
@@ -122,78 +122,93 @@ a #quit{
 	color: white;
 	background-color: #e74c3c;
 }
-
-@media (max-device-width : 780px) and (-webkit-min-device-pixel-ratio: 2){
+#timer{
+	position: absolute;
+	top: 10px;
+	left: 15px;
+	background-color: #34495e;
+	font-size: 2em;
+	color: white;
+}
+#score{
+	position: absolute;
+	top: 10px;
+	left: 25px;
+	background-color: #34495e;
+	font-size: 2em;
+	color: white;
+}
+@media (max-device-width : 768px) and (-webkit-min-device-pixel-ratio: 2){
 	/*Lose Menu*/
-#menuLose{
-	position:fixed;
-	display:none;
-	width: 100%;
-	top: 100px;
-	height: 20%;
-	opacity: 0.5;
-	text-align: center;
+	#menuLose{
+		position:fixed;
+		display:none;
+		width: 100%;
+		top: 100px;
+		height: 20%;
+		opacity: 0.5;
+		text-align: center;
 
-}
-#menuLose p{
-	font-size: 3.8em;
-}
-#menuLose a{
-	font-size: 2em;
-	color: black;
-}
-
-
-	/*Pause Menu*/
-#menuPause{
-	position:fixed;
-	display:none;
-	width: 100%;
-	top: 100px;
-	height: 20%;
-	opacity: 0.5;
-	text-align: center;
-}
-#menuPause p{
-	font-size: 3.8em;
-}
-#menuPause h2{
-	font-size: 2em;
-	color: black;
-}
+	}
+	#menuLose p{
+		font-size: 3.8em;
+	}
+	#menuLose a{
+		font-size: 2em;
+		color: black;
+	}
 
 
-	/*Replay Button*/
-#replay{
-	width: 100%;
-	height: 50px;
-	position:fixed;
-	display:none;
-	top:350px;
-	text-align: center;
-	cursor: pointer;
-	font-size: 2em;
-	color: white;
-}
-a #replay{
-	cursor: pointer;
-	background-color: #e74c3c;
-}
-#quit{
-	width: 100%;
-	height: 50px;
-	position:fixed;
-	display:none;
-	top:300px;
-	text-align: center;
-	cursor: pointer;
-	font-size: 2em;
-	color: white;
-}
-#quit a{
-	cursor: pointer;
+		/*Pause Menu*/
+	#menuPause{
+		position:fixed;
+		display:none;
+		width: 100%;
+		top: 100px;
+		height: 20%;
+		opacity: 0.5;
+		text-align: center;
+	}
+	#menuPause p{
+		font-size: 3.8em;
+	}
+	#menuPause h2{
+		font-size: 2em;
+		color: black;
+	}
 
-	color: white;
-}
+
+		/*Replay Button*/
+	#replay{
+		width: 100%;
+		height: 50px;
+		position:fixed;
+		display:none;
+		top:350px;
+		text-align: center;
+		cursor: pointer;
+		font-size: 2em;
+		color: white;
+	}
+	a #replay{
+		cursor: pointer;
+		background-color: #e74c3c;
+	}
+	#quit{
+		width: 100%;
+		height: 50px;
+		position:fixed;
+		display:none;
+		top:300px;
+		text-align: center;
+		cursor: pointer;
+		font-size: 2em;
+		color: white;
+	}
+	#quit a{
+		cursor: pointer;
+
+		color: white;
+	}
 
 }
