@@ -6,6 +6,12 @@ Get all those dummy cubes ! Kill 'em all !!!
 Features
 ========
 
+Not yet added:
+* Rampage
+* Moving target
+* Market
+* Achievementsw
+
 To be filled I ain't got no time
 
 Todo list
@@ -15,6 +21,7 @@ Todo list
 * Add a minimum distance between the player and target at spawn
 * Add Death number on Main Menu
 * Add page for settings
+* Don't call handleInput() if on mobile/touchscreen
 
 ##Completed tasks
 * Make menu for pause in game.html
