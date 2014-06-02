@@ -99,7 +99,7 @@ init();
 function init() {
 	hideMenu();
 	resetTimer();
-	enemy_density = 3; // Allows scaling to small screens (fuck high-res ones)
+	enemy_density = 3;
 	max_density = 10;
 	num_enemies = 0;
 	updateEnemyDensity();
@@ -138,7 +138,7 @@ function init() {
 		clearInterval(interval);
 	}
 
-	interval = setInterval(loop, 3);
+	interval = setInterval(loop, 2);
 
 	keys = {};
 	score = 0;
