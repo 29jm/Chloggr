@@ -150,7 +150,7 @@ a #quit{
 		position:fixed;
 		display:none;
 		width: 100%;
-		top: 100px;
+		top: 10%;
 		height: 20%;
 		opacity: 0.5;
 		text-align: center;
@@ -170,7 +170,7 @@ a #quit{
 		position:fixed;
 		display:none;
 		width: 100%;
-		top: 100px;
+		top: 10%;
 		height: 20%;
 		opacity: 0.5;
 		text-align: center;
@@ -190,7 +190,7 @@ a #quit{
 		height: 50px;
 		position:fixed;
 		display:none;
-		top:350px;
+		bottom:50px;
 		text-align: center;
 		cursor: pointer;
 		font-size: 2em;
@@ -205,7 +205,7 @@ a #quit{
 		height: 50px;
 		position:fixed;
 		display:none;
-		top:300px;
+		bottom:100px;
 		text-align: center;
 		cursor: pointer;
 		font-size: 2em;
@@ -220,19 +220,19 @@ a #quit{
 	#timer{
 		position: absolute;
 		top: 10px;
-		left: 1em;
+		right: 1em;
 		background-color: transparent;
-		font-size: 1em;
 		color: white;
+		font-size: 1em;
 	}
-
 	#score{
 		position: absolute;
 		top: 10px;
-		left: 7em;
+		left: 1em;
 		background-color: transparent;
-		font-size: 1em;
 		color: white;
+		font-size: 1em;
 	}
 
 }
+
