@@ -30,7 +30,7 @@ Square.prototype.toRandomLocation = function(max_x, max_y) {
 function Enemy(width, height) {
 	Square.call(this);
 
-	this.width = width; // Are those needed ? TODO
+	this.width = width;
 	this.height = height;
 
 	this.color = '#FF0000';

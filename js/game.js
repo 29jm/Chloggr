@@ -1,3 +1,5 @@
+"use strict";
+
 var canvas  = document.getElementById("canvas");
 if (!canvas.getContext) {
 	alert("Could not obtain rendering context");
@@ -7,14 +9,6 @@ var ctx = canvas.getContext('2d');
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight-50;
-
-window.addEventListener('resize', function(event){
-	canvas.width = window.innerWidth;
-	canvas.height = window.innerHeight-50;
-
-	updateEnemyDensity();
-	respawn();
-});
 
 // Prevent double initialization
 var enemy_density = undefined;
@@ -34,15 +28,20 @@ var paused = undefined;
 var cookie_exp = undefined;
 var highScore = undefined;
 var deathNumber = undefined;
+var screen_size_x = undefined;
+var screen_size_y = undefined;
 
 // Only function called when (re)starting
 init();
 
 function init() {
+	screen_size_x = getUnits(document.body, "width").cm;
+	screen_size_y = getUnits(document.body, "height").cm;
+
 	hideMenu();
 	resetTimer();
 	enemy_density = 3;
-	max_density = 18;
+	max_density = 14;
 	num_enemies = 0;
 	updateEnemyDensity();
 
@@ -102,9 +101,8 @@ function createEnemies() {
 
 function updateEnemyDensity() {
 	var enemy_ratio = enemy_density/Math.pow(10, 2);
-	var screen_size = getUnits(document.body, "width").cm
-						* getUnits(document.body, "height").cm;
-	num_enemies = Math.round(enemy_ratio*screen_size);
+	var screen_area = screen_size_x*screen_size_y;
+	num_enemies = Math.round(enemy_ratio*screen_area);
 
 	createEnemies();
 }
@@ -114,17 +112,71 @@ function respawn() {
 		createEnemies();
 	}
 
-	target.toRandomLocation(canvas.width-target.width,
-							canvas.height-target.height);
 	for (var i = 0; i < enemies.length; i++) {
 		enemies[i].toRandomLocation(canvas.width-enemies[i].width,
 									canvas.height-enemies[i].height);
-		while (target.intersects(enemies[i]) ||
-			   player.intersects(enemies[i])) {
+		while (!isValidEnemySpawn(enemies[i])) {
 			enemies[i].toRandomLocation(canvas.width-enemies[i].width,
 										canvas.height-enemies[i].height);
 		}
 	}
+
+	target.toRandomLocation(canvas.width-target.width,
+							canvas.height-target.height);
+	while (!isValidTargetSpawn(target)) {
+		target.toRandomLocation(canvas.width-target.width,
+								canvas.height-target.height);
+	}
+}
+
+function isValidTargetSpawn(square) {
+	for (var i = 0; i < enemies.length; i++) {
+		if (enemies[i].intersects(square)) {
+			return false;
+		}
+	}
+
+	var minimum = ((canvas.width+canvas.height)/2) / 2; // One third of the average screen size
+
+	if (distanceBetween(player, square) < minimum) {
+		return false;
+	}
+
+	return true;
+}
+
+function isValidEnemySpawn(square) {
+	if (square.intersects(player)) {
+		return false;
+	}
+
+	var minimum = toCentimeter(((square.width+square.height)/2) * 2); // Two times the size of an enemy
+
+	if (square.x > player.x+player.width) {
+		if (toCentimeter(distanceBetween(square, player)) < minimum+toCentimeter(player.width)) {
+			return false;
+		}
+	}
+
+	if (square.y > player.y+player.height) {
+		if (toCentimeter(distanceBetween(square, player)) < minimum+toCentimeter(player.height)) {
+			return false;
+		}
+	}
+
+	if (toCentimeter(distanceBetween(square, player)) < minimum) {
+		return false;
+	}
+
+	return true;
+}
+
+function distanceBetween(a, b) {
+	return Math.sqrt((a.x-b.x)*(a.x-b.x) + (a.y-b.y)*(a.y-b.y));
+}
+
+function toCentimeter(pixels) {
+	return (pixels*screen_size_x) / canvas.width; // is window.devicePixelRatio needed ? TODO
 }
 
 function loop() {
@@ -257,7 +309,7 @@ function loseMenu(){
 	replay.style.display = "inline-block";
 	replay.style.backgroundColor =" #1abc9c";
 
-	menuScore = document.getElementById("finalScore");
+	var menuScore = document.getElementById("finalScore");
 	menuScore.style.fontWeight = 'bold';
 
 	if (score > 1) {
@@ -286,3 +338,14 @@ function onPauseButton() {
 		document.getElementById("button").innerHTML = "Pause";
 	}
 }
+
+window.addEventListener('resize', function(event){
+	canvas.width = window.innerWidth;
+	canvas.height = window.innerHeight-50;
+
+	screen_size_x = getUnits(document.body, "width").cm;
+	screen_size_y = getUnits(document.body, "height").cm;
+
+	updateEnemyDensity();
+	respawn();
+});
