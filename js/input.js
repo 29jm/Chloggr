@@ -22,16 +22,12 @@ canvas.addEventListener('touchstart', function(event) {
 
 canvas.addEventListener('touchmove', function(event) {
 	var touchobj = event.changedTouches[0];
-	move_x = touchobj.pageX - start_x;
-	move_y = touchobj.pageY - start_y;
+	move_x = touchobj.pageX*window.devicePixelRatio - start_x*window.devicePixelRatio;
+	move_y = touchobj.pageY*window.devicePixelRatio - start_y*window.devicePixelRatio;
 	player.speed_x += move_x;
 	player.speed_y += move_y;
 	start_x = touchobj.pageX;
 	start_y = touchobj.pageY;
-	event.preventDefault();
-}, false);
-
-canvas.addEventListener('touchend', function(event) {
 	event.preventDefault();
 }, false);
 
