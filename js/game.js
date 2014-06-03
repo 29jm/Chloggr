@@ -16,66 +16,6 @@ window.addEventListener('resize', function(event){
 	respawn();
 });
 
-function Square(w, h) {
-	this.toRandomLocation = function() { // Specialization
-		this.x = Math.random()*(canvas.width-this.width);
-		this.y = Math.random()*(canvas.height-this.height);
-	}
-
-	this.intersects = function(square) {
-		if(square.x >= this.x+this.width ||
-			square.x+square.width <= this.x ||
-			square.y >= this.y+this.height ||
-			square.y+square.height <= this.y) {
-			return false;
-		}
-
-		return true;
-	}
-
-	this.update = function(delta_t) { // Specialization
-		this.slowdown();
-
-		if (Math.abs(this.speed_x) > this.max_speed) {
-			this.speed_x = (this.speed_x > 0 ?
-				this.max_speed : -this.max_speed);
-		}
-
-		if (Math.abs(this.speed_y) > this.max_speed) {
-			this.speed_y = (this.speed_y > 0 ?
-				this.max_speed : -this.max_speed);
-		}
-
-		this.x += this.speed_x*delta_t;
-		this.y += this.speed_y*delta_t;
-	}
-
-	this.slowdown = function() { // Specialization
-		var len = Math.sqrt((this.speed_x*this.speed_x)
-							+ (this.speed_y*this.speed_y));
-
-		if (Math.round(len) == 0) {
-			this.speed_x = 0;
-			this.speed_y = 0;
-			return;
-		}
-
-		this.speed_x = (this.speed_x / len)*(len-this.slowing_speed);
-		this.speed_y = (this.speed_y / len)*(len-this.slowing_speed);
-	}
-
-	this.x = 0;
-	this.y = 0;
-	this.width = w;
-	this.height = h;
-
-	this.max_speed = 300; // Specialization
-	this.slowing_speed = 0.7; // Specialization
-	this.speed_x = 0; // Specialization
-	this.speed_y = 0; // Specialization
-	this.toRandomLocation(); // Specialization
-}
-
 // Prevent double initialization
 var enemy_density = undefined;
 var max_density = undefined;
@@ -83,8 +23,8 @@ var num_enemies = undefined;
 var cube_size = undefined;
 var enemy_size = undefined;
 var accel = undefined;
-var playerCube = undefined;
-var targetCube = undefined;
+var player = undefined;
+var target = undefined;
 var enemies = undefined;
 var interval = undefined;
 var keys = undefined;
@@ -108,30 +48,17 @@ function init() {
 	enemy_size = 15;
 	accel = 7;
 
-	playerCube = new Square(cube_size, cube_size);
-	playerCube.dead = false;
-	playerCube.deadImage = new Image();
-	playerCube.deadImage.src = 'assets/deadPlayer.png'
-	playerCube.img = new Image();
-	playerCube.img.src = 'assets/playerCube.png';
-	playerCube.draw = function(context) {
-		if (this.dead) {
-			context.drawImage(this.deadImage, this.x, this.y);
-		}
+	player = new Player(cube_size, cube_size, 'assets/playerCube.png', 300, 0.7);
+	player.toRandomLocation(canvas.width-player.width,
+							canvas.height-player.height);
+	player.dead = false;
 
-		context.drawImage(this.img, this.x, this.y);
-	}
-
-	targetCube = new Square(cube_size, cube_size);
-	targetCube.img = new Image();
-	targetCube.img.src = 'assets/targetCube.png';
-	targetCube.draw = function(context) {
-		context.drawImage(this.img, this.x, this.y);
-	}
+	target = new Player(cube_size, cube_size, 'assets/targetCube.png');
+	target.toRandomLocation(canvas.width-target.width,
+							canvas.height-target.height);
 
 	enemies = [];
 	createEnemies();
-
 	respawn();
 
 	if (interval != undefined) {
@@ -155,15 +82,10 @@ function init() {
 function createEnemies() {
 	console.log(num_enemies+" created. density="+enemy_density);
 
-	enemies = []
+	enemies = [];
 	for (var i = 0; i < num_enemies; i++) {
-		var enemy = new Square(enemy_size, enemy_size);
+		var enemy = new Enemy(enemy_size, enemy_size);
 		enemy.color = '#27ae60';
-		enemy.draw = function(context) {
-			context.fillStyle = this.color;
-			context.fillRect(this.x, this.y, this.width, this.height);
-		}
-
 		enemies.push(enemy);
 	}
 }
@@ -182,12 +104,15 @@ function respawn() {
 		createEnemies();
 	}
 
-	targetCube.toRandomLocation();
+	target.toRandomLocation(canvas.width-target.width,
+							canvas.height-target.height);
 	for (var i = 0; i < enemies.length; i++) {
-		enemies[i].toRandomLocation();
-		while (targetCube.intersects(enemies[i]) ||
-			   playerCube.intersects(enemies[i])) {
-			enemies[i].toRandomLocation();
+		enemies[i].toRandomLocation(canvas.width-enemies[i].width,
+									canvas.height-enemies[i].height);
+		while (target.intersects(enemies[i]) ||
+			   player.intersects(enemies[i])) {
+			enemies[i].toRandomLocation(canvas.width-enemies[i].width,
+										canvas.height-enemies[i].height);
 		}
 	}
 }
@@ -195,7 +120,7 @@ function respawn() {
 function loop() {
 	canvas.width = canvas.width; // Clear canvas
 
-	if (paused || playerCube.dead) { // Draw but stop updating
+	if (paused || player.dead) { // Draw but stop updating
 		draw(ctx);
 		return;
 	}
@@ -210,34 +135,34 @@ function loop() {
 
 function update(dt) {
 	handleInput(); // input.js
-	playerCube.update(dt);
+	player.update(dt);
 	collisionDetection();
 }
 
 function collisionDetection() {
-	if (playerCube.x < 0) {
-		playerCube.x = 0;
-		playerCube.speed_x = 0;
+	if (player.x < 0) {
+		player.x = 0;
+		player.speed_x = 0;
 	}
-	if (playerCube.x+playerCube.width > canvas.width) {
-		playerCube.x = canvas.width-playerCube.width;
-		playerCube.speed_x = 0;
+	if (player.x+player.width > canvas.width) {
+		player.x = canvas.width-player.width;
+		player.speed_x = 0;
 	}
-	if (playerCube.y < 0) {
-		playerCube.y = 0;
-		playerCube.speed_y = 0;
+	if (player.y < 0) {
+		player.y = 0;
+		player.speed_y = 0;
 	}
-	if (playerCube.y+playerCube.height > canvas.height) {
-		playerCube.y = canvas.height-playerCube.height;
-		playerCube.speed_y = 0;
+	if (player.y+player.height > canvas.height) {
+		player.y = canvas.height-player.height;
+		player.speed_y = 0;
 	}
 
-	if (playerCube.intersects(targetCube)) {
+	if (player.intersects(target)) {
 		onTarget();
 	}
 
 	for (var i = 0; i < num_enemies; i++) {
-		if (playerCube.intersects(enemies[i])) {
+		if (player.intersects(enemies[i])) {
 			onDead();
 		}
 	}
@@ -255,29 +180,31 @@ function onTarget() {
 		updateEnemyDensity();
 	}
 
-	playerCube.speed_x = 0;
-	playerCube.speed_y = 0;
+	player.speed_x = 0;
+	player.speed_y = 0;
 	respawn();
 }
 
 function onDead() {
-	playerCube.dead = true; // Specialization
+	player.dead = true;
+	player.texture.src = 'assets/deadPlayer.png';
+	console.log("Dead");
 	stopTimer();
 	loseMenu();
 }
 
 function draw(context) {
 	// Drawed every time
-	playerCube.draw(context);
+	player.draw(context);
 
-	targetCube.draw(context);
+	target.draw(context);
 
 	for (var i = 0; i < num_enemies; i++) {
 		enemies[i].draw(context);
 	}
 	
-	document.getElementById("timer").innerHTML = "Time: " + hours + ":" + minutes + ":" + seconds;
-	document.getElementById("score").innerHTML = "score: "+ score ;
+	document.getElementById("timer").innerHTML = hours + ":" + minutes + ":" + seconds;
+	document.getElementById("score").innerHTML = score ;
 }
 
 function pauseMenu(){
@@ -318,10 +245,25 @@ function loseMenu(){
 	var replay = document.getElementById("replay");
 	replay.style.display = "inline-block";
 	replay.style.backgroundColor =" #1abc9c";
+
+	menuScore = document.getElementById("finalScore");
+	menuScore.style.fontWeight = 'bold';
+
+	if (score > 1) {
+		menuScore.innerHTML = "You won: " + score + " points!";
+	}
+	else {
+		menuScore.innerHTML = "You won: " + score + " point! YOU SUCK";
+	}
 }
 
 function onPauseButton() {
+	if (player.dead) {
+		return;
+	}
+
 	paused = (paused ? false : true); // Toggles paused var
+
 	if (paused) {
 		pauseMenu();
 		stopTimer();

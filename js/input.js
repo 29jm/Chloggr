@@ -24,8 +24,8 @@ canvas.addEventListener('touchmove', function(event) {
 	var touchobj = event.changedTouches[0];
 	move_x = touchobj.pageX - start_x;
 	move_y = touchobj.pageY - start_y;
-	playerCube.speed_x += move_x;
-	playerCube.speed_y += move_y;
+	player.speed_x += move_x;
+	player.speed_y += move_y;
 	start_x = touchobj.pageX;
 	start_y = touchobj.pageY;
 	event.preventDefault();
@@ -38,28 +38,28 @@ canvas.addEventListener('touchend', function(event) {
 function handleInput() {
 	// Arrow keys
 	if (37 in keys) {
-		playerCube.speed_x -= accel;
+		player.speed_x -= accel;
 	}
 	if (39 in keys) {
-		playerCube.speed_x += accel;
+		player.speed_x += accel;
 	}
 	if (38 in keys) {
-		playerCube.speed_y -= accel;
+		player.speed_y -= accel;
 	}
 	if (40 in keys) {
-		playerCube.speed_y += accel;
+		player.speed_y += accel;
 	}
 	// ZQSD - azerty ftw
 	if (81 in keys) {
-		playerCube.speed_x -= accel;
+		player.speed_x -= accel;
 	}
 	if (68 in keys) {
-		playerCube.speed_x += accel;
+		player.speed_x += accel;
 	}
 	if (90 in keys) {
-		playerCube.speed_y -= accel;
+		player.speed_y -= accel;
 	}
 	if (83 in keys) {
-		playerCube.speed_y += accel;
+		player.speed_y += accel;
 	}
 }
