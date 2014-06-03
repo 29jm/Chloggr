@@ -31,7 +31,9 @@ var keys = undefined;
 var score = undefined;
 var last_time = undefined;
 var paused = undefined;
+var cookie_exp = undefined;
 var highScore = undefined;
+var deathNumber = undefined;
 
 // Only function called when (re)starting
 init();
@@ -40,7 +42,7 @@ function init() {
 	hideMenu();
 	resetTimer();
 	enemy_density = 3;
-	max_density = 10;
+	max_density = 18;
 	num_enemies = 0;
 	updateEnemyDensity();
 
@@ -72,10 +74,18 @@ function init() {
 	last_time = Date.now();
 	paused = false;
 
+	var cookie_exp = 60*60*24*365;
+
 	highScore = Cookies.get('highScore');
 	if (highScore == undefined) {
 		highScore = 0;
-		Cookies.set('highScore', 0, { expires: 600 });
+		Cookies.set('highScore', 0, { expires: cookie_exp });
+	}
+
+	deathNumber = Cookies.get('deathNumber');
+	if (deathNumber == undefined) {
+		deathNumber = 0;
+		Cookies.set('deathNumber', 0, { expires: cookie_exp });
 	}
 }
 
@@ -188,7 +198,8 @@ function onTarget() {
 function onDead() {
 	player.dead = true;
 	player.texture.src = 'assets/deadPlayer.png';
-	console.log("Dead");
+	Cookies.set('deathNumber', ++deathNumber);
+
 	stopTimer();
 	loseMenu();
 }
