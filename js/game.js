@@ -136,9 +136,9 @@ function isValidTargetSpawn(square) {
 		}
 	}
 
-	var minimum = ((canvas.width+canvas.height)/2) / 2; // One third of the average screen size
+	var minimum = toCentimeter(((canvas.width+canvas.height)/2) / 2); // Half the average screen size
 
-	if (distanceBetween(player, square) < minimum) {
+	if (toCentimeter(distanceBetween(player, square)) < minimum) {
 		return false;
 	}
 
