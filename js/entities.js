@@ -19,6 +19,25 @@ Square.prototype.intersects = function(other) {
 	return true;
 };
 
+Square.prototype.collideBox = function(box_x, box_y, box_w, box_h) {
+	if (this.x < box_x) {
+		this.x = box_x;
+		this.speed_x = 0;
+	}
+	if (this.x+this.width > box_x+box_w) {
+		this.x = (box_x+box_w)-this.width;
+		this.speed_x = 0;
+	}
+	if (this.y < box_y) {
+		this.y = box_y;
+		this.speed_y = 0;
+	}
+	if (this.y+this.height > box_y+box_h) {
+		this.y = (box_y+box_h)-this.height;
+		this.speed_y = 0;
+	}
+}
+
 Square.prototype.toRandomLocation = function(max_x, max_y) {
 	this.x = Math.random()*max_x;
 	this.y = Math.random()*max_y;
@@ -92,25 +111,6 @@ Player.prototype.update = function(delta_t) {
 	this.y += this.speed_y*delta_t;
 }
 
-Player.prototype.collideBox = function(box_x, box_y, box_w, box_h) {
-	if (this.x < box_x) {
-		this.x = box_x;
-		this.speed_x = 0;
-	}
-	if (this.x+this.width > box_x+box_w) {
-		this.x = (box_x+box_w)-this.width;
-		this.speed_x = 0;
-	}
-	if (this.y < box_y) {
-		this.y = box_y;
-		this.speed_y = 0;
-	}
-	if (this.y+this.height > box_y+box_h) {
-		this.y = (box_y+box_h)-this.height;
-		this.speed_y = 0;
-	}
-}
-
 Player.prototype.draw = function(context) {
 	context.drawImage(this.texture, this.x, this.y);
 }
@@ -148,7 +148,7 @@ Target.prototype.update = function(delta_t) {
 		this.speed_y = (this.speed_y/len)*this.max_speed;
 	}
 
-	if (len == 0) {
+	if (len == 0) { // Don't recalculate twice
 		len = Math.sqrt((this.speed_x*this.speed_x)
 						+ (this.speed_y*this.speed_y));
 	}

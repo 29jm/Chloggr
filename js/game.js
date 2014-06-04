@@ -89,8 +89,8 @@ function init() {
 		Cookies.set('deathNumber', 0, { expires: cookie_exp });
 	}
 
-	min_delta_t = (1.0/30.0);
-	max_delta_t = (1.0/15.0);
+	min_delta_t = (1.0/30.0); // 30 FPS-like motion
+	max_delta_t = (1.0/15.0); // 15 FPS minimum
 }
 
 function createEnemies() {
