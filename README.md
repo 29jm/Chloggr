@@ -17,13 +17,14 @@ To be filled I ain't got no time
 Todo list
 =========
 
-* Create different class for enemies, play and target, inheriting from Square
-* Add a minimum distance between the player and target at spawn
+* Make the target move when a certain score is reached
 * Add Death number on Main Menu
 * Add page for settings
 * Don't call handleInput() if on mobile/touchscreen
 
 ##Completed tasks
+* Create different class for enemies, play and target, inheriting from Square
+* Add a minimum distance between the player and target at spawn
 * Make menu for pause in game.html
 * Add Cookies (will work when we have a domain)
 * Add highScore to main menu
