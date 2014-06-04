@@ -30,6 +30,8 @@ var highScore = undefined;
 var deathNumber = undefined;
 var screen_size_x = undefined;
 var screen_size_y = undefined;
+var min_delta_t = undefined;
+var max_delta_t = undefined;
 
 // Only function called when (re)starting
 init();
@@ -86,6 +88,9 @@ function init() {
 		deathNumber = 0;
 		Cookies.set('deathNumber', 0, { expires: cookie_exp });
 	}
+
+	min_delta_t = (1.0/30.0);
+	max_delta_t = (1.0/15.0);
 }
 
 function createEnemies() {
@@ -190,6 +195,10 @@ function loop() {
 	var now = Date.now();
 	var delta_t = (now - last_time) / 1000; // second to millisecond conv
 	last_time = now;
+
+	if (delta_t > max_delta_t) {
+		delta_t = min_delta_t;
+	}
 
 	update(delta_t);
 	draw(ctx);
