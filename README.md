@@ -3,6 +3,8 @@ Chloggr
 
 Get all those dummy cubes ! Kill 'em all !!!
 
+![image](https://raw.githubusercontent.com/29jm/Chloggr/master/assets/screenshot.png)
+
 Features
 ========
 
@@ -10,7 +12,7 @@ Not yet added:
 * Rampage
 * Moving target
 * Market
-* Achievementsw
+* Achievements
 
 To be filled I ain't got no time
 
