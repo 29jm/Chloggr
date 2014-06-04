@@ -56,7 +56,7 @@ function init() {
 							canvas.height-player.height);
 	player.dead = false;
 
-	target = new Player(cube_size, cube_size, 'assets/targetCube.png');
+	target = new Target(cube_size, cube_size, 'assets/targetCube.png', 200, 0.7);
 	target.toRandomLocation(canvas.width-target.width,
 							canvas.height-target.height);
 
@@ -207,26 +207,13 @@ function loop() {
 function update(dt) {
 	handleInput(); // input.js
 	player.update(dt);
+	target.update(dt);
 	collisionDetection();
 }
 
 function collisionDetection() {
-	if (player.x < 0) {
-		player.x = 0;
-		player.speed_x = 0;
-	}
-	if (player.x+player.width > canvas.width) {
-		player.x = canvas.width-player.width;
-		player.speed_x = 0;
-	}
-	if (player.y < 0) {
-		player.y = 0;
-		player.speed_y = 0;
-	}
-	if (player.y+player.height > canvas.height) {
-		player.y = canvas.height-player.height;
-		player.speed_y = 0;
-	}
+	player.collideBox(0, 0, canvas.width, canvas.height);
+	target.collideBox(0, 0, canvas.width, canvas.height);
 
 	if (player.intersects(target)) {
 		onTarget();
@@ -240,8 +227,7 @@ function collisionDetection() {
 }
 
 function onTarget() {
-	score++;
-	if (score > highScore) {
+	if (++score > highScore) {
 		highScore = score;
 		Cookies.set('highScore', highScore);
 	}
@@ -249,6 +235,10 @@ function onTarget() {
 	if (enemy_density < max_density) {
 		enemy_density++;
 		updateEnemyDensity();
+	}
+
+	if (score == 10) {
+		target.state = target.State.Bouncing;
 	}
 
 	player.speed_x = 0;
