@@ -99,7 +99,7 @@ function createEnemies() {
 	enemies = [];
 	for (var i = 0; i < num_enemies; i++) {
 		var enemy = new Enemy(enemy_size, enemy_size);
-		enemy.color = '#27ae60';
+		enemy.color = '#34495e';
 		enemies.push(enemy);
 	}
 }
@@ -271,15 +271,13 @@ function draw(context) {
 
 function pauseMenu(){
 	var menuPause = document.getElementById("menuPause");
-	menuPause.style.display = "inline-block";
+	menuPause.style.display = "initial";
 
 	var quit = document.getElementById("quit");
-	quit.style.display = "inline-block";
-	quit.style.backgroundColor = " #1abc9c";
+	quit.style.display = "initial";
 
 	var replay = document.getElementById("replay");
-	replay.style.display = "inline-block";
-	replay.style.backgroundColor =" #e74c3c";
+	replay.style.display = "initial";
 }
 
 function hideMenu(){
@@ -298,18 +296,15 @@ function hideMenu(){
 
 function loseMenu(){
 	var menuLose = document.getElementById("menuLose");
-	menuLose.style.display = "inline-block";
+	menuLose.style.display = "initial";
 
 	var quit = document.getElementById("quit");
-	quit.style.display = "inline-block";
-	quit.style.backgroundColor = "#e74c3c";
+	quit.style.display = "initial";
 
 	var replay = document.getElementById("replay");
-	replay.style.display = "inline-block";
-	replay.style.backgroundColor =" #1abc9c";
+	replay.style.display = "initial";
 
 	var menuScore = document.getElementById("finalScore");
-	menuScore.style.fontWeight = 'bold';
 
 	if (score > 1) {
 		menuScore.innerHTML = "You won: " + score + " points!";

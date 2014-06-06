@@ -22,15 +22,20 @@ body{
 	-moz-box-shadow:    inset 0 0 5px #000000;
    	-webkit-box-shadow: inset 0 0 5px #000000;
    	box-shadow:         inset 0 0 5px #000000;
+   	color: #3498db;
+   	background-image: url(assets/background2.svg);
+   	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
 }
-
 
 	/*button*/
 a #button{
 	width: 100%;
 	height:50px;
-	background-color: #3498db;
-	color: #ecf0f1;
+	background-color:#ecf0f1 ;
+	color: #3498db ;
 	font-size: 2em;
 	border:none;
 	text-align: center;
@@ -46,8 +51,6 @@ a #button{
 	cursor: pointer
 }
 a #button:hover{
-	background-color: #3498db;
-	color: #ecf0f1;
 	-o-box-shadow:    inset 0 0 10px #000000;
 	-moz-box-shadow:    inset 0 0 10px #000000;
    	-webkit-box-shadow: inset 0 0 10px #000000;
@@ -56,82 +59,98 @@ a #button:hover{
 
 
 	/*Lose Menu*/
+#menuLose p{	
+	background-color: #c0392b;
+	color: #ffffff;
+	font-size: 4em;
+}
+#finalScore{	
+	font-size: 3em;
+	background-color: #e74c3c;
+	padding: 10px;
+	color: #ffffff;
+}
+#finalScore:after{
+	content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-width: 20px;
+    border-style: solid;
+    border-color: #e74c3c transparent transparent transparent;
+    top: 3.5em;
+    left: 48%;
+}
 #menuLose{
 	top: 10%;
 	position:fixed;
 	display:none;
 	width: 100%;
-	height: 200px;
-	opacity: 0.5;
+	height: auto;
 	text-align: center;
+	background-color: #ecf0f1;
 }
-#menuLose p{
-	font-size: 5em;
+#menuLose a, img {
+	background-color: #ecf0f1;
 }
-#menuLose a{
-	font-size: 2em;
-	color: black;
+
+#menuLose:after{
+	content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-width: 20px;
+    border-style: solid;
+    border-color: #c0392b transparent transparent transparent;
+    top: 5.2em;
+    left: 48%;
 }
 
 
 	/*Pause Menu*/
+#menuPause p{	
+	background-color: #e74c3c;
+	color: #ffffff;
+	font-size: 4em;
+}
+#menuPause p:after{
+	content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-width: 20px;
+    border-style: solid;
+    border-color: #e74c3c transparent transparent transparent;
+    top: 1.3em;
+    left: 48%;
+}
+#menuPause a, img{
+	background-color: #ecf0f1;
+}
 #menuPause{
 	top: 10%;
 	position:fixed;
 	display:none;
 	width: 100%;
-	height: 200px;
-	opacity: 0.5;
+	height: 170px;
 	text-align: center;
-}
-#menuPause p{
-	font-size: 5em;
-}
-#menuPause span{
-	font-size: 2em;
-	color: black;
+	background-color: #ecf0f1;
+	color: white;
 }
 
+#quit, #replay{
+	margin: 15px 2em 0px 0px;
+	cursor: pointer;
+	background-color: #ecf0f1;
+}
 
-	/*Replay Button*/
-#replay{
-	bottom: 100px;
-	width: 100%;
-	height: 50px;
-	position:fixed;
-	display:none;
-	text-align: center;
-	cursor: pointer;
-	font-size: 2em;
-	color: white;
-}
-a #replay{
-	cursor: pointer;
-	background-color: #16a085;
-}
-#quit{
-	bottom: 150px;
-	width: 100%;
-	height: 50px;
-	position:fixed;
-	display:none;
-	text-align: center;
-	cursor: pointer;
-	font-size: 2em;
-	color: white;
-}
-a #quit{
-	cursor: pointer;
-	color: white;
-	background-color: #1abc9c;
-}
 #timer{
 	position: absolute;
 	top: 10px;
 	right: 1em;
 	background-color: transparent;
 	font-size: 2em;
-	color: white;
+	color: #000000;
 }
 #score{
 	position: absolute;
@@ -139,97 +158,62 @@ a #quit{
 	left: 1em;
 	background-color: transparent;
 	font-size: 2em;
-	color: white;
-}
-#finalScore{
-	font-size: 2em;
+	color: #000000;
 }
 
 @media (max-device-width : 768px) and (-webkit-min-device-pixel-ratio: 2){
-	/*Lose Menu*/
-	#menuLose{
-		position:fixed;
-		display:none;
-		width: 100%;
-		top: 10%;
-		height: 20%;
-		opacity: 0.5;
-		text-align: center;
-
+	#menuLose p{	
+		background-color: #c0392b;
+		color: #ffffff;
+		font-size: 2.5em;
 	}
-	#menuLose p{
-		font-size: 3.8em;
+	#finalScore{	
+		font-size: 1.2em;
+		background-color: #e74c3c;
+		padding: 10px;
+		color: #ffffff;
 	}
-	#menuLose a{
-		font-size: 2em;
-		color: black;
+	#finalScore:after{
+		content: "";
+	    position: absolute;
+	    width: 0;
+	    height: 0;
+	    border-width: 20px;
+	    border-style: solid;
+	    border-color: #e74c3c transparent transparent transparent;
+	    top: 5.1em;
+	    left: 44%;
 	}
-
-
-		/*Pause Menu*/
-	#menuPause{
-		position:fixed;
-		display:none;
-		width: 100%;
-		top: 10%;
-		height: 20%;
-		opacity: 0.5;
-		text-align: center;
+	#menuLose:after{
+		content: "";
+	    position: absolute;
+	    width: 0;
+	    height: 0;
+	    border-width: 20px;
+	    border-style: solid;
+	    border-color: #c0392b transparent transparent transparent;
+	    top: 3.2em;
+	    left: 44%;
 	}
-	#menuPause p{
-		font-size: 3.8em;
-	}
-	#menuPause h2{
-		font-size: 2em;
-		color: black;
-	}
-
-
-		/*Replay Button*/
-	#replay{
-		width: 100%;
-		height: 50px;
-		position:fixed;
-		display:none;
-		bottom:100px;
-		text-align: center;
+	#quit, #replay{
+		margin: 15px 2em 0px 2em;
 		cursor: pointer;
-		font-size: 2em;
-		color: white;
+		background-color: #ecf0f1;
 	}
-	a #replay{
-		cursor: pointer;
-		background-color: #16a085;
+	#menuPause p{	
+		background-color: #e74c3c;
+		color: #ffffff;
+		font-size: 2.5em;
 	}
-
-	#quit{
-		width: 100%;
-		height: 50px;
-		position:fixed;
-		display:none;
-		bottom:50px;
-		text-align: center;
-		cursor: pointer;
-		font-size: 2em;
-		color: white;
+	#menuPause p:after{
+		content: "";
+	    position: absolute;
+	    width: 0;
+	    height: 0;
+	    border-width: 20px;
+	    border-style: solid;
+	    border-color: #e74c3c transparent transparent transparent;
+	    top: 1.3em;
+	    left: 45%;
 	}
-
-	#timer{
-		position: absolute;
-		top: 10px;
-		right: 1em;
-		background-color: transparent;
-		color: white;
-		font-size: 1em;
-	}
-	#score{
-		position: absolute;
-		top: 10px;
-		left: 1em;
-		background-color: transparent;
-		color: white;
-		font-size: 1em;
-	}
-
 }
-

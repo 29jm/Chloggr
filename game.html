@@ -15,27 +15,27 @@
 
 		<div id="menuLose">
 			<p>YOU LOSE!</p>
+
 			<div id="finalScore"></div>
+
+			<a onClick="init()"><img id="replay" src="assets/replay.svg"></a>
+			
+			<a href="index.html"><img id="quit" src="assets/exit.svg"></a>
 		</div>
+
 
 		<div id="menuPause">
 		    <p>Pause</p>
-			<h2>Hey</h2>
+
+			<a onClick="init()"><img id="replay" src="assets/replay.svg"></a>
+			
+			<a href="index.html"><img id="quit" src="assets/exit.svg"></a>
 		</div>
-
-		<a onClick="init()">
-			<div id="replay">Restart</div>
-		</a>
-		
-		<a href="index.html" id="aQuit">
-			<div id="quit">Quit</div>
-		</a>
-
-		<a onClick="location.reload()"><div id="replay">REPLAY</div></a>
 		
 	    <a onclick="onPauseButton()" id="aButton">
 	    	<div id="button">Pause</div>
 	    </a>
+
 	    <script src="js/entities.js"></script>
 	    <script src="js/units.js"></script>
 	    <script src="js/cookies.js"></script>
