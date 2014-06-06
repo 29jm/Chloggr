@@ -3,23 +3,29 @@
 	<head>
 		<title>Main menu</title>
 		<link rel="stylesheet" type="text/css" href="menu/menu.css">
-		<link rel="stylesheet" media="only screen and (color)" href="menu/queries.css" />
+		<link rel="stylesheet" type="text/css" href="menu/queries.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<meta charset="UTF-8">
 	</head>
 
 	<body>
-		<div id="container">
+
+		<div id="mainContainer">
 			<header>
-				<p>Chloggr</p>
-				<a href="game.html"><div id="play">Play</div></a>
+				<img src="assets/logo.png">
 			</header>
+
+			<div id="container">
+				<img id="player" src="assets/player.svg">
+				<img id="target" src="assets/target.svg">
+				<a href="game.html"><div id="play">Play</div></a>
+			</div>
 		</div>
 
 		<footer>
-			<a href="#"><div id="settings">Settings</div></a>
-			<a href="#"><div id="help">help</div></a>
+			<a href="settings.html"><img src="assets/settings.svg"></a>
+			<a href="#"><img src="assets/info.svg"></a>
 		</footer>
-
+	
 	</body>
 </html>
