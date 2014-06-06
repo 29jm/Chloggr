@@ -51,12 +51,12 @@ function init() {
 	enemy_size = 15;
 	accel = 7;
 
-	player = new Player(cube_size, cube_size, 'assets/playerCube.png', 300, 0.7);
+	player = new Player(cube_size, cube_size, 'assets/player.svg', 300, 0.7);
 	player.toRandomLocation(canvas.width-player.width,
 							canvas.height-player.height);
 	player.dead = false;
 
-	target = new Target(cube_size, cube_size, 'assets/targetCube.png', 200, 0.7);
+	target = new Target(cube_size, cube_size, 'assets/target.svg', 200, 0.7);
 	target.toRandomLocation(canvas.width-target.width,
 							canvas.height-target.height);
 
@@ -248,7 +248,7 @@ function onTarget() {
 
 function onDead() {
 	player.dead = true;
-	player.texture.src = 'assets/deadPlayer.png';
+	player.texture.src = 'assets/deadPlayer.svg';
 	Cookies.set('deathNumber', ++deathNumber);
 
 	stopTimer();

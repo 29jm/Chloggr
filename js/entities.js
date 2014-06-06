@@ -80,6 +80,8 @@ function Player(width, height, texture_name, max_speed, slowing_speed) {
 
 	this.texture = new Image();
 	this.texture.src = texture_name;
+	this.texture.width = width;
+	this.texture.height = height;
 }
 
 Player.prototype = Object.create(Square.prototype);
