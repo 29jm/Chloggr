@@ -14,7 +14,6 @@ body{
    width:100%; 
    height:100%; 
    background-color: #3498db;
-   z-index: 1;
 }
 a{
     text-decoration: none;
@@ -37,7 +36,6 @@ header img {
     width: 100%;
     background-color: #ecf0f1;
     padding: 11% 0 11% 0;
-    z-index: -2;
 }
 #play{
     width: 60%;
@@ -65,12 +63,20 @@ footer img{
     margin-left: -8%;
     margin-top:-5%; 
     height: 20%;
-    z-index: -1;
+    transition: margin 0.2s ease-in;
+    -webkit-transition: margin 0.2s ease-in;
 }
 #target{
     float: right;
     margin-right: -8%;
     margin-top:-5%; 
     height: 20%;
-    z-index: -1;
+    transition: margin 0.2s ease-in;
+    -webkit-transition: margin 0.2s ease-in;
+}
+#player:hover{
+    margin-left: 0%;
+}
+#target:hover{
+    margin-right: 0%;
 }
