@@ -31,7 +31,6 @@ var deathNumber = undefined;
 var screen_size_x = undefined;
 var screen_size_y = undefined;
 var min_delta_t = undefined;
-var max_delta_t = undefined;
 
 // Only function called when (re)starting
 init();
@@ -75,22 +74,22 @@ function init() {
 	last_time = Date.now();
 	paused = false;
 
-	var cookie_exp = 60*60*24*365;
+	var next_year = new Date();
+	next_year.setFullYear(next_year.getFullYear()+1);
 
 	highScore = Cookies.get('highScore');
 	if (highScore == undefined) {
 		highScore = 0;
-		Cookies.set('highScore', 0, { expires: cookie_exp });
+		Cookies.set('highScore', 0, { expires: next_year });
 	}
 
 	deathNumber = Cookies.get('deathNumber');
 	if (deathNumber == undefined) {
 		deathNumber = 0;
-		Cookies.set('deathNumber', 0, { expires: cookie_exp });
+		Cookies.set('deathNumber', 0, { expires: next_year });
 	}
 
-	min_delta_t = (1.0/30.0); // 30 FPS-like motion
-	max_delta_t = (1.0/15.0); // 15 FPS minimum
+	min_delta_t = (1.0/30.0); // 30 FPS-like motion at least
 }
 
 function createEnemies() {
@@ -196,7 +195,7 @@ function loop() {
 	var delta_t = (now - last_time) / 1000; // second to millisecond conv
 	last_time = now;
 
-	if (delta_t > max_delta_t) {
+	if (delta_t > min_delta_t) {
 		delta_t = min_delta_t;
 	}
 
