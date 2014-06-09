@@ -31,6 +31,7 @@ var deathNumber = undefined;
 var screen_size_x = undefined;
 var screen_size_y = undefined;
 var min_delta_t = undefined;
+var enemies_texture = undefined;
 
 // Only function called when (re)starting
 init();
@@ -131,6 +132,12 @@ function respawn() {
 		target.toRandomLocation(canvas.width-target.width,
 								canvas.height-target.height);
 	}
+
+	enemies_texture = renderToCanvas(canvas.width, canvas.height, function(context) {
+		for (var i = 0; i < enemies.length; i++) {
+			enemies[i].draw(context);
+		}
+	});
 }
 
 function isValidTargetSpawn(square) {
@@ -260,13 +267,20 @@ function draw(context) {
 
 	target.draw(context);
 
-	for (var i = 0; i < num_enemies; i++) {
-		enemies[i].draw(context);
-	}
+	context.drawImage(enemies_texture, 0, 0);
 	
 	document.getElementById("timer").innerHTML = hours + ":" + minutes + ":" + seconds;
 	document.getElementById("score").innerHTML = score ;
 }
+
+function renderToCanvas(width, height, renderFunction) {
+	var buffer = document.createElement('canvas');
+	buffer.width = width;
+	buffer.height = height;
+	renderFunction(buffer.getContext('2d'));
+
+	return buffer;
+};
 
 function pauseMenu(){
 	var menuPause = document.getElementById("menuPause");
