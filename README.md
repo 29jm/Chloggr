@@ -10,21 +10,18 @@ Features
 
 Not yet added:
 * Rampage
-* Moving target
 * Market
 * Achievements
-
-To be filled I ain't got no time
 
 Todo list
 =========
 
-* Make the target move when a certain score is reached
-* Add Death number on Main Menu
+* Add Death number and high score on Main Menu
 * Add page for settings
 * Don't call handleInput() if on mobile/touchscreen
 
 ##Completed tasks
+* Make the target move when a certain score is reached
 * Create different class for enemies, play and target, inheriting from Square
 * Add a minimum distance between the player and target at spawn
 * Make menu for pause in game.html
