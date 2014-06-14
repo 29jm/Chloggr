@@ -99,7 +99,7 @@ function createEnemies() {
 	enemies = [];
 	for (var i = 0; i < num_enemies; i++) {
 		var enemy = new Enemy(enemy_size, enemy_size);
-		enemy.color = '#34495e';
+		enemy.color = '#27ae60';
 		enemies.push(enemy);
 	}
 }
