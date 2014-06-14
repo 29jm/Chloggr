@@ -6,26 +6,38 @@
 		<link rel="stylesheet" type="text/css" href="menu/queries.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<meta charset="UTF-8">
+		
 	</head>
 
 	<body>
-
-		<div id="mainContainer">
+		<div id="mainContainer">	
+			
 			<header>
 				<img src="assets/logo.png">
 			</header>
+			
+			
+			<div id="info">
+				<span id="deadNumber"></span>
+				<span id="highScore"></span>
+			</div>
+
+			<script src="js/cookies.js"></script>
+
+			<script>
+				document.getElementById("deadNumber").innerHTML = Cookies.get('deathNumber');
+				document.getElementById("highScore").innerHTML = Cookies.get('highScore');
+			</script>
 
 			<div id="container">
-				<img id="player" src="assets/player.svg">
-				<img id="target" src="assets/target.svg">
 				<a href="game.html"><div id="play">Play</div></a>
 			</div>
+
 		</div>
 
 		<footer>
 			<a href="settings.html"><img src="assets/settings.svg"></a>
 			<a href="#"><img src="assets/info.svg"></a>
 		</footer>
-	
 	</body>
 </html>

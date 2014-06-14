@@ -1,44 +1,59 @@
 @media (max-device-width : 768px) and (-webkit-min-device-pixel-ratio: 2){
 	header img {
 	    display: block;
-	    margin-left: auto;
-	    margin-right: auto;
+	    margin: auto;
 	    width: 100%;
 	    height: auto;
 	}
 	#container{
 	    width: 100%;
 	    background-color: #ecf0f1;
-	    padding: 15% 0 15% 0;
+	    padding: 10% 0 10% 0;
 	}
 	#play{
-	    width: 60%;
+	    width: 80%;
 	    height: 50px;
 	    background-color: #e74c3c;
 	    margin-left: auto;
 	    margin-right: auto; 
 	    border-radius: 50px;
 	    text-align: center;
-	    font-size: 2em;
+	    font-size: 3rem;
 	}
-	footer img{
-	    margin-top: 50%;
+	#info{
+	   padding: 2rem 0rem 3rem 0rem;
 	}
-	#player{
+	#highscore{
 	    float: left;
-	    height: 18%;
-	    margin-left: -20%;
-	    margin-top: -10%;
-		position: relative;
-		z-index: 1;
+	    position: relative;
+	    margin-top: -4rem;
+	    font-size: 1.5rem;
 	}
-	#target{
-	    float: right;
-	    height: 18%;
-		margin-right: -20%;
-		margin-top: -10%;
-		position: relative;
-		z-index: 1;
+	#highscore:before{
+	    content: '';
+	    position: relative;
+	    width: 50px;
+	    height: 60px;
+	    background-image: url(highscore.svg);
+	    float: left;
 	}
 
+	#deadNumber{
+	    float: right;
+	    position: relative;
+	    margin-top: -3rem;
+	    font-size: 1.5rem;
+	}
+	#deadNumber:before{
+	    content: '';
+	    position: relative;
+	    width: 40px;
+	    height: 40px;
+	    background-image: url(deadPlayer.svg);
+	    float: right;
+	}
+	footer img{
+	    display: block;
+	    margin: 20% auto auto auto;
+	}
 }

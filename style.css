@@ -6,8 +6,8 @@
 	font-family: 'Open Sans', sans-serif;
 }
 body{
-  margin: 0;
-  overflow: hidden;
+    margin: 0;
+    overflow: hidden;
 }
 
 /*************GAME STYLING***********/
@@ -17,19 +17,17 @@ body{
 #canvas{
 	overflow: hidden;
 	display: block;
-	background-color: #34495e;
+
+	background: -webkit-linear-gradient(#34495e , #476481);
+	background: -moz-linear-gradient(#34495e , #476481);
+	background: -o-linear-gradient(#34495e , #476481);
+	background: linear-gradient(#34495e , #476481);
+
 	-o-box-shadow:    inset 0 0 5px #000000;
 	-moz-box-shadow:    inset 0 0 5px #000000;
    	-webkit-box-shadow: inset 0 0 5px #000000;
    	box-shadow:         inset 0 0 5px #000000;
-   	color: #3498db;
-   	background-image: url(assets/background2.svg);
-   	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
 }
-
 	/*button*/
 a #button{
 	width: 100%;
@@ -79,7 +77,7 @@ a #button:hover{
     border-style: solid;
     border-color: #e74c3c transparent transparent transparent;
     top: 3.5em;
-    left: 48%;
+    left: 48.5%;
 }
 #menuLose{
 	top: 10%;
@@ -103,7 +101,7 @@ a #button:hover{
     border-style: solid;
     border-color: #c0392b transparent transparent transparent;
     top: 5.2em;
-    left: 48%;
+    left: 48.5%;
 }
 
 
@@ -122,7 +120,7 @@ a #button:hover{
     border-style: solid;
     border-color: #e74c3c transparent transparent transparent;
     top: 1.3em;
-    left: 48%;
+    left: 48.5%;
 }
 #menuPause a, img{
 	background-color: #ecf0f1;
@@ -139,27 +137,25 @@ a #button:hover{
 }
 
 #quit, #replay{
-	margin: 15px 2em 0px 0px;
+	padding: 1em;
 	cursor: pointer;
 	background-color: #ecf0f1;
 }
 
-#timer{
+#timer, #score{
 	position: absolute;
 	top: 10px;
-	right: 1em;
 	background-color: transparent;
 	font-size: 2em;
-	color: #000000;
+	color: #ffffff;
 }
 #score{
-	position: absolute;
-	top: 10px;
 	left: 1em;
-	background-color: transparent;
-	font-size: 2em;
-	color: #000000;
 }
+#timer{
+	right: 1em;
+}
+
 
 @media (max-device-width : 768px) and (-webkit-min-device-pixel-ratio: 2){
 	#menuLose p{	
@@ -196,9 +192,12 @@ a #button:hover{
 	    left: 44%;
 	}
 	#quit, #replay{
-		margin: 15px 2em 0px 2em;
+		padding: 0.7em;
 		cursor: pointer;
 		background-color: #ecf0f1;
+	}
+	#menuPause {
+		height: auto;
 	}
 	#menuPause p{	
 		background-color: #e74c3c;

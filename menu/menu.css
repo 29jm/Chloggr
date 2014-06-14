@@ -8,7 +8,10 @@
     margin: 0;
     font-family: 'Open Sans', sans-serif;
 }
-
+html{
+    font-size: 65.5%;
+    display: flex;
+}
 /*********************GENERAL STYLING***************/
 body{
    width:100%; 
@@ -25,8 +28,7 @@ header{
 }
 header img {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
 }
 #mainContainer{
     overflow: hidden;
@@ -35,48 +37,67 @@ header img {
 #container{
     width: 100%;
     background-color: #ecf0f1;
-    padding: 11% 0 11% 0;
+    padding: 100px 0 100px 0;
 }
 #play{
-    width: 60%;
+    width: 55%;
     height: 50px;
     background-color: #e74c3c;
-    margin-left: auto;
-    margin-right: auto; 
+    margin: auto;
     border-radius: 50px;
     text-align: center;
-    font-size: 2em;
+    font-size: 3rem;
 }
 footer a{
     width: 50%;
-    height: 20%;
     float: left;
 }
 footer img{
     display: block;
+    margin: 10% auto auto auto;
+}
+
+#imgContainer{
+    width: 50%;
+    float: left;
+}
+#imgContainer img{
+    display: block;
     margin-right: auto;
     margin-left: auto;
-    margin-top: 10%;
+    padding: 20px;
 }
-#player{
+#info{
+    padding: 3rem 2rem 1rem 2rem;
+}
+#highscore{
     float: left;
-    margin-left: -8%;
-    margin-top:-5%; 
-    height: 20%;
-    transition: margin 0.2s ease-in;
-    -webkit-transition: margin 0.2s ease-in;
+    position: relative;
+    margin-top: -7rem;
+    font-size: 3rem;
 }
-#target{
+#highscore:before{
+    content: '';
+    position: relative;
+    width: 50px;
+    height: 60px;
+    background-image: url(highscore.svg);
+    float: left;
+    margin-left: 2rem;
+}
+
+#deadNumber{
     float: right;
-    margin-right: -8%;
-    margin-top:-5%; 
-    height: 20%;
-    transition: margin 0.2s ease-in;
-    -webkit-transition: margin 0.2s ease-in;
+    position: relative;
+    margin-top: -5rem;
+    font-size: 3rem;
 }
-#player:hover{
-    margin-left: 0%;
-}
-#target:hover{
-    margin-right: 0%;
+#deadNumber:before{
+    content: '';
+    position: relative;
+    width: 40px;
+    height: 40px;
+    background-image: url(deadPlayer.svg);
+    float: right;
+    margin-right: 2rem;
 }

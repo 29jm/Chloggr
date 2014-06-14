@@ -5,18 +5,33 @@
 		<link rel="stylesheet" type="text/css" href="menu/settings.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<meta charset="UTF-8">
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script type="text/javascript" scr="js/cookies.js"></script>
+		<script>
+		//$(document).ready(function(){
+		  //$("#music").click(function(){
+		    //$("#music").toggleClass("musicOff");
+		  //});
+		  //$("#SFX").click(function(){
+		    //$("#SFX").toggleClass("sfxOff");
+		  //});
+		//});
+		</script>
 	</head>
 
 	<body>
 
-		<a href="index.html"><div id="back">Back</div></a>
+		<aside>
+			<h2>We are working very hard on bringing you guys the best experience</h2>
+			<a id="mail" href="mailto:kloggr.support@gmail.com?body=Please%20give%20us%20your%20advice,%20or%20report%20%a20bug%0A">Give us some feed-Back</a>
+		</aside>
 
 		<div id="content">
-
-			<li>Music: On</li>
-			<li>Sound: On</li>
-
+			<p>Music</p>
+			<button class="musicOn" id="music" onclick="toggleMusic()"></button>
+			<p>Sound effects</p>
+			<button class="sfxOn" id="SFX"></button>
 		</div>
-
+		<a href="index.html"><div id="back">Back</div></a>
 	</body>
 </html>
