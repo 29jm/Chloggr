@@ -32,6 +32,7 @@ var screen_size_x = undefined;
 var screen_size_y = undefined;
 var min_delta_t = undefined;
 var enemies_texture = undefined;
+var music = undefined;
 
 // Only function called when (re)starting
 init();
@@ -88,6 +89,26 @@ function init() {
 	if (deathNumber == undefined) {
 		deathNumber = 0;
 		Cookies.set('deathNumber', 0, { expires: next_year });
+	}
+
+	var musicState = Cookies.get('musicState');
+	if (music == undefined) {
+		music = new Audio();
+		music.src = "assets/ingame_kloggr.mp3";
+		music.load();
+		music.loop = true;
+		music.volume = 0.5;
+	}
+
+	if (musicState == undefined || musicState == true) {
+		if (musicState == undefined) {
+			musicState = true;
+			Cookies.set('musicState', true);
+		}
+		music.play();
+	}
+	else {
+		music.pause();
 	}
 
 	min_delta_t = (1.0/30.0); // 30 FPS-like motion at least
@@ -344,6 +365,10 @@ function onPauseButton() {
 		hideMenu();
 		document.getElementById("button").innerHTML = "Pause";
 	}
+}
+
+function setMusicState(music, state) {
+
 }
 
 window.addEventListener('resize', function(event){
