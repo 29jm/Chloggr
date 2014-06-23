@@ -73,14 +73,14 @@ footer img{
 #highscore{
     float: left;
     position: relative;
-    margin-top: -7rem;
+    margin-top: -5rem;
     font-size: 3rem;
 }
 #highscore:before{
     content: '';
     position: relative;
-    width: 50px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     background-image: url(highscore.svg);
     float: left;
     margin-left: 2rem;

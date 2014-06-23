@@ -5,18 +5,7 @@
 		<link rel="stylesheet" type="text/css" href="menu/settings.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<meta charset="UTF-8">
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-		<script type="text/javascript" scr="js/cookies.js"></script>
-		<script>
-		//$(document).ready(function(){
-		  //$("#music").click(function(){
-		    //$("#music").toggleClass("musicOff");
-		  //});
-		  //$("#SFX").click(function(){
-		    //$("#SFX").toggleClass("sfxOff");
-		  //});
-		//});
-		</script>
+		<script type="text/javascript" src="js/cookies.js"></script>
 	</head>
 
 	<body>
@@ -25,13 +14,43 @@
 			<h2>We are working very hard on bringing you guys the best experience</h2>
 			<a id="mail" href="mailto:kloggr.feedback@gmail.com?body=Please%20give%20us%20your%20advice,%20or%20report%20a%20bug%0A">Give us some feed-Back</a>
 		</aside>
-
+	
 		<div id="content">
 			<p>Music</p>
-			<button class="musicOn" id="music" onclick="toggleMusic()"></button>
+			<div id="music" onclick="toggleState()">On</div>
 			<p>Sound effects</p>
-			<button class="sfxOn" id="SFX"></button>
+			<div class="sfxOn" id="SFX"></div>
 		</div>
+
 		<a href="index.html"><div id="back">Back</div></a>
+
+		<script type="text/javascript">
+
+		var musicState = (Cookies.get("musicState") == 'false' ? false : true);
+
+		if (musicState == undefined || musicState == true) {
+			document.getElementById("music").innerHTML = "On";
+		}
+		else {
+			document.getElementById("music").innerHTML = "Off";
+		}
+
+		function toggleState(){
+			if (musicState == undefined || musicState == true) {
+				musicState = false;
+				Cookies.set("musicState", false);
+
+				document.getElementById("music").innerHTML = "Off";
+			}
+
+			else{
+				musicState = true;
+				Cookies.set("musicState", true);
+
+				document.getElementById("music").innerHTML = "On";
+			}
+		}
+
+		</script>
 	</body>
 </html>
