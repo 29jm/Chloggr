@@ -6,7 +6,7 @@
 		<link rel="stylesheet" type="text/css" href="menu/queries.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<meta charset="UTF-8">
-		
+		<script src="js/cookies.js"></script>
 	</head>
 
 	<body>
@@ -22,11 +22,18 @@
 				<span id="highScore"></span>
 			</div>
 
-			<script src="js/cookies.js"></script>
-
 			<script>
-				document.getElementById("deadNumber").innerHTML = Cookies.get('deathNumber');
-				document.getElementById("highScore").innerHTML = Cookies.get('highScore');
+				var highScore = Cookies.get('highScore');
+				var deathNumber = Cookies.get('deathNumber');
+
+				if (highScore == undefined || deathNumber == undefined) {
+					document.getElementById("highScore").innerHTML = "0";
+					document.getElementById("deadNumber").innerHTML = "0";
+				}
+				else {
+					document.getElementById("highScore").innerHTML = Cookies.get('highScore');
+					document.getElementById("deadNumber").innerHTML = Cookies.get('deathNumber');
+				}
 			</script>
 
 			<div id="container">
