@@ -3,7 +3,7 @@
 	<head>
 		<title>Settings</title>
 		<link rel="stylesheet" type="text/css" href="menu/settings.css">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta name="viewport" content="width=device-width, initial-scale=2.0"/>
 		<meta charset="UTF-8">
 		<script type="text/javascript" src="js/cookies.js"></script>
 	</head>
@@ -12,45 +12,50 @@
 
 		<aside>
 			<h2>We are working very hard on bringing you guys the best experience</h2>
-			<a id="mail" href="mailto:kloggr.feedback@gmail.com?body=Please%20give%20us%20your%20advice,%20or%20report%20a%20bug%0A">Give us some feed-Back</a>
+			<a id="mail" href="mailto:kloggr.feedback@
+			gmail.com?body=Please%20give%20us%20your%20advice,%20or%20report%20a%20bug%0A">
+			Give us some feed-Back
+			</a>
 		</aside>
 	
 		<div id="content">
-			<p>Music</p>
-			<div id="music" onclick="toggleState()">On</div>
-			<p>Sound effects</p>
-			<div class="sfxOn" id="SFX"></div>
+			<div id="music" onclick="toggleState()">
+				<img src="assets/music.svg">
+			</div>
+
+			<div id="sfxOff">
+				<img src="assets/sfx.svg">
+			</div>
 		</div>
 
 		<a href="index.html"><div id="back">Back</div></a>
 
 		<script type="text/javascript">
+			var musicState = (Cookies.get("musicState") == 'false' ? false : true);
+			var musicButton = document.getElementById('music');
 
-		var musicState = (Cookies.get("musicState") == 'false' ? false : true);
-
-		if (musicState == undefined || musicState == true) {
-			document.getElementById("music").innerHTML = "On";
-		}
-		else {
-			document.getElementById("music").innerHTML = "Off";
-		}
-
-		function toggleState(){
 			if (musicState == undefined || musicState == true) {
-				musicState = false;
-				Cookies.set("musicState", false);
-
-				document.getElementById("music").innerHTML = "Off";
+				music.id = "music";
+			}
+			else {
+				music.id = "musicOff";
 			}
 
-			else{
-				musicState = true;
-				Cookies.set("musicState", true);
+			function toggleState(){
+				if (musicState == undefined || musicState == true) {
+					musicState = false;
+					Cookies.set("musicState", false);
 
-				document.getElementById("music").innerHTML = "On";
+					document.getElementById('music').id = "musicOff";
+				}
+
+				else{
+					musicState = true;
+					Cookies.set("musicState", true);
+
+					document.getElementById('musicOff').id = "music";
+				}
 			}
-		}
-
 		</script>
 	</body>
 </html>
