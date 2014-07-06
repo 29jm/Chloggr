@@ -2,7 +2,6 @@
 
 *{
 	margin: 0px;
-	background-color: #bdc3c7;
 	font-family: 'Open Sans', sans-serif;
 }
 body{
@@ -18,10 +17,7 @@ body{
 	overflow: hidden;
 	display: block;
 
-	background: -webkit-linear-gradient(#34495e , #476481);
-	background: -moz-linear-gradient(#34495e , #476481);
-	background: -o-linear-gradient(#34495e , #476481);
-	background: linear-gradient(#34495e , #476481);
+	background-color: #2b3c4e;
 
 	-o-box-shadow:    inset 0 0 5px #000000;
 	-moz-box-shadow:    inset 0 0 5px #000000;
@@ -37,24 +33,8 @@ a #button{
 	font-size: 2em;
 	border:none;
 	text-align: center;
-	-webkit-transition: background-color 0.2s; /* For Safari 3.1 to 6.0 */
-	-moz-transition: background-color 0.2s; /* For mozilla */
-	-o-transition: background-color 0.2s; /* For opera */
-	transition: background-color 0.2s;
-
-	-webkit-transition: box-shadow 0.2s; /* For Safari 3.1 to 6.0 */
-	-moz-transition: box-shadow 0.2s; /* For mozilla */
-	-o-transition: box-shadow 0.2s; /* For opera */
-	transition: box-shadow 0.2s;
 	cursor: pointer
 }
-a #button:hover{
-	-o-box-shadow:    inset 0 0 10px #000000;
-	-moz-box-shadow:    inset 0 0 10px #000000;
-   	-webkit-box-shadow: inset 0 0 10px #000000;
-   	box-shadow:         inset 0 0 10px #000000;
-}
-
 
 	/*Lose Menu*/
 #menuLose p{	
@@ -100,7 +80,7 @@ a #button:hover{
     border-width: 20px;
     border-style: solid;
     border-color: #c0392b transparent transparent transparent;
-    top: 5.2em;
+    top: 5.3em;
     left: 48.5%;
 }
 
