@@ -337,12 +337,8 @@ function loseMenu(){
 
 	var menuScore = document.getElementById("finalScore");
 
-	if (score > 1) {
-		menuScore.innerHTML = "You won: " + score + " points!";
-	}
-	else {
-		menuScore.innerHTML = "You won: " + score + " point! YOU SUCK";
-	}
+	menuScore.innerHTML = "Score" + score;
+
 }
 
 function onPauseButton() {
