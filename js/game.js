@@ -337,7 +337,7 @@ function loseMenu(){
 
 	var menuScore = document.getElementById("finalScore");
 
-	menuScore.innerHTML = "Score" + score;
+	menuScore.innerHTML = "score: " + score;
 
 }
 
