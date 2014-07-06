@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   width="64"
+   height="64"
+   id="svg3135"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="music.svg">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1440"
+     inkscape:window-height="876"
+     id="namedview12"
+     showgrid="false"
+     inkscape:zoom="10.429825"
+     inkscape:cx="31.011834"
+     inkscape:cy="34.681239"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs3137" />
+  <metadata
+     id="metadata3140">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1">
+    <path
+       style="fill:#ecf0f1;fill-opacity:1"
+       d="M 32.9375 0 A 32.000001 32.000001 0 0 0 0 32 A 32.000001 32.000001 0 0 0 64 32 A 32.000001 32.000001 0 0 0 32.9375 0 z M 23.03125 16.875 L 44.46875 16.875 L 44.46875 22.875 L 44.46875 42.03125 C 44.46875 42.0416 44.468837 42.05217 44.46875 42.0625 C 44.449235 44.37813 42.246188 46.25 39.53125 46.25 C 36.804199 46.25 34.59375 44.361158 34.59375 42.03125 C 34.59375 39.701342 36.804199 37.8125 39.53125 37.8125 C 40.420867 37.8125 41.247889 38.023243 41.96875 38.375 L 41.96875 22.875 L 25.5625 22.875 L 25.5625 42.0625 L 25.53125 42.0625 C 25.531337 42.07283 25.53125 42.0834 25.53125 42.09375 C 25.53125 44.423658 23.320801 46.3125 20.59375 46.3125 C 17.866699 46.3125 15.65625 44.423658 15.65625 42.09375 C 15.65625 39.763842 17.866699 37.875 20.59375 37.875 C 21.483367 37.875 22.310389 38.085743 23.03125 38.4375 L 23.03125 22.875 L 23.03125 16.875 z "
+       id="path3147" />
+  </g>
+</svg>
