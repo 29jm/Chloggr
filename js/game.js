@@ -23,6 +23,7 @@ var enemies = undefined;
 var interval = undefined;
 var keys = undefined;
 var score = undefined;
+var finalScore = undefined;
 var last_time = undefined;
 var paused = undefined;
 var cookie_exp = undefined;
@@ -286,7 +287,7 @@ function draw(context) {
 	target.draw(context);
 
 	context.drawImage(enemies_texture, 0, 0);
-	
+
 	document.getElementById("timer").innerHTML = hours + ":" + minutes + ":" + seconds;
 	document.getElementById("score").innerHTML = score ;
 }
@@ -326,6 +327,20 @@ function hideMenu(){
 }
 
 function loseMenu(){
+	if (!score == 0) {
+		finalScore = Math.round(score/seconds * 10 + score);
+
+		if (minutes >= 1) {
+			finalScore = Math.round((seconds+60/minutes) / score*10 + score*10);
+		}
+		if (hours >= 1) {
+			finalScore = Math.round((seconds+60/minutes+60/hours) / score*10 + score*10);
+		}
+	}
+	else {
+		finalScore = 0;
+	}
+	
 	var menuLose = document.getElementById("menuLose");
 	menuLose.style.display = "initial";
 
@@ -337,7 +352,7 @@ function loseMenu(){
 
 	var menuScore = document.getElementById("finalScore");
 
-	menuScore.innerHTML = "score: " + score;
+	menuScore.innerHTML = finalScore;
 
 }
 

@@ -48,7 +48,7 @@ a #button{
 	padding: 10px;
 	color: #ffffff;
 }
-#finalScore:after{
+#finalScore:before{
 	content: "";
     position: absolute;
     width: 0;
@@ -59,6 +59,14 @@ a #button{
     top: 3.5em;
     left: 48.5%;
 }
+#finalScore:after{
+	content: '';
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    background-image: url(assets/coin.svg);
+    margin-left: 10px;
+}
 #menuLose{
 	top: 10%;
 	position:fixed;
@@ -66,9 +74,6 @@ a #button{
 	width: 100%;
 	height: auto;
 	text-align: center;
-	background-color: #ecf0f1;
-}
-#menuLose a, img {
 	background-color: #ecf0f1;
 }
 
