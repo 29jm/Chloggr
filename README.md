@@ -9,15 +9,15 @@ Features
 ========
 
 Not yet added:
-* Rampage
+* Coins on canvas for extra coins
+* Rampage 
 * Market
 * Achievements
 
 Todo list
 =========
 
-* Add Death number and high score on Main Menu
-* Add page for settings
+* Make info page
 * Don't call handleInput() if on mobile/touchscreen
 
 ##Completed tasks
