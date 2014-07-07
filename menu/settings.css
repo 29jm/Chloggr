@@ -73,22 +73,16 @@ aside a{
 }
 
 @media (max-device-width : 768px) and (-webkit-min-device-pixel-ratio: 2){
-    aside {
-        width: 80%;
-        margin-left: auto;
-        margin-right: auto; 
-        margin-top: 1em;
-        text-align: center;
-        color: white;
-        background-color: #3498db;
-        font-size: 0.9em;
-        padding: 10px;
-    }
     aside h2{
         padding: 0px;
+        font-size: 1em;
     }
     aside a{
         text-decoration: underline;
-        font-size: 1.5em;
+        font-size: 0.9em;
+    }
+    #back{
+        height: 50px;
+        font-size: 2em;
     }
 }
