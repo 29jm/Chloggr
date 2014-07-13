@@ -301,7 +301,7 @@ function renderToCanvas(width, height, renderFunction) {
 	return buffer;
 };
 
-function pauseMenu(){
+function pauseMenu() {
 	var menuPause = document.getElementById("menuPause");
 	menuPause.style.display = "initial";
 
@@ -312,7 +312,7 @@ function pauseMenu(){
 	replay.style.display = "initial";
 }
 
-function hideMenu(){
+function hideMenu() {
 	var menuPause = document.getElementById("menuPause");
 	menuPause.style.display = "none";
 
@@ -326,13 +326,14 @@ function hideMenu(){
 	quit.style.display = "none";
 }
 
-function loseMenu(){
-	if (!score == 0) {
-		finalScore = Math.round(score/seconds + score*10 );
+function loseMenu() {
+	if (score == 0) {
+		finalScore = 0
 
 		if (minutes >= 1) {
 			finalScore = Math.round(score/(seconds+60/minutes) + score*10);
 		}
+
 		if (hours >= 1) {
 			finalScore = Math.round(score/(seconds+60/minutes+60/hours) + score*10);
 		}
@@ -379,7 +380,7 @@ function setMusicState(music, state) {
 
 }
 
-window.addEventListener('resize', function(event){
+window.addEventListener('resize', function(event) {
 	canvas.width = window.innerWidth;
 	canvas.height = window.innerHeight-50;
 
