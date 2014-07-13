@@ -328,13 +328,13 @@ function hideMenu(){
 
 function loseMenu(){
 	if (!score == 0) {
-		finalScore = Math.round(score/seconds * 10 + score);
+		finalScore = Math.round(score/seconds + score*10 );
 
 		if (minutes >= 1) {
-			finalScore = Math.round((seconds+60/minutes) / score*10 + score*10);
+			finalScore = Math.round(score/(seconds+60/minutes) + score*10);
 		}
 		if (hours >= 1) {
-			finalScore = Math.round((seconds+60/minutes+60/hours) / score*10 + score*10);
+			finalScore = Math.round(score/(seconds+60/minutes+60/hours) + score*10);
 		}
 	}
 	else {
