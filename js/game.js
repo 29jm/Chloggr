@@ -327,6 +327,8 @@ function hideMenu() {
 }
 
 function loseMenu() {
+	finalScore = Math.round(score/seconds + score*10);
+
 	if (minutes >= 1) {
 		finalScore = Math.round(score/(seconds+60/minutes) + score*10);
 	}
