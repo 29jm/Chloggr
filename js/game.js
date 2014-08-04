@@ -283,7 +283,7 @@ function onTarget() {
 		target.stte = target.State.Bouncing;
 	}
 
-	if (score > 0) {
+	if (score > 15) {
 		lazer.state = lazer.State.On;
 	}
 
