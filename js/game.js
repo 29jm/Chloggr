@@ -34,6 +34,7 @@ var screen_size_y = undefined;
 var min_delta_t = undefined;
 var enemies_texture = undefined;
 var musicState = undefined;
+var lazer = undefined;
 
 // Only function called when (re)starting
 init();
@@ -61,6 +62,10 @@ function init() {
 	target = new Target(cube_size, cube_size, 'assets/target.svg', 200, 0.7);
 	target.toRandomLocation(canvas.width-target.width,
 							canvas.height-target.height);
+
+	lazer = new Lazer(15, canvas.height);
+	lazer.toRandomLocation(canvas.width-lazer.width,
+						   canvas.height-lazer.height);
 
 	enemies = [];
 	createEnemies();
@@ -233,6 +238,7 @@ function update(dt) {
 	handleInput(); // input.js
 	player.update(dt);
 	target.update(dt);
+	lazer.update(dt);
 	collisionDetection();
 }
 
@@ -242,6 +248,15 @@ function collisionDetection() {
 
 	if (player.intersects(target)) {
 		onTarget();
+	}
+
+	if (lazer.state == lazer.State.On) {
+		if (player.intersects(lazer)) {
+			console.log("lazer collision: lazer.pos="+lazer.x+";"+lazer.y
+						+"\nlazer.dim="+lazer.width+";"+lazer.height);
+			console.log("screen_size_y="+screen_size_y);
+			onDead();
+		}
 	}
 
 	for (var i = 0; i < num_enemies; i++) {
@@ -263,7 +278,11 @@ function onTarget() {
 	}
 
 	if (score == 10) {
-		target.state = target.State.Bouncing;
+		target.stte = target.State.Bouncing;
+	}
+
+	if (score > 15) {
+		lazer.state = lazer.State.On;
 	}
 
 	player.speed_x = 0;
@@ -285,6 +304,8 @@ function draw(context) {
 	player.draw(context);
 
 	target.draw(context);
+
+	lazer.draw(context);
 
 	context.drawImage(enemies_texture, 0, 0);
 

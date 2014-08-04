@@ -114,7 +114,7 @@ Player.prototype.update = function(delta_t) {
 }
 
 Player.prototype.draw = function(context) {
-	context.drawImage(this.texture, this.x, this.y);
+	context.drawImage(this.texture, this.x, this.y, this.width, this.height);
 }
 
 /*	Target class. inherits Player.
@@ -122,7 +122,7 @@ Player.prototype.draw = function(context) {
  */
 function Target(width, height, texture_name, max_speed, slowing_speed) {
 	Player.call(this, width, height, texture_name, max_speed, slowing_speed);
-
+	
 	this.State = {
 		Fix: "Fix",
 		Bouncing: "Bouncing",
@@ -177,3 +177,44 @@ Target.prototype.update = function(delta_t) {
 	this.x += this.speed_x*delta_t;
 	this.y += this.speed_y*delta_t;
 }
+
+function Lazer(width, height) {
+	Player.call(this, width, height, "assets/lazer.png", 0, 0);
+
+	this.State = {
+		Inactive: "Inactive",
+		On: "On",
+		Off: "Off"
+	}
+
+	this.accumulator = 0;
+	this.state = this.State.Inactive;
+	this.draw = function(context) {}
+}
+
+Lazer.prototype = Object.create(Player.prototype);
+
+Lazer.prototype.toRandomLocation = function(max_x, max_y) {
+	this.x = Math.random()*max_x;
+	this.y = 0;
+}
+
+Lazer.prototype.update = function(delta_t) {
+	if (this.state == this.State.Inactive) {
+		return;
+	}
+
+	this.accumulator += delta_t;
+	if (this.accumulator > 2.5 && this.state != this.State.Inactive) {
+		this.accumulator = 0;
+		if (this.state == this.State.On) {
+			this.state = this.State.Off;
+			this.draw = function(context) {}
+		}
+		else {
+			this.state = this.State.On;
+			this.draw = Lazer.prototype.draw;
+		}
+	}
+}
+
