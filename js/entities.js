@@ -1,11 +1,23 @@
 /*	Square base class.
  *	Used by Enemy, Player and Target
  */
-function Square(width, height) {
+function Square(width, height, texture) {
 	this.width = width;
 	this.height = height;
 	this.x = 0;
 	this.y = 0;
+
+	var pattern = /#[0-8A-Z]{6}/i; // If it's a color then use canvas.fillRect()
+
+	if (pattern.test(texture)) {
+		this.draw = Square.prototype.drawColor;
+		this.texture = texture;
+	}
+	else {
+		this.draw = Square.prototype.drawImage;
+		this.texture = new Image();
+		this.texture.src = texture;
+	}
 }
 
 Square.prototype.intersects = function(other) {
@@ -43,45 +55,36 @@ Square.prototype.toRandomLocation = function(max_x, max_y) {
 	this.y = Math.random()*max_y;
 }
 
+Square.prototype.drawColor = function(context) {
+	context.fillStyle = this.texture;
+	context.fillRect(this.x, this.y, this.width, this.height);
+}
+
+Square.prototype.drawImage = function(context) {
+	context.drawImage(this.texture, this.x, this.y, this.width, this.height);
+}
+
 /*	Enemy class.
  *	Drawn using color-filled reactangles
  */
-function Enemy(width, height) {
-	Square.call(this);
-
-	this.width = width;
-	this.height = height;
-
-	this.color = '#FF0000';
+function Enemy() {
+	Square.call(this, 15, 15, '#27AE60');
 }
 
 Enemy.prototype = Object.create(Square.prototype);
 
-Enemy.prototype.draw = function(context) {
-	context.fillStyle = this.color;
-	context.fillRect(this.x, this.y, this.width, this.height);
-}
-
 /*	Player class.
  *	Drawn using a texture, can move, etc...
  */
-function Player(width, height, texture_name, max_speed, slowing_speed) {
-	Square.call(this);
-
-	this.width = width;
-	this.height = height;
+function Player() {
+	Square.call(this, 40, 40, 'assets/player.svg');
 
 	this.speed_x = 0;
 	this.speed_y = 0;
-	this.max_speed = (typeof max_speed === undefined ?
-						0 : max_speed);
-	this.slowing_speed = (typeof slowing_speed === undefined ?
-						0 : slowing_speed);
+	this.max_speed = 300;
+	this.slowing_speed = 0.7;
 
-	this.texture = new Image();
-	this.texture.src = texture_name;
-	this.texture.width = width;
-	this.texture.height = height;
+	this.dead = false;
 }
 
 Player.prototype = Object.create(Square.prototype);
@@ -113,27 +116,28 @@ Player.prototype.update = function(delta_t) {
 	this.y += this.speed_y*delta_t;
 }
 
-Player.prototype.draw = function(context) {
-	context.drawImage(this.texture, this.x, this.y, this.width, this.height);
-}
-
-/*	Target class. inherits Player.
+/*	Target class. inherits Square.
  *	Able to move, decelerate, change of behavior...
  */
-function Target(width, height, texture_name, max_speed, slowing_speed) {
-	Player.call(this, width, height, texture_name, max_speed, slowing_speed);
-	
+function Target() {
+	Square.call(this, 40, 40, 'assets/target.svg');
+
 	this.State = {
 		Fix: "Fix",
 		Bouncing: "Bouncing",
 		Moving: "Moving"
 	}
 
+	this.speed_x = 0;
+	this.speed_y = 0;
+	this.max_speed = 200;
+	this.slowing_speed = 0.7;
+
 	this.state = this.State.Fix;
 	this.accumulator = 0;
 }
 
-Target.prototype = Object.create(Player.prototype);
+Target.prototype = Object.create(Square.prototype);
 
 Target.prototype.update = function(delta_t) {
 	var len = 0;
@@ -158,7 +162,7 @@ Target.prototype.update = function(delta_t) {
 	if (Math.round(len) == 0) {
 		this.speed_x = 0;
 		this.speed_y = 0;
-		return;
+		return; // No movement needed
 	}
 
 	this.speed_x = (this.speed_x / len)*(len-this.slowing_speed);
@@ -178,8 +182,11 @@ Target.prototype.update = function(delta_t) {
 	this.y += this.speed_y*delta_t;
 }
 
-function Lazer(width, height) {
-	Player.call(this, width, height, "assets/lazer.png", 0, 0);
+/* The Lazer class is an Enemy, but it initialize from a Square.
+ * Its behavior is controlled through the State enumeration.
+ */
+function Lazer() {
+	Square.call(this, 15, 120, "assets/lazer.png");
 
 	this.State = {
 		Inactive: "Inactive",
@@ -213,7 +220,7 @@ Lazer.prototype.update = function(delta_t) {
 		}
 		else {
 			this.state = this.State.On;
-			this.draw = Lazer.prototype.draw;
+			this.draw = Square.prototype.drawImage; // TODO: add (bool)to_draw
 		}
 	}
 }

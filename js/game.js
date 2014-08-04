@@ -58,16 +58,15 @@ function init() {
 	enemy_size = 15;
 	accel = 7;
 
-	player = new Player(cube_size, cube_size, 'assets/player.svg', 300, 0.7);
+	player = new Player();
 	player.toRandomLocation(canvas.width-player.width,
 							canvas.height-player.height);
-	player.dead = false;
 
-	target = new Target(cube_size, cube_size, 'assets/target.svg', 200, 0.7);
+	target = new Target();
 	target.toRandomLocation(canvas.width-target.width,
 							canvas.height-target.height);
 
-	lazer = new Lazer(15, canvas.height);
+	lazer = new Lazer();
 	lazer.toRandomLocation(canvas.width-lazer.width,
 						   canvas.height-lazer.height);
 
@@ -126,8 +125,7 @@ function createEnemies() {
 
 	enemies = [];
 	for (var i = 0; i < num_enemies; i++) {
-		var enemy = new Enemy(enemy_size, enemy_size);
-		enemy.color = '#27ae60';
+		var enemy = new Enemy();
 		enemies.push(enemy);
 	}
 }
@@ -285,7 +283,7 @@ function onTarget() {
 		target.stte = target.State.Bouncing;
 	}
 
-	if (score > 15) {
+	if (score > 0) {
 		lazer.state = lazer.State.On;
 	}
 
