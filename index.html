@@ -1,50 +1,60 @@
-<DOCTYPE html>
+<!DOCTYPE html>
 <html>
 	<head>
 		<title>Main menu</title>
 		<link rel="stylesheet" type="text/css" href="menu/menu.css">
-		<link rel="stylesheet" type="text/css" href="menu/queries.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<meta charset="UTF-8">
 		<script src="js/cookies.js"></script>
 	</head>
 
 	<body>
-		<div id="mainContainer">	
-			
+		<div id="menuContainer">
+		
 			<header>
-				<img src="assets/logo.png">
 			</header>
 			
-			
-			<div id="info">
-				<span id="deadNumber"></span>
-				<span id="highScore"></span>
-			</div>
+			<div id="play" onclick="toggleHome()"></div>
 
-			<script>
-				var highScore = Cookies.get('highScore');
-				var deathNumber = Cookies.get('deathNumber');
-
-				if (highScore == undefined || deathNumber == undefined) {
-					document.getElementById("highScore").innerHTML = "0";
-					document.getElementById("deadNumber").innerHTML = "0";
-				}
-				else {
-					document.getElementById("highScore").innerHTML = Cookies.get('highScore');
-					document.getElementById("deadNumber").innerHTML = Cookies.get('deathNumber');
-				}
-			</script>
-
-			<div id="container">
-				<a href="game.html"><div id="play">Play</div></a>
-			</div>
+			<footer>
+				<a href="settings.html"><div id='settings'></div></a>
+				<a href="#"><div id='info'></div></a>
+			</footer>
 
 		</div>
 
-		<footer>
-			<a href="settings.html"><img src="assets/settings.svg"></a>
-			<a href="#"><img src="assets/info.svg"></a>
-		</footer>
+		<div id="gameContainer">
+
+			<canvas id="canvas"></canvas>
+			<div id="timer">0</div>
+			<div id="score">0</div>
+
+			<div id="menuLose">
+				<p>Try again!</p>
+
+				<div id="finalScore"></div>
+
+				<img id="replay" src="assets/replay.svg" onClick="init()">
+				
+				<img id="quit" src="assets/exit.svg" onClick="toggleHome()">
+			</div>
+
+			<div id="menuPause">
+			    <p>Pause</p>
+
+				<img id="replay" src="assets/replay.svg" onClick="init(); menuHandler('hidePauseMenu')">
+				
+				<img id="quit" src="assets/exit.svg" onClick="toggleHome()">
+			</div>
+			
+		    <div id="button" onClick="onPauseButton()">Pause</div>
+
+	    </div>
+
+	    <script src="js/entities.js"></script>
+	    <script src="js/units.js"></script>
+	    <script src="js/timer.js"></script>
+	    <script src="js/input.js"></script>
+	    <script src="js/game.js"></script>
 	</body>
 </html>
