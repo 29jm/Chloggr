@@ -263,3 +263,26 @@
 
   100% {
     left: 0em; } }
+.popOut {
+  -webkit-animation: grow 0.3s ease-in-out;
+  -moz-animation: grow 0.3s ease-in-out;
+  -o-animation: grow 0.3s ease-in-out;
+  animation: grow 0.3s ease-in-out; }
+
+.popIn {
+  -webkit-animation: shrink 0.3s ease-in-out;
+  -moz-animation: shrink 0.3s ease-in-out;
+  -o-animation: shrink 0.3s ease-in-out;
+  animation: shrink 0.3s ease-in-out; }
+
+.quit {
+  -webkit-animation: quit 0.7s ease-in-out;
+  -moz-animation: quit 0.7s ease-in-out;
+  -o-animation: quit 0.7s ease-in-out;
+  animation: quit 0.7s ease-in-out; }
+
+#gameContainer {
+  -webkit-animation: grow 0.3s ease-in-out;
+  -moz-animation: grow 0.3s ease-in-out;
+  -o-animation: grow 0.3s ease-in-out;
+  animation: grow 0.3s ease-in-out; }

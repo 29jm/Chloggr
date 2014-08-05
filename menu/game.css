@@ -12,11 +12,7 @@
   -o-box-shadow: inset 0 0 5px #000000;
   -moz-box-shadow: inset 0 0 5px #000000;
   -webkit-box-shadow: inset 0 0 5px #000000;
-  box-shadow: inset 0 0 5px #000000;
-  -webkit-animation: slideIn 0.3s ease-in-out;
-  -moz-animation: slideIn 0.3s ease-in-out;
-  -o-animation: slideIn 0.3s ease-in-out;
-  animation: slideIn 0.3s ease-in-out; }
+  box-shadow: inset 0 0 5px #000000; }
 
 /*button*/
 #button {
@@ -30,24 +26,6 @@
   cursor: pointer; }
 
 /*Lose Menu*/
-.popOut {
-  -webkit-animation: grow 0.3s ease-in-out;
-  -moz-animation: grow 0.3s ease-in-out;
-  -o-animation: grow 0.3s ease-in-out;
-  animation: grow 0.3s ease-in-out; }
-
-.popIn {
-  -webkit-animation: shrink 0.3s ease-in-out;
-  -moz-animation: shrink 0.3s ease-in-out;
-  -o-animation: shrink 0.3s ease-in-out;
-  animation: shrink 0.3s ease-in-out; }
-
-.quit {
-  -webkit-animation: quit 0.7s ease-in-out;
-  -moz-animation: quit 0.7s ease-in-out;
-  -o-animation: quit 0.7s ease-in-out;
-  animation: quit 0.7s ease-in-out; }
-
 #menuLose p {
   background-color: #c0392b;
   color: #ffffff;
