@@ -26,55 +26,69 @@
   cursor: pointer; }
 
 /*Lose Menu*/
-#menuLose p {
-  background-color: #c0392b;
-  color: #ffffff;
-  font-size: 4em; }
-
 #menuLose {
   top: 10%;
   position: fixed;
   display: none;
-  width: 100%;
-  height: auto;
-  text-align: center;
-  background-color: #ecf0f1; }
+  margin: auto;
+  width: 100vw; }
 
-#menuLose:after {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-width: 20px;
-  border-style: solid;
-  border-color: #c0392b transparent transparent transparent;
-  top: 5.3em;
-  left: 48.5%; }
-
-#finalScore {
-  font-size: 3em;
+#circle {
+  width: 2.5em;
+  height: 2.5em;
+  overflow: hidden;
   background-color: #e74c3c;
-  padding: 10px;
-  color: #ffffff; }
+  border-radius: 5em;
+  margin: 0.3em auto auto auto;
+  font-size: 4em;
+  text-align: center;
+  line-height: 2.5em;
+  font-family: 'Open Sans' sans-serif;
+  color: white;
+  text-shadow: 0px 0px #e53f2e, 1px 1px #e53f2e, 2px 2px #e53f2e, 3px 3px #e53f2e, 4px 4px #e53f2e, 5px 5px #e53f2e, 6px 6px #e53f2e, 7px 7px #e53f2e, 8px 8px #e53f2e, 9px 9px #e53f2e, 10px 10px #e53f2e, 11px 11px #e53f2e, 12px 12px #e53f2e, 13px 13px #e53f2e, 14px 14px #e53f2e, 15px 15px #e53f2e, 16px 16px #e53f2e, 17px 17px #e53f2e, 18px 18px #e53f2e, 19px 19px #e53f2e, 20px 20px #e53f2e, 21px 21px #e53f2e, 22px 22px #e53f2e, 23px 23px #e53f2e, 24px 24px #e53f2e, 25px 25px #e53f2e, 26px 26px #e53f2e, 27px 27px #e53f2e, 28px 28px #e53f2e, 29px 29px #e53f2e, 30px 30px #e53f2e, 31px 31px #e53f2e, 32px 32px #e53f2e, 33px 33px #e53f2e, 34px 34px #e53f2e, 35px 35px #e53f2e, 36px 36px #e53f2e, 37px 37px #e53f2e, 38px 38px #e53f2e, 39px 39px #e53f2e, 40px 40px #e53f2e, 41px 41px #e53f2e, 42px 42px #e53f2e, 43px 43px #e53f2e, 44px 44px #e53f2e, 45px 45px #e53f2e, 46px 46px #e53f2e, 47px 47px #e53f2e, 48px 48px #e53f2e, 49px 49px #e53f2e, 50px 50px #e53f2e, 51px 51px #e53f2e, 52px 52px #e53f2e, 53px 53px #e53f2e, 54px 54px #e53f2e, 55px 55px #e53f2e, 56px 56px #e53f2e, 57px 57px #e53f2e, 58px 58px #e53f2e, 59px 59px #e53f2e, 60px 60px #e53f2e; }
 
-#finalScore:before {
+#circle:after {
   content: "";
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-width: 20px;
-  border-style: solid;
-  border-color: #e74c3c transparent transparent transparent;
-  top: 3.5em;
-  left: 48.5%; }
-
-#finalScore:after {
-  content: '';
-  position: absolute;
   width: 64px;
   height: 64px;
   background-image: url(../assets/coin.svg);
-  margin-left: 10px; }
+  float: right;
+  margin-left: 7px;
+  z-index: 10000;
+  position: absolute; }
+
+#options {
+  width: 100%;
+  height: 50%; }
+  #options a {
+    width: 50%;
+    height: auto;
+    float: left;
+    margin-top: 3.5em; }
+
+#replay {
+  width: 60px;
+  height: 60px;
+  margin: auto;
+  background-color: #9b59b6;
+  background-repeat: no-repeat;
+  background: url(../assets/replay.svg) center;
+  background-repeat: no-repeat;
+  position: relative;
+  background-color: #ecf0f1;
+  border-radius: 50%; }
+
+#quit {
+  width: 60px;
+  height: 60px;
+  margin: auto;
+  background-color: #9b59b6;
+  background-repeat: no-repeat;
+  background: url("http://www.manoirdekervent.fr/chloggr/assets/exit.svg") center;
+  background-repeat: no-repeat;
+  position: relative;
+  background-color: #ecf0f1;
+  border-radius: 50%; }
 
 /*Pause Menu*/
 #menuPause {

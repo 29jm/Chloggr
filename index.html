@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta charset="UTF-8">
 		<title>Main menu</title>
 		<link rel="stylesheet" type="text/css" href="menu/menu.css">
+		<link rel="stylesheet" type="text/css" href="menu/animations.css">
+		<link rel="stylesheet" type="text/css" href="menu/game.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<meta charset="UTF-8">
 		<script src="js/cookies.js"></script>
 	</head>
 
@@ -14,7 +16,7 @@
 			<header>
 			</header>
 			
-			<div id="play" onclick="toggleHome()"></div>
+			<a onclick="toggleHome()"><div onclick="toggleHome()" id="play"></div></a>
 
 			<footer>
 				<a href="settings.html"><div id='settings'></div></a>
@@ -30,19 +32,17 @@
 			<div id="score">0</div>
 
 			<div id="menuLose">
-				<p>Try again!</p>
-
-				<div id="finalScore"></div>
-
-				<img id="replay" src="assets/replay.svg" onClick="init()">
-				
-				<img id="quit" src="assets/exit.svg" onClick="toggleHome()">
+				<div id="circle"></div>
+				<div id="options">
+				    <a onClick="init()"><div id="replay"></div></a>
+				    <a onClick="toggleHome()"><div id="quit"></div></a>
+				</div>
 			</div>
 
 			<div id="menuPause">
 			    <p>Pause</p>
 
-				<img id="replay" src="assets/replay.svg" onClick="init(); menuHandler('hidePauseMenu')">
+				<img id="replay" src="assets/replay.svg" onClick="init(); pauseMenu();">
 				
 				<img id="quit" src="assets/exit.svg" onClick="toggleHome()">
 			</div>

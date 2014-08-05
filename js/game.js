@@ -31,6 +31,7 @@ var enemies_texture;
 var musicState;
 var lazer;
 var home;
+var lose;
 var gameobjects;
 
 // Only function called when (re)starting
@@ -40,7 +41,8 @@ function init() {
 	screen_size_x = getUnits(document.body, "width").cm;
 	screen_size_y = getUnits(document.body, "height").cm;
 
-	menuHandler("hideLoseMenu");
+	lose = false;
+	loseMenu();
 
 	resetTimer();
 	enemy_density = 3;
@@ -257,7 +259,8 @@ function onDead() {
 	player.texture.src = 'assets/deadPlayer.svg';
 	Cookies.set('deathNumber', ++deathNumber);
 
-	menuHandler("loseMenu");
+	lose = true;
+	loseMenu();
 	stopTimer();
 }
 
@@ -286,54 +289,42 @@ function toggleHome() {
 	}
 
 	if (home) {
-		menuHandler("hideGame");
+        document.getElementById("gameContainer").style.display = "none";
+        document.getElementById("menuContainer").style.display = "initial";
 	}
 	else {
-		menuHandler("hideHome");
+		document.getElementById("gameContainer").style.display = "initial";
+		document.getElementById("menuContainer").style.display = "none";
 		init();
 	}
 
 	home = (home ? false : true);
 }
 
-function menuHandler(menu) {
-	scoreCalc();
+function pauseMenu() {
+    if(paused){
+        document.getElementById("menuPause").className = "popOut";
+        document.getElementById("menuPause").style.display = "block";
+        document.getElementById("quit").style.display = "block";
+        document.getElementById("replay").style.display = "block";  
+    }
+    else{
+        document.getElementById("menuPause").style.display = "none";
+        document.getElementById("quit").style.display = "none";
+        document.getElementById("replay").style.display = "none";       
+    }
+}
 
-	switch (menu) {
-	case "loseMenu":
-		document.getElementById("menuLose").className = "popOut";
-		document.getElementById("menuLose").style.display = "initial";
-		document.getElementById("quit").style.display = "initial";
-		document.getElementById("replay").style.display = "initial";
-		document.getElementById("finalScore").innerHTML = finalScore;
-	    break;
-	case "hideLoseMenu":
-		document.getElementById("menuLose").style.display = "none";
-		document.getElementById("quit").style.display = "none";
-		document.getElementById("replay").style.display = "none";
-	    break;
-	case "pauseMenu":
-		document.getElementById("menuPause").className = "popOut";
-		document.getElementById("menuPause").style.display = "block";
-		document.getElementById("quit").style.display = "block";
-		document.getElementById("replay").style.display = "block";
-	    break;
-	case "hidePauseMenu":
-		document.getElementById("menuPause").style.display = "none";
-		document.getElementById("quit").style.display = "none";
-		document.getElementById("replay").style.display = "none";
-	    break;
-	case "hideGame":
-		document.getElementById("menuContainer").style.display = "initial";
-		document.getElementById("gameContainer").style.display = "none";
-		break;
-	case "hideHome":
-		document.getElementById("menuContainer").style.display = "none";
-		document.getElementById("gameContainer").style.display = "initial";
-		break;		
-	default:
-		break;
-	}
+function loseMenu() {
+	scoreCalc();
+    if(lose){
+        document.getElementById("menuLose").className = "popOut";
+        document.getElementById("menuLose").style.display = "inline";
+        document.getElementById("circle").innerHTML = finalScore;
+    }
+    else{
+        document.getElementById("menuLose").style.display = "none";    
+    }
 }
 
 function onPauseButton() {
@@ -344,13 +335,13 @@ function onPauseButton() {
 	paused = (paused ? false : true); // Toggles paused var
 
 	if (paused) {
-		menuHandler("pauseMenu");
+		pauseMenu();
 		stopTimer();
 		document.getElementById("button").innerHTML = "Play";
 	}
 	else {
 		document.getElementById("menuPause").className = "popIn";
-		setTimeout(menuHandler("hidePauseMenu"), 300);
+		pauseMenu();
 		playTimer();
 		document.getElementById("button").innerHTML = "Pause";
 	}
