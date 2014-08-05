@@ -1,0 +1,144 @@
+/*************GAME STYLING***********/
+#gameContainer {
+  height: 100vh;
+  width: 100vw;
+  display: none; }
+
+#canvas {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  background: #34495e;
+  -o-box-shadow: inset 0 0 5px #000000;
+  -moz-box-shadow: inset 0 0 5px #000000;
+  -webkit-box-shadow: inset 0 0 5px #000000;
+  box-shadow: inset 0 0 5px #000000;
+  -webkit-animation: slideIn 0.3s ease-in-out;
+  -moz-animation: slideIn 0.3s ease-in-out;
+  -o-animation: slideIn 0.3s ease-in-out;
+  animation: slideIn 0.3s ease-in-out; }
+
+/*button*/
+#button {
+  position: relative;
+  width: 100vw;
+  height: 100%;
+  background-color: #ecf0f1;
+  color: #3498db;
+  font-size: 1.6em;
+  text-align: center;
+  cursor: pointer; }
+
+/*Lose Menu*/
+.popOut {
+  -webkit-animation: grow 0.3s ease-in-out;
+  -moz-animation: grow 0.3s ease-in-out;
+  -o-animation: grow 0.3s ease-in-out;
+  animation: grow 0.3s ease-in-out; }
+
+.popIn {
+  -webkit-animation: shrink 0.3s ease-in-out;
+  -moz-animation: shrink 0.3s ease-in-out;
+  -o-animation: shrink 0.3s ease-in-out;
+  animation: shrink 0.3s ease-in-out; }
+
+.quit {
+  -webkit-animation: quit 0.7s ease-in-out;
+  -moz-animation: quit 0.7s ease-in-out;
+  -o-animation: quit 0.7s ease-in-out;
+  animation: quit 0.7s ease-in-out; }
+
+#menuLose p {
+  background-color: #c0392b;
+  color: #ffffff;
+  font-size: 4em; }
+
+#menuLose {
+  top: 10%;
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: auto;
+  text-align: center;
+  background-color: #ecf0f1; }
+
+#menuLose:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-width: 20px;
+  border-style: solid;
+  border-color: #c0392b transparent transparent transparent;
+  top: 5.3em;
+  left: 48.5%; }
+
+#finalScore {
+  font-size: 3em;
+  background-color: #e74c3c;
+  padding: 10px;
+  color: #ffffff; }
+
+#finalScore:before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-width: 20px;
+  border-style: solid;
+  border-color: #e74c3c transparent transparent transparent;
+  top: 3.5em;
+  left: 48.5%; }
+
+#finalScore:after {
+  content: '';
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  background-image: url(../assets/coin.svg);
+  margin-left: 10px; }
+
+/*Pause Menu*/
+#menuPause {
+  top: 10%;
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 170px;
+  text-align: center;
+  background-color: #ecf0f1;
+  color: white; }
+
+#menuPause p {
+  background-color: #e74c3c;
+  color: #ffffff;
+  font-size: 4em; }
+
+#menuPause p:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-width: 20px;
+  border-style: solid;
+  border-color: #e74c3c transparent transparent transparent;
+  top: 1.3em;
+  left: 48.5%; }
+
+#quit, #replay {
+  padding: 1em;
+  cursor: pointer;
+  background-color: #ecf0f1; }
+
+#timer, #score {
+  position: absolute;
+  top: 10px;
+  background-color: transparent;
+  font-size: 2em;
+  color: #ffffff; }
+
+#score {
+  left: 1em; }
+
+#timer {
+  right: 1em; }
