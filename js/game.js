@@ -11,33 +11,27 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight-50;
 
 // Prevent double initialization
-var enemy_density = undefined;
-var max_density = undefined;
-var num_enemies = undefined;
-var cube_size = undefined;
-var enemy_size = undefined;
-var accel = undefined;
-var player = undefined;
-var target = undefined;
-var enemies = undefined;
-var interval = undefined;
-var keys = undefined;
-var score = undefined;
-var finalScore = undefined;
-var last_time = undefined;
-var paused = undefined;
-var cookie_exp = undefined;
-var highScore = undefined;
-var deathNumber = undefined;
-var screen_size_x = undefined;
-var screen_size_y = undefined;
-var min_delta_t = undefined;
-var enemies_texture = undefined;
-var musicState = undefined;
-var lazer = undefined;
-var home = undefined;
-
-toggleHome();
+var enemy_density;
+var max_density;
+var player;
+var target;
+var interval;
+var keys;
+var score;
+var finalScore;
+var last_time;
+var paused;
+var cookie_exp;
+var highScore;
+var deathNumber;
+var screen_size_x;
+var screen_size_y;
+var min_delta_t;
+var enemies_texture;
+var musicState;
+var lazer;
+var home;
+var gameobjects;
 
 // Only function called when (re)starting
 init();
@@ -46,39 +40,29 @@ function init() {
 	screen_size_x = getUnits(document.body, "width").cm;
 	screen_size_y = getUnits(document.body, "height").cm;
 
-	setTimeout(menuHandler("hideLoseMenu"), 300);
+	menuHandler("hideLoseMenu");
 
 	resetTimer();
 	enemy_density = 3;
 	max_density = 14;
-	num_enemies = 0;
-	updateEnemyDensity();
 
-	cube_size = 40;
-	enemy_size = 15;
-	accel = 7;
+	gameobjects = [];
+	gameobjects.push(new Player());
+	gameobjects.push(new Target());
+	gameobjects = gameobjects.concat(createEnemies());
 
-	player = new Player();
-	player.toRandomLocation(canvas.width-player.width,
-							canvas.height-player.height);
+	player = gameobjects[0];
+	target = gameobjects[1];
 
-	target = new Target();
-	target.toRandomLocation(canvas.width-target.width,
-							canvas.height-target.height);
-
-	lazer = new Lazer();
-	lazer.toRandomLocation(canvas.width-lazer.width,
-						   canvas.height-lazer.height);
-
-	enemies = [];
-	createEnemies();
-	respawn();
-
-	if (interval != undefined) {
-		clearInterval(interval);
+	for (var i = 0; i < gameobjects.length; i++) {
+		// Gives every object the informations needed to spawn
+		// at a good place
+		gameobjects[i].toRandomLocation(gameobjects, canvas.width, canvas.height);
 	}
 
-	interval = setInterval(loop, 2);
+	if (interval == undefined) {
+		interval = setInterval(loop, 2);
+	}
 
 	keys = {};
 	score = 0;
@@ -109,7 +93,7 @@ function init() {
 		music.loop = true;
 		music.volume = 0.5;
 
-		if (musicState == true) {
+		if (musicState === true) {
 			music.play();
 		}
 		else {
@@ -121,95 +105,52 @@ function init() {
 }
 
 function createEnemies() {
-	console.log(num_enemies+" created. density="+enemy_density);
+	var num_enemies = numberEnemies();
 
-	enemies = [];
+	var enemies = [];
 	for (var i = 0; i < num_enemies; i++) {
 		var enemy = new Enemy();
 		enemies.push(enemy);
 	}
+
+	console.log(enemies.length+" created");
+
+	return enemies;
 }
 
-function updateEnemyDensity() {
+function numberEnemies() {
 	var enemy_ratio = enemy_density/Math.pow(10, 2);
 	var screen_area = screen_size_x*screen_size_y;
-	num_enemies = Math.round(enemy_ratio*screen_area);
 
-	createEnemies();
+	return Math.round(enemy_ratio*screen_area);
 }
 
 function respawn() {
-	if (enemies.length != num_enemies) { // Density changed
-		createEnemies();
-	}
+	while (true) {
+		var found = false;
+		for (var i = 0; i < gameobjects.length; i++) {
+			if (gameobjects[i] instanceof Enemy &&
+				!(gameobjects[i] instanceof Lazer)) {
+				found = true;
+				gameobjects.splice(i, 1);
+				break;
+			}
+		}
 
-	for (var i = 0; i < enemies.length; i++) {
-		enemies[i].toRandomLocation(canvas.width-enemies[i].width,
-									canvas.height-enemies[i].height);
-		while (!isValidEnemySpawn(enemies[i])) {
-			enemies[i].toRandomLocation(canvas.width-enemies[i].width,
-										canvas.height-enemies[i].height);
+		if (!found) {
+			console.log("found");
+			break;
 		}
 	}
 
-	target.toRandomLocation(canvas.width-target.width,
-							canvas.height-target.height);
-	while (!isValidTargetSpawn(target)) {
-		target.toRandomLocation(canvas.width-target.width,
-								canvas.height-target.height);
-	}
+	gameobjects = gameobjects.concat(createEnemies());
 
-	enemies_texture = renderToCanvas(canvas.width, canvas.height, function(context) {
-		for (var i = 0; i < enemies.length; i++) {
-			enemies[i].draw(context);
-		}
-	});
-}
-
-function isValidTargetSpawn(square) {
-	for (var i = 0; i < enemies.length; i++) {
-		if (enemies[i].intersects(square)) {
-			return false;
+	for (var i = 0; i < gameobjects.length; i++) {
+		// Respawn everything but the player
+		if (!(gameobjects[i] instanceof Player)) {
+			gameobjects[i].toRandomLocation(gameobjects, canvas.width, canvas.height);
 		}
 	}
-
-	var minimum = toCentimeter(((canvas.width+canvas.height)/2) / 2); // Half the average screen size
-
-	if (toCentimeter(distanceBetween(player, square)) < minimum) {
-		return false;
-	}
-
-	return true;
-}
-
-function isValidEnemySpawn(square) {
-	if (square.intersects(player)) {
-		return false;
-	}
-
-	var minimum = toCentimeter(((square.width+square.height)/2) * 2); // Two times the size of an enemy
-
-	if (square.x > player.x+player.width) {
-		if (toCentimeter(distanceBetween(square, player)) < minimum+toCentimeter(player.width)) {
-			return false;
-		}
-	}
-
-	if (square.y > player.y+player.height) {
-		if (toCentimeter(distanceBetween(square, player)) < minimum+toCentimeter(player.height)) {
-			return false;
-		}
-	}
-
-	if (toCentimeter(distanceBetween(square, player)) < minimum) {
-		return false;
-	}
-
-	return true;
-}
-
-function distanceBetween(a, b) {
-	return Math.sqrt((a.x-b.x)*(a.x-b.x) + (a.y-b.y)*(a.y-b.y));
 }
 
 function toCentimeter(pixels) {
@@ -236,11 +177,13 @@ function loop() {
 	draw(ctx);
 }
 
-function update(dt) {
+function update(delta_t) {
 	handleInput(); // input.js
-	player.update(dt);
-	target.update(dt);
-	lazer.update(dt);
+
+	for (var i = 0; i < gameobjects.length; i++) {
+		gameobjects[i].update(delta_t);
+	}
+
 	collisionDetection();
 }
 
@@ -252,18 +195,11 @@ function collisionDetection() {
 		onTarget();
 	}
 
-	if (lazer.state == lazer.State.On) {
-		if (player.intersects(lazer)) {
-			console.log("lazer collision: lazer.pos="+lazer.x+";"+lazer.y
-						+"\nlazer.dim="+lazer.width+";"+lazer.height);
-			console.log("screen_size_y="+screen_size_y);
-			onDead();
-		}
-	}
-
-	for (var i = 0; i < num_enemies; i++) {
-		if (player.intersects(enemies[i])) {
-			onDead();
+	for (var i = 0; i < gameobjects.length; i++) {
+		if (gameobjects[i] instanceof Enemy) {
+			if (gameobjects[i].intersects(player)) {
+				onDead();
+			}
 		}
 	}
 }
@@ -276,15 +212,23 @@ function onTarget() {
 
 	if (enemy_density < max_density) {
 		enemy_density++;
-		updateEnemyDensity();
 	}
 
 	if (score == 10) {
-		target.stte = target.State.Bouncing;
+		target.state = target.State.Bouncing;
 	}
 
 	if (score > 15) {
-		lazer.state = lazer.State.On;
+		var spawn = true;
+		for (var i = 0; i < gameobjects.length; i++) {
+			if (gameobjects[i] instanceof Lazer) {
+				spawn = false;
+			}
+		}
+
+		if (spawn) {
+			gameobjects.push(new Lazer());
+		}
 	}
 
 	player.speed_x = 0;
@@ -319,13 +263,9 @@ function onDead() {
 
 function draw(context) {
 	// Drawed every time
-	player.draw(context);
-
-	target.draw(context);
-
-	lazer.draw(context);
-
-	context.drawImage(enemies_texture, 0, 0);
+	for (var i = 0; i < gameobjects.length; i++) {
+		gameobjects[i].draw(context);
+	}
 
 	document.getElementById("timer").innerHTML = hours + ":" + minutes + ":" + seconds;
 	document.getElementById("score").innerHTML = score ;
@@ -338,64 +278,61 @@ function renderToCanvas(width, height, renderFunction) {
 	renderFunction(buffer.getContext('2d'));
 
 	return buffer;
-};
+}
 
 function toggleHome() {
-	if(home == undefined){
+	if (home == undefined){
 		home = true;
 	}
-	if(home){
+
+	if (home) {
 		menuHandler("hideGame");
 	}
-	else{
+	else {
 		menuHandler("hideHome");
 		init();
 	}
+
 	home = (home ? false : true);
 }
 
 function menuHandler(menu) {
 	scoreCalc();
-	switch (menu){
-		case "loseMenu":
-			document.getElementById("menuLose").className = "popOut";
-	    	document.getElementById("menuLose").style.display = "initial";
-	    	document.getElementById("quit").style.display = "initial";
-	    	document.getElementById("replay").style.display = "initial";
-	    	document.getElementById("finalScore").innerHTML = finalScore;
-	    break;
 
-	    case "hideLoseMenu":
-	      	document.getElementById("menuLose").style.display = "none";
-	      	document.getElementById("quit").style.display = "none";
-	      	document.getElementById("replay").style.display = "none";
+	switch (menu) {
+	case "loseMenu":
+		document.getElementById("menuLose").className = "popOut";
+		document.getElementById("menuLose").style.display = "initial";
+		document.getElementById("quit").style.display = "initial";
+		document.getElementById("replay").style.display = "initial";
+		document.getElementById("finalScore").innerHTML = finalScore;
 	    break;
-
-	    case "pauseMenu":
-	    	document.getElementById("menuPause").className = "popOut";
-	      	document.getElementById("menuPause").style.display = "block";
-	      	document.getElementById("quit").style.display = "block";
-	      	document.getElementById("replay").style.display = "block";
+	case "hideLoseMenu":
+		document.getElementById("menuLose").style.display = "none";
+		document.getElementById("quit").style.display = "none";
+		document.getElementById("replay").style.display = "none";
 	    break;
-
-	    case "hidePauseMenu":
-	      	document.getElementById("menuPause").style.display = "none";
-	      	document.getElementById("quit").style.display = "none";
-	      	document.getElementById("replay").style.display = "none";
+	case "pauseMenu":
+		document.getElementById("menuPause").className = "popOut";
+		document.getElementById("menuPause").style.display = "block";
+		document.getElementById("quit").style.display = "block";
+		document.getElementById("replay").style.display = "block";
 	    break;
-
-	    case "hideGame":
-	    	document.getElementById("menuContainer").style.display = "initial";
-	    	document.getElementById("gameContainer").style.display = "none";
+	case "hidePauseMenu":
+		document.getElementById("menuPause").style.display = "none";
+		document.getElementById("quit").style.display = "none";
+		document.getElementById("replay").style.display = "none";
+	    break;
+	case "hideGame":
+		document.getElementById("menuContainer").style.display = "initial";
+		document.getElementById("gameContainer").style.display = "none";
 		break;
-
-	    case "hideHome":
-	    	document.getElementById("menuContainer").style.display = "none";
-	    	document.getElementById("gameContainer").style.display = "initial";
+	case "hideHome":
+		document.getElementById("menuContainer").style.display = "none";
+		document.getElementById("gameContainer").style.display = "initial";
 		break;		
-
-	    default:
-	      	console.log("error menuHandler");
+	default:
+		break;
 	}
 }
 
@@ -430,6 +367,5 @@ window.addEventListener('resize', function(event) {
 	screen_size_x = getUnits(document.body, "width").cm;
 	screen_size_y = getUnits(document.body, "height").cm;
 
-	updateEnemyDensity();
 	respawn();
 });

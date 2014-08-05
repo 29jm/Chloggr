@@ -34,28 +34,28 @@ canvas.addEventListener('touchmove', function(event) {
 function handleInput() {
 	// Arrow keys
 	if (37 in keys) {
-		player.speed_x -= accel;
+		player.speed_x -= player.accel;
 	}
 	if (39 in keys) {
-		player.speed_x += accel;
+		player.speed_x += player.accel;
 	}
 	if (38 in keys) {
-		player.speed_y -= accel;
+		player.speed_y -= player.accel;
 	}
 	if (40 in keys) {
-		player.speed_y += accel;
+		player.speed_y += player.accel;
 	}
 	// ZQSD - azerty ftw
 	if (81 in keys) {
-		player.speed_x -= accel;
+		player.speed_x -= player.accel;
 	}
 	if (68 in keys) {
-		player.speed_x += accel;
+		player.speed_x += player.accel;
 	}
 	if (90 in keys) {
-		player.speed_y -= accel;
+		player.speed_y -= player.accel;
 	}
 	if (83 in keys) {
-		player.speed_y += accel;
+		player.speed_y += player.accel;
 	}
 }

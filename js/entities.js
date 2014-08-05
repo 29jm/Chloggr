@@ -48,30 +48,56 @@ Square.prototype.collideBox = function(box_x, box_y, box_w, box_h) {
 		this.y = (box_y+box_h)-this.height;
 		this.speed_y = 0;
 	}
-}
+};
 
-Square.prototype.toRandomLocation = function(max_x, max_y) {
-	this.x = Math.random()*max_x;
-	this.y = Math.random()*max_y;
-}
+Square.prototype.toRandomLocation = function(gameobjects, max_x, max_y) {
+	this.x = Math.random()*(max_x-this.width);
+	this.y = Math.random()*(max_y-this.height);
+};
 
 Square.prototype.drawColor = function(context) {
 	context.fillStyle = this.texture;
 	context.fillRect(this.x, this.y, this.width, this.height);
-}
+};
 
 Square.prototype.drawImage = function(context) {
 	context.drawImage(this.texture, this.x, this.y, this.width, this.height);
-}
+};
 
 /*	Enemy class.
- *	Drawn using color-filled reactangles
+ *	Drawn using color-filled rectangles
  */
 function Enemy() {
 	Square.call(this, 15, 15, '#27AE60');
 }
 
 Enemy.prototype = Object.create(Square.prototype);
+
+Enemy.prototype.toRandomLocation = function(gameobjects, max_x, max_y) {
+	var location_found = false;
+
+	while (!location_found) {
+		Square.prototype.toRandomLocation.call(this, gameobjects, max_x, max_y);
+		var good_location = true;
+
+		for (var i = 0; i < gameobjects.length; i++) {
+			if (gameobjects[i] instanceof Player ||
+				gameobjects[i] instanceof Target) {
+				if (this.intersects(gameobjects[i])) {
+					good_location = false;
+				}
+			}
+		}
+
+		if (good_location) {
+			location_found = true;
+		}
+	}
+};
+
+Enemy.prototype.update = function(delta_t) {
+	
+};
 
 /*	Player class.
  *	Drawn using a texture, can move, etc...
@@ -83,6 +109,7 @@ function Player() {
 	this.speed_y = 0;
 	this.max_speed = 300;
 	this.slowing_speed = 0.7;
+	this.accel = 7;
 
 	this.dead = false;
 }
@@ -114,7 +141,7 @@ Player.prototype.update = function(delta_t) {
 
 	this.x += this.speed_x*delta_t;
 	this.y += this.speed_y*delta_t;
-}
+};
 
 /*	Target class. inherits Square.
  *	Able to move, decelerate, change of behavior...
@@ -126,7 +153,7 @@ function Target() {
 		Fix: "Fix",
 		Bouncing: "Bouncing",
 		Moving: "Moving"
-	}
+	};
 
 	this.speed_x = 0;
 	this.speed_y = 0;
@@ -180,9 +207,43 @@ Target.prototype.update = function(delta_t) {
 
 	this.x += this.speed_x*delta_t;
 	this.y += this.speed_y*delta_t;
-}
+};
 
-/* The Lazer class is an Enemy, but it initialize from a Square.
+Target.prototype.distanceTo = function(b) {
+	return Math.sqrt((this.x-b.x)*(this.x-b.x) + (this.y-b.y)*(this.y-b.y));
+};
+
+Target.prototype.toRandomLocation = function(gameobjects, max_x, max_y) {
+	var location_found = false;
+
+	while (!location_found) {
+		Square.prototype.toRandomLocation.call(this, gameobjects, max_x, max_y);
+		var good_location = true;
+
+		for (var i = 0; i < gameobjects.length; i++) {
+			if (gameobjects[i] instanceof Enemy) {
+				if (this.intersects(gameobjects[i])) {
+					good_location = false;
+				}
+			}
+
+			if (gameobjects[i] instanceof Player) {
+				var half = ((max_x+max_y)/2)/2;
+
+				if (this.distanceTo(gameobjects[i]) < half) {
+					good_location = false;
+				}
+			}
+			
+			if (good_location) {
+				location_found = true;
+				break;
+			}
+		}
+	}
+};
+
+/* The Lazer class is an Enemy, but it initializes from a Square.
  * Its behavior is controlled through the State enumeration.
  */
 function Lazer() {
@@ -192,19 +253,22 @@ function Lazer() {
 		Inactive: "Inactive",
 		On: "On",
 		Off: "Off"
-	}
+	};
 
 	this.accumulator = 0;
-	this.state = this.State.Inactive;
-	this.draw = function(context) {}
+	this.state = this.State.On;
+	this.draw = function(context) {};
 }
 
-Lazer.prototype = Object.create(Player.prototype);
+Lazer.prototype = Object.create(Enemy.prototype);
 
-Lazer.prototype.toRandomLocation = function(max_x, max_y) {
-	this.x = Math.random()*max_x;
+Lazer.prototype.toRandomLocation = function(gameobjects, max_x, max_y) {
+	this.x = Math.random()*(max_x-this.width);
 	this.y = 0;
-}
+
+	// TODO: ugly hack following
+	this.height = max_y;
+};
 
 Lazer.prototype.update = function(delta_t) {
 	if (this.state == this.State.Inactive) {
@@ -216,12 +280,18 @@ Lazer.prototype.update = function(delta_t) {
 		this.accumulator = 0;
 		if (this.state == this.State.On) {
 			this.state = this.State.Off;
-			this.draw = function(context) {}
+
+			this.draw = function(context) {};
+			this.intersects = function(square) {
+				return false;
+			};
 		}
 		else {
 			this.state = this.State.On;
-			this.draw = Square.prototype.drawImage; // TODO: add (bool)to_draw
+			// TODO: add (bool)to_draw
+			this.draw = Square.prototype.drawImage;
+			this.intersects = Square.prototype.intersects;
 		}
 	}
-}
+};
 
