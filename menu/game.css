@@ -84,7 +84,7 @@
   margin: auto;
   background-color: #9b59b6;
   background-repeat: no-repeat;
-  background: url("http://www.manoirdekervent.fr/chloggr/assets/exit.svg") center;
+  background: url(../assets/exit.svg) center;
   background-repeat: no-repeat;
   position: relative;
   background-color: #ecf0f1;
