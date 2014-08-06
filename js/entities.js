@@ -268,7 +268,6 @@ function Lazer() {
 
 	this.accumulator = 0;
 	this.state = this.State.On;
-	this.draw = function(context) {};
 }
 
 Lazer.prototype = Object.create(Enemy.prototype);
@@ -303,7 +302,7 @@ Lazer.prototype.init = function(gameobjects, max_x, max_y) {
 		}
 	}
 	
-	// TODO: ugly hack following
+	// the lazer is full screen in height
 	this.height = max_y;
 };
 
@@ -313,7 +312,7 @@ Lazer.prototype.update = function(delta_t) {
 	}
 
 	this.accumulator += delta_t;
-	if (this.accumulator > 2.5 && this.state != this.State.Inactive) {
+	if (this.accumulator > 2.0) {
 		this.accumulator = 0;
 		if (this.state == this.State.On) {
 			this.state = this.State.Off;
