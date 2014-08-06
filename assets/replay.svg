@@ -9,8 +9,8 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="48px"
-   height="48px"
+   width="60"
+   height="60"
    id="svg3925"
    version="1.1"
    inkscape:version="0.48.4 r9939"
@@ -24,10 +24,10 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="9.8994949"
-     inkscape:cx="46.451732"
-     inkscape:cy="13.435421"
-     inkscape:current-layer="layer2"
+     inkscape:zoom="7"
+     inkscape:cx="9.7286564"
+     inkscape:cy="19.885951"
+     inkscape:current-layer="layer1"
      showgrid="true"
      inkscape:grid-bbox="true"
      inkscape:document-units="px"
@@ -61,19 +61,12 @@
   <g
      id="layer1"
      inkscape:label="Layer 1"
-     inkscape:groupmode="layer">
-    <path
-       style="fill:#1abc9c;fill-opacity:1"
-       d="M 24 5 C 13.506589 5 5 13.50659 5 24 C 5 34.49341 13.506589 43 24 43 C 33.126 43 40.761927 36.57938 42.59375 28 L 37.40625 28 C 35.681337 33.776844 30.337678 38 24 38 C 16.268013 38 10 31.731986 10 24 C 10 16.268014 16.268013 10 24 10 C 29.579421 10 34.375288 13.277461 36.625 18 L 42.03125 18 C 39.520031 10.445731 32.397552 5 24 5 z "
-       id="path3933" />
-    <path
-       style="fill:#1abc9c;fill-opacity:1"
-       d="m 36.985946,22.029117 c -1.636713,-2.19396 -2.980383,-4.000036 -2.985935,-4.013502 -0.006,-0.01451 2.434474,-0.01956 5.994948,-0.01238 L 46,18.015336 43.000174,21.998552 c -1.649906,2.190768 -3.008503,3.991401 -3.019108,4.001405 -0.01063,0.0099 -1.358408,-1.776871 -2.99512,-3.97083 z"
-       id="path4019"
-       inkscape:connector-curvature="0" />
-  </g>
-  <g
      inkscape:groupmode="layer"
-     id="layer2"
-     inkscape:label="shadow" />
+     transform="translate(0,12)">
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:none"
+       d="M 30 0 C 13.431458 0 0 13.431458 0 30 C 2.3684758e-15 46.568542 13.431458 60 30 60 C 46.568542 60 60 46.568542 60 30 C 60 13.431458 46.568542 -7.1054274e-15 30 0 z M 30 11 C 38.397552 11 45.520031 16.445731 48.03125 24 L 51 24 L 48 28 C 46.350094 30.190768 44.979355 31.989996 44.96875 32 C 44.95812 32.0099 43.636712 30.225209 42 28.03125 C 40.363287 25.83729 39.005552 24.013466 39 24 C 38.996375 23.991234 41.135143 24.001249 42.625 24 C 40.375288 19.277461 35.579421 16 30 16 C 22.268013 16 16 22.268014 16 30 C 16 37.731986 22.268013 44 30 44 C 36.337678 44 41.681337 39.776844 43.40625 34 L 48.59375 34 C 46.761927 42.57938 39.126 49 30 49 C 19.506589 49 11 40.49341 11 30 C 11 19.50659 19.506589 11 30 11 z "
+       transform="translate(0,-12)"
+       id="path2994" />
+  </g>
 </svg>
