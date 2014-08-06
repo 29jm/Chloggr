@@ -37,7 +37,6 @@ var gameobjects;
 init();
 
 function init() {
-	console.log("init()");
 	screen_size_x = getUnits(document.body, "width").cm;
 	screen_size_y = getUnits(document.body, "height").cm;
 
@@ -56,7 +55,7 @@ function init() {
 	for (var i = 0; i < gameobjects.length; i++) {
 		// Gives every object the informations needed to spawn
 		// at a good place
-		gameobjects[i].toRandomLocation(gameobjects, canvas.width, canvas.height);
+		gameobjects[i].init(gameobjects, canvas.width, canvas.height);
 	}
 
 	if (interval == undefined) {
@@ -95,8 +94,6 @@ function init() {
 	}
 
 	min_delta_t = (1.0/30.0); // 30 FPS-like motion at least
-
-	console.log("player.dead="+player.dead);
 }
 
 function startAudio() {
@@ -129,6 +126,7 @@ function numberEnemies() {
 	return Math.round(enemy_ratio*screen_area);
 }
 
+// Don't touch, ultra-sensitive code, reacts even to looks plz go away
 function respawn() {
 	while (true) {
 		var found = false;
@@ -141,7 +139,6 @@ function respawn() {
 		}
 
 		if (!found) {
-			console.log("found");
 			break;
 		}
 	}
@@ -151,7 +148,7 @@ function respawn() {
 	for (var i = 0; i < gameobjects.length; i++) {
 		// Respawn everything but the player
 		if (!(gameobjects[i] instanceof Player)) {
-			gameobjects[i].toRandomLocation(gameobjects, canvas.width, canvas.height);
+			gameobjects[i].init(gameobjects, canvas.width, canvas.height);
 		}
 	}
 }
@@ -224,16 +221,7 @@ function onTarget() {
 	}
 
 	if (score == 10) {
-		var spawn = true;
-		for (var i = 0; i < gameobjects.length; i++) {
-			if (gameobjects[i] instanceof Lazer) {
-				spawn = false;
-			}
-		}
-
-		if (spawn) {
-			gameobjects.push(new Lazer());
-		}
+		gameobjects.push(new Lazer());
 	}
 
 	player.speed_x = 0;
@@ -244,9 +232,8 @@ function onTarget() {
 function scoreCalc() {
 	if (!score) {
 		finalScore = 0;
-		return;
 	}
-	if (minutes >= 1) {
+	else if (minutes >= 1) {
 		finalScore = Math.round(score/(seconds+60/minutes) + score*10);
 	}
 	else if (hours >= 1) {

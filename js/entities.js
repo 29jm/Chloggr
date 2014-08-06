@@ -52,7 +52,7 @@ Square.prototype.collideBox = function(box_x, box_y, box_w, box_h) {
 	}
 };
 
-Square.prototype.toRandomLocation = function(gameobjects, max_x, max_y) {
+Square.prototype.init = function(gameobjects, max_x, max_y) {
 	this.x = Math.random()*(max_x-this.width);
 	this.y = Math.random()*(max_y-this.height);
 };
@@ -84,11 +84,11 @@ function BasicEnemy() {
 
 BasicEnemy.prototype = Object.create(Enemy.prototype);
 
-BasicEnemy.prototype.toRandomLocation = function(gameobjects, max_x, max_y) {
+BasicEnemy.prototype.init = function(gameobjects, max_x, max_y) {
 	var location_found = false;
 
 	while (!location_found) {
-		Square.prototype.toRandomLocation.call(this, gameobjects, max_x, max_y);
+		Square.prototype.init.call(this, gameobjects, max_x, max_y);
 		var good_location = true;
 
 		for (var i = 0; i < gameobjects.length; i++) {
@@ -224,11 +224,11 @@ Target.prototype.distanceTo = function(b) {
 	return Math.sqrt((this.x-b.x)*(this.x-b.x) + (this.y-b.y)*(this.y-b.y));
 };
 
-Target.prototype.toRandomLocation = function(gameobjects, max_x, max_y) {
+Target.prototype.init = function(gameobjects, max_x, max_y) {
 	var location_found = false;
 
 	while (!location_found) {
-		Square.prototype.toRandomLocation.call(this, gameobjects, max_x, max_y);
+		Square.prototype.init.call(this, gameobjects, max_x, max_y);
 		var good_location = true;
 
 		for (var i = 0; i < gameobjects.length; i++) {
@@ -273,10 +273,36 @@ function Lazer() {
 
 Lazer.prototype = Object.create(Enemy.prototype);
 
-Lazer.prototype.toRandomLocation = function(gameobjects, max_x, max_y) {
-	this.x = Math.random()*(max_x-this.width);
-	this.y = 0;
+// The lazer spawns between the payer and the target
+Lazer.prototype.init = function(gameobjects, max_x, max_y) {
+	var player;
+	var target;
+	for (var i = 0; i < gameobjects.length; i++) {
+		if (gameobjects[i] instanceof Player) {
+			player = gameobjects[i];
+		}
+		else if (gameobjects[i] instanceof Target) {
+			target = gameobjects[i];
+		}
+	}
 
+	var location_found = false;
+	while (!location_found) {
+		Square.prototype.init.call(this, gameobjects, max_x, max_y);
+		this.y = 0;
+
+		if (player.x > target.x) {
+			if ((this.x+this.width) < player.x && this.x > (target.x+target.width)) {
+				location_found = true;
+			}
+		}
+		else if (player.x < target.x) {
+			if (this.x > (player.x+player.width) && (this.x+this.width) < target.x) {
+				location_found = true;
+			}
+		}
+	}
+	
 	// TODO: ugly hack following
 	this.height = max_y;
 };
