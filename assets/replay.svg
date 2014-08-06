@@ -24,24 +24,28 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="28"
-     inkscape:cx="41.419311"
-     inkscape:cy="28.886041"
-     inkscape:current-layer="layer1"
+     inkscape:zoom="9.8994949"
+     inkscape:cx="46.451732"
+     inkscape:cy="13.435421"
+     inkscape:current-layer="layer2"
      showgrid="true"
      inkscape:grid-bbox="true"
      inkscape:document-units="px"
      inkscape:snap-grids="true"
      inkscape:snap-to-guides="true"
-     inkscape:snap-bbox="false"
-     inkscape:window-width="1680"
-     inkscape:window-height="1026"
+     inkscape:snap-bbox="true"
+     inkscape:window-width="1440"
+     inkscape:window-height="876"
      inkscape:window-x="0"
      inkscape:window-y="24"
      inkscape:window-maximized="1">
     <inkscape:grid
        type="xygrid"
-       id="grid3935" />
+       id="grid3935"
+       empspacing="5"
+       visible="true"
+       enabled="true"
+       snapvisiblegridlinesonly="true" />
   </sodipodi:namedview>
   <metadata
      id="metadata3930">
@@ -59,13 +63,17 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer">
     <path
-       style="fill:#3498db;fill-opacity:1"
+       style="fill:#1abc9c;fill-opacity:1"
        d="M 24 5 C 13.506589 5 5 13.50659 5 24 C 5 34.49341 13.506589 43 24 43 C 33.126 43 40.761927 36.57938 42.59375 28 L 37.40625 28 C 35.681337 33.776844 30.337678 38 24 38 C 16.268013 38 10 31.731986 10 24 C 10 16.268014 16.268013 10 24 10 C 29.579421 10 34.375288 13.277461 36.625 18 L 42.03125 18 C 39.520031 10.445731 32.397552 5 24 5 z "
        id="path3933" />
     <path
-       style="fill:#3498db;fill-opacity:1"
-       d="m 37.05749,22.145547 c -1.35655,-2.045125 -2.47022,-3.728679 -2.474821,-3.741232 -0.005,-0.01353 2.017756,-0.01823 4.96877,-0.01154 l 4.977136,0.01128 -2.486335,3.712999 c -1.367485,2.04215 -2.493526,3.720629 -2.502315,3.729954 -0.0088,0.0093 -1.125885,-1.656329 -2.482435,-3.701454 z"
+       style="fill:#1abc9c;fill-opacity:1"
+       d="m 36.985946,22.029117 c -1.636713,-2.19396 -2.980383,-4.000036 -2.985935,-4.013502 -0.006,-0.01451 2.434474,-0.01956 5.994948,-0.01238 L 46,18.015336 43.000174,21.998552 c -1.649906,2.190768 -3.008503,3.991401 -3.019108,4.001405 -0.01063,0.0099 -1.358408,-1.776871 -2.99512,-3.97083 z"
        id="path4019"
        inkscape:connector-curvature="0" />
   </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="shadow" />
 </svg>
