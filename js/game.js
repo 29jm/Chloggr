@@ -233,15 +233,7 @@ function scoreCalc() {
 	if (!score) {
 		finalScore = 0;
 	}
-	else if (minutes >= 1) {
-		finalScore = Math.round(score/(seconds+60/minutes) + score*10);
-	}
-	else if (hours >= 1) {
-		finalScore = Math.round(score/(seconds+60/minutes+60/hours) + score*10);
-	}
-	else {
-		finalScore = Math.round(score/seconds + score*10);
-	}
+	finalScore = Math.round(score/seconds + score*10);
 }
 
 function onDead() {
@@ -259,7 +251,7 @@ function draw(context) {
 		gameobjects[i].draw(context);
 	}
 
-	document.getElementById("timer").innerHTML = hours + ":" + minutes + ":" + seconds;
+	document.getElementById("timer").innerHTML = seconds;
 	document.getElementById("score").innerHTML = score ;
 }
 
@@ -294,13 +286,9 @@ function pauseMenu() {
     if (paused) {
         document.getElementById("menuPause").className = "popOut";
         document.getElementById("menuPause").style.display = "block";
-        document.getElementById("quit").style.display = "block";
-        document.getElementById("replay").style.display = "block";  
     }
     else {
-        document.getElementById("menuPause").style.display = "none";
-        document.getElementById("quit").style.display = "none";
-        document.getElementById("replay").style.display = "none";       
+        document.getElementById("menuPause").style.display = "none";      
     }
 }
 
@@ -309,8 +297,8 @@ function loseMenu() {
 
     if (player.dead) {
         document.getElementById("menuLose").className = "popOut";
-        document.getElementById("menuLose").style.display = "inline";
-        document.getElementById("circle").innerHTML = finalScore;
+        document.getElementById("menuLose").style.display = "block";
+        document.getElementById("lose").innerHTML = finalScore;
     }
     else {
         document.getElementById("menuLose").style.display = "none";    

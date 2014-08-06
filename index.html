@@ -16,7 +16,7 @@
 			<header>
 			</header>
 			
-			<a onclick="toggleHome()"><div onclick="toggleHome()" id="play"></div></a>
+			<a onclick="toggleHome()"><div id="play"></div></a>
 
 			<footer>
 				<a href="settings.html"><div id='settings'></div></a>
@@ -32,7 +32,7 @@
 			<div id="score">0</div>
 
 			<div id="menuLose">
-				<div id="circle"></div>
+				<div id="lose"></div>
 				<div id="options">
 				    <a onClick="init()"><div id="replay"></div></a>
 				    <a onClick="toggleHome()"><div id="quit"></div></a>
@@ -40,11 +40,11 @@
 			</div>
 
 			<div id="menuPause">
-			    <p>Pause</p>
-
-				<img id="replay" src="assets/replay.svg" onClick="init(); pauseMenu();">
-				
-				<img id="quit" src="assets/exit.svg" onClick="toggleHome()">
+				<div id="pause">Pause</div>
+				<div id="options">
+				    <a onClick="init(); pauseMenu();"><div id="replay"></div></a>
+				    <a onClick="toggleHome(); onPauseButton();"><div id="quit"></div></a>
+				</div>
 			</div>
 			
 		    <div id="button" onClick="onPauseButton()">Pause</div>
