@@ -7,10 +7,43 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.1"
    width="48"
    height="48"
-   id="svg4038">
+   id="svg4038"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="exit.svg">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1440"
+     inkscape:window-height="876"
+     id="namedview8"
+     showgrid="true"
+     inkscape:snap-bbox="true"
+     inkscape:zoom="9.8333333"
+     inkscape:cx="38.255172"
+     inkscape:cy="28.846984"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg4038">
+    <inkscape:grid
+       type="xygrid"
+       id="grid2993"
+       empspacing="5"
+       visible="true"
+       enabled="true"
+       snapvisiblegridlinesonly="true" />
+  </sodipodi:namedview>
   <defs
      id="defs4040" />
   <metadata
@@ -21,12 +54,13 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
   <g
-     id="layer1">
+     id="layer1"
+     style="fill:#1abc9c;fill-opacity:1">
     <rect
        width="5.971354"
        height="47.768898"
@@ -35,7 +69,7 @@
        y="-23.666788"
        transform="matrix(0.71162677,0.70255771,-0.70653972,0.70767339,0,0)"
        id="rect4048"
-       style="fill:#3498db;fill-opacity:1" />
+       style="fill:#1abc9c;fill-opacity:1" />
     <rect
        width="5.971354"
        height="47.768898"
@@ -44,6 +78,6 @@
        y="10.056042"
        transform="matrix(0.70034401,-0.71380548,0.70986449,0.70433828,0,0)"
        id="rect4048-5"
-       style="fill:#3498db;fill-opacity:1" />
+       style="fill:#1abc9c;fill-opacity:1" />
   </g>
 </svg>
