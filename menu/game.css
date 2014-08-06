@@ -77,27 +77,31 @@
   color: white;
   text-shadow: 0px 0px #e53b2a, 1px 1px #e53b2a, 2px 2px #e53b2a, 3px 3px #e53b2a, 4px 4px #e53b2a, 5px 5px #e53b2a, 6px 6px #e53b2a, 7px 7px #e53b2a, 8px 8px #e53b2a, 9px 9px #e53b2a, 10px 10px #e53b2a, 11px 11px #e53b2a, 12px 12px #e53b2a, 13px 13px #e53b2a, 14px 14px #e53b2a, 15px 15px #e53b2a, 16px 16px #e53b2a, 17px 17px #e53b2a, 18px 18px #e53b2a, 19px 19px #e53b2a, 20px 20px #e53b2a, 21px 21px #e53b2a, 22px 22px #e53b2a, 23px 23px #e53b2a, 24px 24px #e53b2a, 25px 25px #e53b2a, 26px 26px #e53b2a, 27px 27px #e53b2a, 28px 28px #e53b2a, 29px 29px #e53b2a, 30px 30px #e53b2a, 31px 31px #e53b2a, 32px 32px #e53b2a, 33px 33px #e53b2a, 34px 34px #e53b2a, 35px 35px #e53b2a, 36px 36px #e53b2a, 37px 37px #e53b2a, 38px 38px #e53b2a, 39px 39px #e53b2a, 40px 40px #e53b2a, 41px 41px #e53b2a, 42px 42px #e53b2a, 43px 43px #e53b2a, 44px 44px #e53b2a, 45px 45px #e53b2a, 46px 46px #e53b2a, 47px 47px #e53b2a, 48px 48px #e53b2a, 49px 49px #e53b2a, 50px 50px #e53b2a, 51px 51px #e53b2a, 52px 52px #e53b2a, 53px 53px #e53b2a, 54px 54px #e53b2a, 55px 55px #e53b2a, 56px 56px #e53b2a, 57px 57px #e53b2a, 58px 58px #e53b2a, 59px 59px #e53b2a, 60px 60px #e53b2a, 61px 61px #e53b2a, 62px 62px #e53b2a, 63px 63px #e53b2a, 64px 64px #e53b2a, 65px 65px #e53b2a, 66px 66px #e53b2a, 67px 67px #e53b2a, 68px 68px #e53b2a, 69px 69px #e53b2a, 70px 70px #e53b2a, 71px 71px #e53b2a, 72px 72px #e53b2a, 73px 73px #e53b2a, 74px 74px #e53b2a, 75px 75px #e53b2a, 76px 76px #e53b2a, 77px 77px #e53b2a, 78px 78px #e53b2a, 79px 79px #e53b2a, 80px 80px #e53b2a, 81px 81px #e53b2a, 82px 82px #e53b2a, 83px 83px #e53b2a, 84px 84px #e53b2a, 85px 85px #e53b2a, 86px 86px #e53b2a, 87px 87px #e53b2a, 88px 88px #e53b2a, 89px 89px #e53b2a, 90px 90px #e53b2a, 91px 91px #e53b2a, 92px 92px #e53b2a, 93px 93px #e53b2a, 94px 94px #e53b2a, 95px 95px #e53b2a, 96px 96px #e53b2a, 97px 97px #e53b2a, 98px 98px #e53b2a, 99px 99px #e53b2a, 100px 100px #e53b2a; }
 
-#options {
+.options {
   width: 100%;
   height: 50%; }
-  #options a {
+  .options a {
     width: 50%;
     height: auto;
     float: left;
     margin-top: 3.5em; }
-    #options a #replay, #options a #quit {
+    .options a .replay, .options a .quit {
       width: 60px;
       height: 60px;
       margin: auto;
       border-radius: 50%; }
-    #options a #replay {
+    .options a .replay {
       background: url(../assets/replay.svg) center;
       background-repeat: no-repeat;
       background-color: #1abc9c; }
-    #options a #quit {
+    .options a .quit {
       background: url(../assets/exit.svg) center;
       background-repeat: no-repeat;
       background-color: #1abc9c; }
+    .options a .blue {
+      background-color: #1abc9c; }
+    .options a .red {
+      background-color: #e74c3c; }
 
 #timer, #score {
   position: absolute;

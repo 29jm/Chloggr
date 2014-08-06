@@ -16,7 +16,7 @@
 			<header>
 			</header>
 			
-			<a onclick="toggleHome()"><div id="play"></div></a>
+			<a onclick="setTimeout(toggleHome, 300);"><div id="play"></div></a>
 
 			<footer>
 				<a href="settings.html"><div id='settings'></div></a>
@@ -33,17 +33,20 @@
 
 			<div id="menuLose">
 				<div id="lose"></div>
-				<div id="options">
-				    <a onClick="init()"><div id="replay"></div></a>
-				    <a onClick="toggleHome()"><div id="quit"></div></a>
+
+				<div class="options">
+				    <a onClick="init()"><div class="replay blue"></div></a>
+				    <a onClick="setTimeout(toggleHome, 300);"><div class="quit blue"></div></a>
 				</div>
+
 			</div>
 
 			<div id="menuPause">
 				<div id="pause">Pause</div>
-				<div id="options">
-				    <a onClick="init(); pauseMenu();"><div id="replay"></div></a>
-				    <a onClick="toggleHome(); onPauseButton();"><div id="quit"></div></a>
+
+				<div class="options">
+				    <a onClick="init(); pauseMenu();"><div class="replay red"></div></a>
+				    <a onClick="setTimeout(toggleHome, 300); onPauseButton();"><div class="quit red"></div></a>
 				</div>
 			</div>
 			
