@@ -1,5 +1,7 @@
+"use strict";
+
 /*	Square base class.
- *	Used by Enemy, Player and Target
+ *	Used by BasicEnemy, Player and Target
  */
 function Square(width, height, texture) {
 	this.width = width;
@@ -7,7 +9,7 @@ function Square(width, height, texture) {
 	this.x = 0;
 	this.y = 0;
 
-	var pattern = /#[0-8A-Z]{6}/i; // If it's a color then use canvas.fillRect()
+	var pattern = /#[0-9A-Z]{6}/i; // If it's a color then use canvas.fillRect()
 
 	if (pattern.test(texture)) {
 		this.draw = Square.prototype.drawColor;
@@ -64,16 +66,25 @@ Square.prototype.drawImage = function(context) {
 	context.drawImage(this.texture, this.x, this.y, this.width, this.height);
 };
 
-/*	Enemy class.
- *	Drawn using color-filled rectangles
+/*  Enemy abstract class. Used by everything that causes damage
+ *  to the player.
  */
 function Enemy() {
-	Square.call(this, 15, 15, '#27AE60');
+	
 }
 
 Enemy.prototype = Object.create(Square.prototype);
 
-Enemy.prototype.toRandomLocation = function(gameobjects, max_x, max_y) {
+/*	BasicEnemy class.
+ *	Drawn using color-filled rectangles
+ */
+function BasicEnemy() {
+	Square.call(this, 15, 15, '#27AE60');
+}
+
+BasicEnemy.prototype = Object.create(Enemy.prototype);
+
+BasicEnemy.prototype.toRandomLocation = function(gameobjects, max_x, max_y) {
 	var location_found = false;
 
 	while (!location_found) {
@@ -95,7 +106,7 @@ Enemy.prototype.toRandomLocation = function(gameobjects, max_x, max_y) {
 	}
 };
 
-Enemy.prototype.update = function(delta_t) {
+BasicEnemy.prototype.update = function(delta_t) {
 	
 };
 
@@ -221,7 +232,7 @@ Target.prototype.toRandomLocation = function(gameobjects, max_x, max_y) {
 		var good_location = true;
 
 		for (var i = 0; i < gameobjects.length; i++) {
-			if (gameobjects[i] instanceof Enemy) {
+			if (gameobjects[i] instanceof BasicEnemy) {
 				if (this.intersects(gameobjects[i])) {
 					good_location = false;
 				}
@@ -243,7 +254,7 @@ Target.prototype.toRandomLocation = function(gameobjects, max_x, max_y) {
 	}
 };
 
-/* The Lazer class is an Enemy, but it initializes from a Square.
+/* The Lazer class is an BasicEnemy, but it initializes from a Square.
  * Its behavior is controlled through the State enumeration.
  */
 function Lazer() {

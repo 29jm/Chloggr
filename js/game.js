@@ -31,18 +31,15 @@ var enemies_texture;
 var musicState;
 var lazer;
 var home;
-var lose;
 var gameobjects;
 
 // Only function called when (re)starting
 init();
 
 function init() {
+	console.log("init()");
 	screen_size_x = getUnits(document.body, "width").cm;
 	screen_size_y = getUnits(document.body, "height").cm;
-
-	lose = false;
-	loseMenu();
 
 	resetTimer();
 	enemy_density = 3;
@@ -66,6 +63,8 @@ function init() {
 		interval = setInterval(loop, 2);
 	}
 
+	loseMenu();
+
 	keys = {};
 	score = 0;
 	last_time = Date.now();
@@ -75,35 +74,38 @@ function init() {
 	next_year.setFullYear(next_year.getFullYear()+1);
 
 	highScore = Cookies.get('highScore');
-	if (highScore == undefined) {
+	if (highScore === undefined) {
 		highScore = 0;
 		Cookies.set('highScore', 0, { expires: next_year });
 	}
 
 	deathNumber = Cookies.get('deathNumber');
-	if (deathNumber == undefined) {
+	if (deathNumber === undefined) {
 		deathNumber = 0;
 		Cookies.set('deathNumber', 0, { expires: next_year });
 	}
 
-	if (musicState == undefined)
-	{
+	// If it's the first time init is called, get the user settings
+	// and default to music = on
+	if (musicState === undefined) {
 		musicState = (Cookies.get('musicState') == 'false' ? false : true);
-		var music = new Audio();
-		music.src = "assets/ingame_kloggr.mp3";
-		music.load();
-		music.loop = true;
-		music.volume = 0.5;
-
-		if (musicState === true) {
-			music.play();
-		}
-		else {
-			music.pause();
+		if (musicState) {
+			startAudio();
 		}
 	}
 
 	min_delta_t = (1.0/30.0); // 30 FPS-like motion at least
+
+	console.log("player.dead="+player.dead);
+}
+
+function startAudio() {
+	var music = new Audio();
+	music.src = "assets/ingame_kloggr.mp3";
+	music.load();
+	music.loop = true;
+	music.volume = 0.5;
+	music.play();
 }
 
 function createEnemies() {
@@ -111,7 +113,7 @@ function createEnemies() {
 
 	var enemies = [];
 	for (var i = 0; i < num_enemies; i++) {
-		var enemy = new Enemy();
+		var enemy = new BasicEnemy();
 		enemies.push(enemy);
 	}
 
@@ -131,8 +133,7 @@ function respawn() {
 	while (true) {
 		var found = false;
 		for (var i = 0; i < gameobjects.length; i++) {
-			if (gameobjects[i] instanceof Enemy &&
-				!(gameobjects[i] instanceof Lazer)) {
+			if (gameobjects[i] instanceof BasicEnemy) {
 				found = true;
 				gameobjects.splice(i, 1);
 				break;
@@ -207,7 +208,9 @@ function collisionDetection() {
 }
 
 function onTarget() {
-	if (++score > highScore) {
+	score += 1;
+
+	if (score > highScore) {
 		highScore = score;
 		Cookies.set('highScore', highScore);
 	}
@@ -216,11 +219,11 @@ function onTarget() {
 		enemy_density++;
 	}
 
-	if (score == 10) {
+	if (score == 5) {
 		target.state = target.State.Bouncing;
 	}
 
-	if (score > 15) {
+	if (score == 10) {
 		var spawn = true;
 		for (var i = 0; i < gameobjects.length; i++) {
 			if (gameobjects[i] instanceof Lazer) {
@@ -259,7 +262,6 @@ function onDead() {
 	player.texture.src = 'assets/deadPlayer.svg';
 	Cookies.set('deathNumber', ++deathNumber);
 
-	lose = true;
 	loseMenu();
 	stopTimer();
 }
@@ -302,13 +304,13 @@ function toggleHome() {
 }
 
 function pauseMenu() {
-    if(paused){
+    if (paused) {
         document.getElementById("menuPause").className = "popOut";
         document.getElementById("menuPause").style.display = "block";
         document.getElementById("quit").style.display = "block";
         document.getElementById("replay").style.display = "block";  
     }
-    else{
+    else {
         document.getElementById("menuPause").style.display = "none";
         document.getElementById("quit").style.display = "none";
         document.getElementById("replay").style.display = "none";       
@@ -317,12 +319,13 @@ function pauseMenu() {
 
 function loseMenu() {
 	scoreCalc();
-    if(lose){
+
+    if (player.dead) {
         document.getElementById("menuLose").className = "popOut";
         document.getElementById("menuLose").style.display = "inline";
         document.getElementById("circle").innerHTML = finalScore;
     }
-    else{
+    else {
         document.getElementById("menuLose").style.display = "none";    
     }
 }
