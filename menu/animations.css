@@ -191,78 +191,54 @@
     -o-transform: scale(0);
     opacity: 0;
     filter: alpha(opacity=0); } }
-@-webkit-keyframes quit {
-  0% {
-    top: 10%; }
-
-  20% {
-    top: 30%; }
-
-  80% {
-    top: -30%; } }
-@-moz-keyframes quit {
-  0% {
-    top: 10%; }
-
-  20% {
-    top: 30%; }
-
-  80% {
-    top: -30%; } }
-@-o-keyframes quit {
-  0% {
-    top: 10%; }
-
-  20% {
-    top: 30%; }
-
-  80% {
-    top: -30%; } }
-@keyframes quit {
-  0% {
-    top: 10%; }
-
-  20% {
-    top: 30%; }
-
-  80% {
-    top: -30%; } }
 @-webkit-keyframes slideIn {
   0% {
-    left: -50%; }
-
-  50% {
-    left: 3em; }
+    right: -100%; }
 
   100% {
-    left: 0em; } }
+    right: 0%; } }
 @-moz-keyframes slideIn {
   0% {
-    left: -50%; }
-
-  50% {
-    left: 3em; }
+    right: -100%; }
 
   100% {
-    left: 0em; } }
+    right: 0%; } }
 @-o-keyframes slideIn {
   0% {
-    left: -50%; }
-
-  50% {
-    left: 3em; }
+    right: -100%; }
 
   100% {
-    left: 0em; } }
+    right: 0%; } }
 @keyframes slideIn {
   0% {
-    left: -50%; }
-
-  50% {
-    left: 3em; }
+    right: -100%; }
 
   100% {
-    left: 0em; } }
+    right: 0%; } }
+@-webkit-keyframes slideOut {
+  0% {
+    left: 0%; }
+
+  100% {
+    left: -100%; } }
+@-moz-keyframes slideOut {
+  0% {
+    left: 0%; }
+
+  100% {
+    left: -100%; } }
+@-o-keyframes slideOut {
+  0% {
+    left: 0%; }
+
+  100% {
+    left: -100%; } }
+@keyframes slideOut {
+  0% {
+    left: 0%; }
+
+  100% {
+    left: -100%; } }
 .popOut {
   -webkit-animation: grow 0.3s ease-in-out;
   -moz-animation: grow 0.3s ease-in-out;
@@ -275,14 +251,14 @@
   -o-animation: shrink 0.3s ease-in-out;
   animation: shrink 0.3s ease-in-out; }
 
-.quit {
-  -webkit-animation: quit 0.7s ease-in-out;
-  -moz-animation: quit 0.7s ease-in-out;
-  -o-animation: quit 0.7s ease-in-out;
-  animation: quit 0.7s ease-in-out; }
+.slideIn {
+  -webkit-animation: slideIn 0.3s ease-in-out;
+  -moz-animation: slideIn 0.3s ease-in-out;
+  -o-animation: slideIn 0.3s ease-in-out;
+  animation: slideIn 0.3s ease-in-out; }
 
-#gameContainer {
-  -webkit-animation: grow 0.3s ease-in-out;
-  -moz-animation: grow 0.3s ease-in-out;
-  -o-animation: grow 0.3s ease-in-out;
-  animation: grow 0.3s ease-in-out; }
+.slideOut {
+  -webkit-animation: slideout 0.3s ease-in-out;
+  -moz-animation: slideout 0.3s ease-in-out;
+  -o-animation: slideout 0.3s ease-in-out;
+  animation: slideout 0.3s ease-in-out; }
