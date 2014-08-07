@@ -62,7 +62,8 @@ function init() {
 		interval = setInterval(loop, 2);
 	}
 
-	loseMenu();
+	document.getElementById("menuLose").className = "popIn";
+	setTimeout(loseMenu, 300);
 
 	keys = {};
 	score = 0;
@@ -126,7 +127,7 @@ function numberEnemies() {
 	return Math.round(enemy_ratio*screen_area);
 }
 
-// Don't touch, ultra-sensitive code, reacts even to looks plz go away
+// Don't touch, ultra-sensitive code, reacts even to looks plz go away /*I'm sorry I farted on it*/
 function respawn() {
 	while (true) {
 		var found = false;
@@ -233,7 +234,9 @@ function scoreCalc() {
 	if (!score) {
 		finalScore = 0;
 	}
-	finalScore = Math.round(score/seconds + score*10);
+	else{
+		finalScore = Math.round(seconds/score*10 + score);
+	}
 }
 
 function onDead() {
@@ -241,8 +244,8 @@ function onDead() {
 	player.texture.src = 'assets/deadPlayer.svg';
 	Cookies.set('deathNumber', ++deathNumber);
 
-	loseMenu();
 	stopTimer();
+	loseMenu();
 }
 
 function draw(context) {
@@ -265,20 +268,21 @@ function renderToCanvas(width, height, renderFunction) {
 }
 
 function toggleHome() {
-	if (home == undefined){
-		home = true;
+	if(home == undefined){
+		home= false;
 	}
 
-	if (home) {
+	if (home == true) { 
+		document.getElementById("menuContainer").className = "slideIn";
+		document.getElementById("menuContainer").style.display = "initial";
         document.getElementById("gameContainer").style.display = "none";
-        document.getElementById("menuContainer").style.display = "initial";
 	}
 	else {
+		document.getElementById("gameContainer").className = "slideOut";
 		document.getElementById("gameContainer").style.display = "initial";
 		document.getElementById("menuContainer").style.display = "none";
 		init();
 	}
-
 	home = (home ? false : true);
 }
 
@@ -313,14 +317,14 @@ function onPauseButton() {
 	paused = (paused ? false : true); // Toggles paused var
 
 	if (paused) {
-		pauseMenu();
 		stopTimer();
+		pauseMenu();
 		document.getElementById("button").innerHTML = "Play";
 	}
 	else {
-		document.getElementById("menuPause").className = "popIn";
-		pauseMenu();
 		playTimer();
+		document.getElementById("menuPause").className = "popIn";
+		setTimeout(pauseMenu, 300);
 		document.getElementById("button").innerHTML = "Pause";
 	}
 }
