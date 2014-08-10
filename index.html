@@ -16,7 +16,7 @@
 			<header>
 			</header>
 			
-			<a onclick="toggleHome()"><div id="play"></div></a>
+			<a onclick="mainloop.toggleHome()"><div id="play"></div></a>
 
 			<footer>
 				<a href="settings.html"><div id='settings'></div></a>
@@ -34,7 +34,6 @@
 			<div id="menuLose">
 				<div id="lose"></div>
 				<div id="options">
-				    <a onClick="init()"><div id="replay"></div></a>
 				    <a onClick="toggleHome()"><div id="quit"></div></a>
 				</div>
 			</div>
@@ -42,7 +41,6 @@
 			<div id="menuPause">
 				<div id="pause">Pause</div>
 				<div id="options">
-				    <a onClick="init(); pauseMenu();"><div id="replay"></div></a>
 				    <a onClick="toggleHome(); onPauseButton();"><div id="quit"></div></a>
 				</div>
 			</div>
@@ -54,7 +52,8 @@
 	    <script src="js/entities.js"></script>
 	    <script src="js/units.js"></script>
 	    <script src="js/timer.js"></script>
-	    <script src="js/input.js"></script>
-	    <script src="js/game.js"></script>
+	    <script src="js/kloggr.js"></script>
+	    <script src="js/main.js"></script>
+		<!-- <script src="js/game.js"></script> -->
 	</body>
 </html>

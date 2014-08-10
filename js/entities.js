@@ -22,17 +22,6 @@ function Square(width, height, texture) {
 	}
 }
 
-Square.prototype.intersects = function(other) {
-	if (other.x >= this.x+this.width ||
-		other.x+other.width <= this.x ||
-		other.y >= this.y+this.height ||
-		other.y+other.height <= this.y) {
-		return false;
-	}
-
-	return true;
-};
-
 Square.prototype.collideBox = function(box_x, box_y, box_w, box_h) {
 	if (this.x < box_x) {
 		this.x = box_x;
@@ -66,6 +55,28 @@ Square.prototype.drawImage = function(context) {
 	context.drawImage(this.texture, this.x, this.y, this.width, this.height);
 };
 
+// "Static" looking method
+Square.intersect = function(a, b, silent) {
+	if (b.x >= a.x+a.width ||
+		b.x+b.width <= a.x ||
+		b.y >= a.y+a.height ||
+		b.y+b.height <= a.y) {
+		return false;
+	}
+
+	if (!silent) {
+		if (a.onCollide) {
+			a.onCollide(b);
+		}
+
+		if (b.onCollide) {
+			b.onCollide(a);
+		}
+	}
+
+	return true;
+}
+
 /*  Enemy abstract class. Used by everything that causes damage
  *  to the player.
  */
@@ -94,7 +105,7 @@ BasicEnemy.prototype.init = function(gameobjects, max_x, max_y) {
 		for (var i = 0; i < gameobjects.length; i++) {
 			if (gameobjects[i] instanceof Player ||
 				gameobjects[i] instanceof Target) {
-				if (this.intersects(gameobjects[i])) {
+				if (Square.intersect(gameobjects[i], this, true)) {
 					good_location = false;
 				}
 			}
@@ -153,6 +164,13 @@ Player.prototype.update = function(delta_t) {
 	this.x += this.speed_x*delta_t;
 	this.y += this.speed_y*delta_t;
 };
+
+Player.prototype.onCollide = function(gameobject) {
+	if (gameobject instanceof Enemy) {
+		this.dead = true;
+		this.texture.src = 'assets/deadPlayer.svg';
+	}
+}
 
 /*	Target class. inherits Square.
  *	Able to move, decelerate, change of behavior...
@@ -233,7 +251,7 @@ Target.prototype.init = function(gameobjects, max_x, max_y) {
 
 		for (var i = 0; i < gameobjects.length; i++) {
 			if (gameobjects[i] instanceof BasicEnemy) {
-				if (this.intersects(gameobjects[i])) {
+				if (Square.intersect(gameobjects[i], this, true)) {
 					good_location = false;
 				}
 			}

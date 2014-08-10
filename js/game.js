@@ -1,14 +1,5 @@
 "use strict";
 
-var canvas  = document.getElementById("canvas");
-if (!canvas.getContext) {
-	alert("Could not obtain rendering context");
-}
-
-var ctx = canvas.getContext('2d');
-
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight-50;
 
 // Prevent double initialization
 var enemy_density;
@@ -32,9 +23,6 @@ var musicState;
 var lazer;
 var home;
 var gameobjects;
-
-// Only function called when (re)starting
-init();
 
 function init() {
 	screen_size_x = getUnits(document.body, "width").cm;
@@ -157,37 +145,10 @@ function toCentimeter(pixels) {
 	return (pixels*screen_size_x) / canvas.width; // is window.devicePixelRatio needed ? TODO
 }
 
-function loop() {
-	canvas.width = canvas.width; // Clear canvas
 
-	if (paused || player.dead) { // Draw but stop updating
-		draw(ctx);
-		return;
-	}
-
-	var now = Date.now();
-	var delta_t = (now - last_time) / 1000; // second to millisecond conv
-	last_time = now;
-
-	if (delta_t > min_delta_t) {
-		delta_t = min_delta_t;
-	}
-
-	update(delta_t);
-	draw(ctx);
-}
-
-function update(delta_t) {
-	handleInput(); // input.js
-
-	for (var i = 0; i < gameobjects.length; i++) {
-		gameobjects[i].update(delta_t);
-	}
-
-	collisionDetection();
-}
 
 function collisionDetection() {
+	// Wall collisions
 	player.collideBox(0, 0, canvas.width, canvas.height);
 	target.collideBox(0, 0, canvas.width, canvas.height);
 
@@ -237,8 +198,6 @@ function scoreCalc() {
 }
 
 function onDead() {
-	player.dead = true;
-	player.texture.src = 'assets/deadPlayer.svg';
 	Cookies.set('deathNumber', ++deathNumber);
 
 	loseMenu();
@@ -266,7 +225,7 @@ function renderToCanvas(width, height, renderFunction) {
 
 function toggleHome() {
 	if (home == undefined){
-		home = true;
+		home = false;
 	}
 
 	if (home) {
@@ -274,9 +233,9 @@ function toggleHome() {
         document.getElementById("menuContainer").style.display = "initial";
 	}
 	else {
+		kloggr.state = kloggr.State.Playing;
 		document.getElementById("gameContainer").style.display = "initial";
 		document.getElementById("menuContainer").style.display = "none";
-		init();
 	}
 
 	home = (home ? false : true);
@@ -329,12 +288,3 @@ function setMusicState(music, state) {
 
 }
 
-window.addEventListener('resize', function(event) {
-	canvas.width = window.innerWidth;
-	canvas.height = window.innerHeight-50;
-
-	screen_size_x = getUnits(document.body, "width").cm;
-	screen_size_y = getUnits(document.body, "height").cm;
-
-	respawn();
-});
