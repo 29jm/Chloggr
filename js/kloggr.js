@@ -3,13 +3,6 @@
 function Kloggr(width, height) {
 	// Used by update, draw etc... to know what to do and
 	// to generate events (not sure yet)
-	this.State = {
-		Playing:"Playing",
-		Paused:"Paused",
-		Dead:"Dead",
-		MainMenu:"MainMenu"
-	};
- 
 	this.Events = {
 		NewHighscore:"NewHighscore",
 		StateChanged:"StateChanged",
@@ -21,9 +14,16 @@ function Kloggr(width, height) {
 	this.height = height;
  
 	this.restart();
-	this.state = this.State.MainMenu;
+	this.state = Kloggr.State.MainMenu;
 }
- 
+
+Kloggr.State = {
+	Playing:"Playing",
+	Paused:"Paused",
+	Dead:"Dead",
+	MainMenu:"MainMenu"
+};
+
 /* Equivalent of the good ol' init function */
 Kloggr.prototype.restart = function() {
 	// Other variables
