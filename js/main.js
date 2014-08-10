@@ -6,7 +6,7 @@ var mainloop = function() {
 	function handleEvents(event) {
 		switch (event.name) {
 		case kloggr.Events.StateChanged:
-			// Menu.changeTo(event.value);
+			kloggr_interface.changeState(event.value);
 			break;
 		case kloggr.Events.NewHighscore:
 			// Cookies.set('highScore', event.value);
@@ -18,12 +18,6 @@ var mainloop = function() {
 			kloggr.restart();
 			break;
 		}
-	}
-
-	function toggleHome() {
-		kloggr.state = kloggr.State.Playing;
-		document.getElementById("gameContainer").style.display = "initial";
-		document.getElementById("menuContainer").style.display = "none";
 	}
 
 	window.addEventListener('keydown', function(event) {
@@ -43,6 +37,7 @@ var mainloop = function() {
 	var ctx = canvas.getContext('2d');
 
 	var kloggr = new Kloggr(canvas.width, canvas.height);
+	var kloggr_interface = new KloggrInterface();
 	var last = Date.now();
 	var now = last;
 
@@ -56,7 +51,7 @@ var mainloop = function() {
 			handleEvents(events[i]);
 		}
 
-		if (kloggr.state == kloggr.State.Playing) {	
+		if (kloggr.state == Kloggr.State.Playing) {	
 			// Clear canvas
 			canvas.width = canvas.width;
 
@@ -70,8 +65,4 @@ var mainloop = function() {
 		// ???
 		// Profit !
 	}, 2);
-
-	return {
-		toggleHome:toggleHome
-	}
 }();
