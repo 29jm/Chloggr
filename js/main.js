@@ -65,4 +65,8 @@ var mainloop = function() {
 		// ???
 		// Profit !
 	}, 2);
+
+	// Expose some symbols needed by other parts
+	window.kloggr = kloggr; // TODO mainloop.kloggr
+	window.kloggr_interface = kloggr_interface;
 }();

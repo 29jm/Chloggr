@@ -2,13 +2,13 @@ function KloggrInterface() {
 	this.state = Kloggr.State.MainMenu;
 	this.toggle = {};
 	
-	this.toggle[Kloggr.State.MainMenu] = Kloggr.prototype.toggleMainMenu;
-	this.toggle[Kloggr.State.Playing] = Kloggr.prototype.togglePlaying;
+	this.toggle[Kloggr.State.MainMenu] = KloggrInterface.prototype.toggleMainMenu;
+	this.toggle[Kloggr.State.Playing] = KloggrInterface.prototype.togglePlaying;
 	// Add the rest here
-}
+};
 
 KloggrInterface.prototype.toggleMainMenu = function() {
-	if (this.state == kloggr.State.MainMenu) {
+	if (this.state == Kloggr.State.MainMenu) {
 		document.getElementById("menuContainer").style.display = "none";
 	}
 	else {
@@ -29,11 +29,11 @@ KloggrInterface.prototype.togglePlaying = function() {
 
 KloggrInterface.prototype.changeState = function(new_state) {
 	if (this.toggle[this.state]) {
-		this.toggle[this.state]();
+		this.toggle[this.state].call(this);
 	}
 
 	if (this.toggle[new_state]) {
-		this.toggle[new_state]();
+		this.toggle[new_state].call(this);
 	}
 
 	this.state = new_state;
