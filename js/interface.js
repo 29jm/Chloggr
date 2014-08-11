@@ -4,6 +4,7 @@ function KloggrInterface() {
 	
 	this.toggle[Kloggr.State.MainMenu] = KloggrInterface.prototype.toggleMainMenu;
 	this.toggle[Kloggr.State.Playing] = KloggrInterface.prototype.togglePlaying;
+	this.toggle[Kloggr.State.Paused] = KloggrInterface.prototype.togglePaused;
 	// Add the rest here
 };
 
@@ -25,6 +26,14 @@ KloggrInterface.prototype.togglePlaying = function() {
 	}
 }
 
+KloggrInterface.prototype.togglePaused = function() {
+	if (this.state == Kloggr.State.Paused) {
+		document.getElementById("menuPause").style.display = "none";
+	}
+	else {
+		document.getElementById("menuPause").style.display = "initial";
+	}
+}
 // Other toggle functions
 
 KloggrInterface.prototype.changeState = function(new_state) {
