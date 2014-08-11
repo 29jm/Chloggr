@@ -36,7 +36,7 @@ Kloggr.prototype.restart = function() {
 	// Spawn gameobjects
 	this.respawnAll();
 };
- 
+
 Kloggr.prototype.setKeyState = function(key, state) {
 	if (state) {
 		this.keys_pressed[key] = state;
@@ -68,6 +68,10 @@ Kloggr.prototype.handleKeys = function() {
 // Move objects
 Kloggr.prototype.update = function(delta_t) {
 	this.counter += delta_t;
+
+	if (this.player.dead) {
+		console.log(this.player);
+	}
 
 	for (var i = 0; i < this.gameobjects.length; i++) {
 		this.gameobjects[i].update(delta_t);

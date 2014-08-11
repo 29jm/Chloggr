@@ -20,6 +20,11 @@ var mainloop = function() {
 		}
 	}
 
+	function setState(state) {
+		kloggr_interface.changeState(state);
+		kloggr.state = state;
+	}
+
 	window.addEventListener('keydown', function(event) {
 		kloggr.setKeyState(event.keyCode, true);
 	});
@@ -69,4 +74,5 @@ var mainloop = function() {
 	// Expose some symbols needed by other parts
 	window.kloggr = kloggr; // TODO mainloop.kloggr
 	window.kloggr_interface = kloggr_interface;
+	window.setState = setState;
 }();
