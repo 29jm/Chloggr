@@ -4,10 +4,13 @@
 		<meta charset="UTF-8">
 		<title>Main menu</title>
 		<link rel="stylesheet" type="text/css" href="menu/menu.css">
-		<link rel="stylesheet" type="text/css" href="menu/animations.css">
 		<link rel="stylesheet" type="text/css" href="menu/game.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<script src="js/cookies.js"></script>
+		<script src="http://code.jquery.com/jquery-latest.min.js "></script>
+		<script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+		<script src="http://julian.com/research/velocity/build/jquery.velocity.min.js"></script>
+		<script src="http://julian.com/research/velocity/build/velocity.ui.js"></script>
 	</head>
 
 	<body>
@@ -28,32 +31,25 @@
 		<div id="gameContainer">
 
 			<canvas id="canvas"></canvas>
+
 			<div id="timer">0</div>
 			<div id="score">0</div>
 
-			<div id="menuLose">
-				<div id="lose"></div>
-				<div id="options">
-				    <a onClick="setState(Kloggr.State.MainMenu)"><div id="quit"></div></a>
-				</div>
+			<div onClick="setState(Kloggr.State.Paused)" class="pause"></div>
+
+			<div class="options">
+				<a><div class="replay"></div></a>
+				<a><div class="quit" onClick="setState(Kloggr.State.MainMenu)"></div></a>
 			</div>
 
-			<div id="menuPause">
-				<div id="pause">Pause</div>
-				<div id="options">
-				    <a onClick="setState(Kloggr.State.MainMenu)"><div id="quit"></div></a>
-				</div>
-			</div>
-			
-		    <div id="button" onClick="setState(Kloggr.State.Paused)">Pause</div>
-
-	    </div>
+		</div>
 
 	    <script src="js/entities.js"></script>
 	    <script src="js/units.js"></script>
 	    <script src="js/kloggr.js"></script>
 	    <script src="js/interface.js"></script>
 	    <script src="js/main.js"></script>
+	    <script src="js/animations.js"></script>
 		<!-- <script src="js/game.js"></script> -->
 	</body>
 </html>

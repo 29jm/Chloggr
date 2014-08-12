@@ -30,11 +30,11 @@ KloggrInterface.prototype.togglePlaying = function(other) {
 
 KloggrInterface.prototype.togglePaused = function() {
 	if (this.state == Kloggr.State.Paused) {
-		document.getElementById("menuPause").style.display = "none";
+		playAnimation();
 		return Kloggr.State.Playing;
 	}
 	else {
-		document.getElementById("menuPause").style.display = "initial";
+		pauseAnimation();
 	}
 }
 
