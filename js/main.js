@@ -6,7 +6,7 @@ var mainloop = function() {
 	function handleEvents(event) {
 		switch (event.name) {
 		case kloggr.Events.StateChanged:
-			kloggr_interface.changeState(event.value);
+			setState(event.value);
 			break;
 		case kloggr.Events.NewHighscore:
 			break;
@@ -19,8 +19,19 @@ var mainloop = function() {
 	}
 
 	function setState(state) {
-		kloggr_interface.changeState(state);
+		console.log("Switching between states "+kloggr.state
+				+" and "+state);
+
+		// UI elements might decide to change the game state
+		var new_state = kloggr_interface.changeState(state);
+		if (new_state) {
+			// Possible infinite recursion
+			setState(new_state);
+			return kloggr.state;
+		}
+
 		kloggr.state = state;
+		return kloggr.state;
 	}
 
 	window.addEventListener('keydown', function(event) {
@@ -34,6 +45,7 @@ var mainloop = function() {
 	var canvas = document.getElementById("canvas");
 	canvas.width = window.innerWidth;
 	canvas.height = window.innerHeight - 50;
+
 	if (!canvas.getContext('2d')) {
 		alert("Could not obtain rendering context");
 	}
@@ -45,6 +57,8 @@ var mainloop = function() {
 	var now = last;
 
 	setInterval(function() {
+		console.log("state = "+kloggr.state);
+
 		now = Date.now();
 		var delta_t = (now - last) / 1000;
 		last = now;
@@ -54,14 +68,14 @@ var mainloop = function() {
 			handleEvents(events[i]);
 		}
 
-		 if (kloggr.state == Kloggr.State.Playing) {	
-			// Clear canvas
-			canvas.width = canvas.width;
+		// Clear canvas
+		canvas.width = canvas.width;
 
+		if (kloggr.state == Kloggr.State.Playing) {
 			kloggr.handleKeys();
 			kloggr.update(delta_t)
 			kloggr.collisionDetection();
-		 }
+		}
 
 		kloggr.draw(ctx);
 	}, 2);

@@ -31,6 +31,7 @@ KloggrInterface.prototype.togglePlaying = function(other) {
 KloggrInterface.prototype.togglePaused = function() {
 	if (this.state == Kloggr.State.Paused) {
 		document.getElementById("menuPause").style.display = "none";
+		return Kloggr.State.Playing;
 	}
 	else {
 		document.getElementById("menuPause").style.display = "initial";
@@ -38,6 +39,10 @@ KloggrInterface.prototype.togglePaused = function() {
 }
 
 KloggrInterface.prototype.changeState = function(new_state) {
+	if (new_state == this.state) {
+		return this.toggle[this.state].call(this, this.state);
+	}
+
 	if (this.toggle[this.state]) {
 		this.toggle[this.state].call(this, new_state);
 	}
