@@ -69,10 +69,6 @@ Kloggr.prototype.handleKeys = function() {
 Kloggr.prototype.update = function(delta_t) {
 	this.counter += delta_t;
 
-	if (this.player.dead) {
-		console.log(this.player);
-	}
-
 	for (var i = 0; i < this.gameobjects.length; i++) {
 		this.gameobjects[i].update(delta_t);
 	}
@@ -93,7 +89,7 @@ Kloggr.prototype.collisionDetection = function() {
 	for (var i = 0; i < this.gameobjects.length; i++) {
 		if (this.gameobjects[i] instanceof Enemy) {
 			if (Square.intersect(this.player, this.gameobjects[i])) {
-				this.state = this.State.Dead;
+				this.state = Kloggr.State.Dead;
 				this.newEvent(this.Events.StateChanged, this.state);
 			}
 		}

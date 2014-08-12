@@ -9,10 +9,8 @@ var mainloop = function() {
 			kloggr_interface.changeState(event.value);
 			break;
 		case kloggr.Events.NewHighscore:
-			// Cookies.set('highScore', event.value);
 			break;
 		case kloggr.Events.ScoreChanged:
-			// kloggrInterface.setScore(event.value);
 			break;
 		case kloggr.Events.TargetReached:
 			kloggr.restart();
@@ -56,19 +54,16 @@ var mainloop = function() {
 			handleEvents(events[i]);
 		}
 
-		if (kloggr.state == Kloggr.State.Playing) {	
+		 if (kloggr.state == Kloggr.State.Playing) {	
 			// Clear canvas
 			canvas.width = canvas.width;
 
 			kloggr.handleKeys();
 			kloggr.update(delta_t)
 			kloggr.collisionDetection();
-		}
+		 }
 
 		kloggr.draw(ctx);
-
-		// ???
-		// Profit !
 	}, 2);
 
 	// Expose some symbols needed by other parts
