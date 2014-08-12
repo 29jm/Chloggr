@@ -44,7 +44,7 @@ var mainloop = function() {
 
 	var canvas = document.getElementById("canvas");
 	canvas.width = window.innerWidth;
-	canvas.height = window.innerHeight - 50;
+	canvas.height = window.innerHeight;
 
 	if (!canvas.getContext('2d')) {
 		alert("Could not obtain rendering context");
