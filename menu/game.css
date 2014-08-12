@@ -8,24 +8,84 @@
   overflow: hidden;
   width: 100%;
   height: 100%;
-  background: #34495e;
+  background-color: #34495e;
   -o-box-shadow: inset 0 0 5px #000000;
   -moz-box-shadow: inset 0 0 5px #000000;
   -webkit-box-shadow: inset 0 0 5px #000000;
   box-shadow: inset 0 0 5px #000000; }
 
 /*button*/
-#button {
-  position: relative;
-  width: 100vw;
-  height: 100%;
-  background-color: #ecf0f1;
-  color: #3498db;
-  font-size: 1.6em;
-  text-align: center;
-  cursor: pointer; }
+.pause {
+  position: fixed;
+  height: 70px;
+  width: 70px;
+  background-color: #e74c3c;
+  border-top-left-radius: 50%;
+  border-bottom-right-radius: 50%;
+  border-top-right-radius: 50%;
+  bottom: 0;
+  opacity: 0.5; }
 
-/*********************MENU********************/
+.pause:before, .pause:after {
+  content: '';
+  height: 50%;
+  width: 15%;
+  background-color: #ecf0f1;
+  opacity: 1; }
+
+.pause:before {
+  margin-top: 25%;
+  margin-left: 25%;
+  float: left; }
+
+.pause:after {
+  margin-top: 25%;
+  margin-right: 25%;
+  float: right; }
+
+.play {
+  position: absolute;
+  background-color: #e74c3c;
+  margin-left: calc(50vw - 5em); }
+
+.play:after {
+  content: '';
+  width: 0;
+  height: 0;
+  position: absolute;
+  border-top: 50px solid transparent;
+  border-bottom: 50px solid transparent;
+  border-left: 70px solid #ecf0f1;
+  top: 1.75em;
+  left: 55px; }
+
+.options {
+  position: fixed;
+  width: 100%;
+  height: auto;
+  top: 18em;
+  display: none; }
+  .options a {
+    width: 50%;
+    height: auto;
+    float: left; }
+    .options a .replay {
+      width: 60px;
+      height: 60px;
+      margin: auto;
+      background: url(http://www.manoirdekervent.fr/chloggr/assets/replay.svg) center;
+      background-repeat: no-repeat;
+      background-color: #3498db;
+      border-radius: 32px; }
+    .options a .quit {
+      width: 60px;
+      height: 60px;
+      margin: auto;
+      background: url(http://www.manoirdekervent.fr/chloggr/assets/exit.svg) center;
+      background-repeat: no-repeat;
+      background-color: #3498db;
+      border-radius: 32px; }
+
 #menuLose {
   top: 10%;
   position: fixed;
@@ -33,90 +93,26 @@
   margin: auto;
   width: 100vw; }
 
-#menuPause {
-  top: 10%;
-  position: fixed;
-  display: none;
-  margin: auto;
-  width: 100vw; }
-
-#lose {
-  width: 2.5em;
-  height: 2.5em;
-  overflow: hidden;
-  background-color: #02ab98;
-  border-radius: 5em;
-  margin: 0.3em auto auto auto;
-  font-size: 4em;
-  text-align: center;
-  line-height: 2.5em;
-  font-family: 'Open Sans' sans-serif;
-  color: white;
-  text-shadow: 0px 0px #029c8b, 1px 1px #029c8b, 2px 2px #029c8b, 3px 3px #029c8b, 4px 4px #029c8b, 5px 5px #029c8b, 6px 6px #029c8b, 7px 7px #029c8b, 8px 8px #029c8b, 9px 9px #029c8b, 10px 10px #029c8b, 11px 11px #029c8b, 12px 12px #029c8b, 13px 13px #029c8b, 14px 14px #029c8b, 15px 15px #029c8b, 16px 16px #029c8b, 17px 17px #029c8b, 18px 18px #029c8b, 19px 19px #029c8b, 20px 20px #029c8b, 21px 21px #029c8b, 22px 22px #029c8b, 23px 23px #029c8b, 24px 24px #029c8b, 25px 25px #029c8b, 26px 26px #029c8b, 27px 27px #029c8b, 28px 28px #029c8b, 29px 29px #029c8b, 30px 30px #029c8b, 31px 31px #029c8b, 32px 32px #029c8b, 33px 33px #029c8b, 34px 34px #029c8b, 35px 35px #029c8b, 36px 36px #029c8b, 37px 37px #029c8b, 38px 38px #029c8b, 39px 39px #029c8b, 40px 40px #029c8b, 41px 41px #029c8b, 42px 42px #029c8b, 43px 43px #029c8b, 44px 44px #029c8b, 45px 45px #029c8b, 46px 46px #029c8b, 47px 47px #029c8b, 48px 48px #029c8b, 49px 49px #029c8b, 50px 50px #029c8b, 51px 51px #029c8b, 52px 52px #029c8b, 53px 53px #029c8b, 54px 54px #029c8b, 55px 55px #029c8b, 56px 56px #029c8b, 57px 57px #029c8b, 58px 58px #029c8b, 59px 59px #029c8b, 60px 60px #029c8b, 61px 61px #029c8b, 62px 62px #029c8b, 63px 63px #029c8b, 64px 64px #029c8b, 65px 65px #029c8b, 66px 66px #029c8b, 67px 67px #029c8b, 68px 68px #029c8b, 69px 69px #029c8b, 70px 70px #029c8b, 71px 71px #029c8b, 72px 72px #029c8b, 73px 73px #029c8b, 74px 74px #029c8b, 75px 75px #029c8b, 76px 76px #029c8b, 77px 77px #029c8b, 78px 78px #029c8b, 79px 79px #029c8b, 80px 80px #029c8b, 81px 81px #029c8b, 82px 82px #029c8b, 83px 83px #029c8b, 84px 84px #029c8b, 85px 85px #029c8b, 86px 86px #029c8b, 87px 87px #029c8b, 88px 88px #029c8b, 89px 89px #029c8b, 90px 90px #029c8b, 91px 91px #029c8b, 92px 92px #029c8b, 93px 93px #029c8b, 94px 94px #029c8b, 95px 95px #029c8b, 96px 96px #029c8b, 97px 97px #029c8b, 98px 98px #029c8b, 99px 99px #029c8b, 100px 100px #029c8b; }
-
-#lose:after {
-  content: "";
-  width: 64px;
-  height: 64px;
-  background-image: url(../assets/coin.svg);
-  float: right;
-  margin-left: 7px;
-  position: absolute; }
-
-#pause {
-  width: 3.5em;
-  height: 3.5em;
-  overflow: hidden;
-  background-color: #e74c3c;
-  border-radius: 5em;
-  margin: 0.3em auto auto auto;
-  font-size: 3.5em;
-  text-align: center;
-  line-height: 3.5em;
-  font-family: 'Open Sans' sans-serif;
-  color: white;
-  text-shadow: 0px 0px #e53b2a, 1px 1px #e53b2a, 2px 2px #e53b2a, 3px 3px #e53b2a, 4px 4px #e53b2a, 5px 5px #e53b2a, 6px 6px #e53b2a, 7px 7px #e53b2a, 8px 8px #e53b2a, 9px 9px #e53b2a, 10px 10px #e53b2a, 11px 11px #e53b2a, 12px 12px #e53b2a, 13px 13px #e53b2a, 14px 14px #e53b2a, 15px 15px #e53b2a, 16px 16px #e53b2a, 17px 17px #e53b2a, 18px 18px #e53b2a, 19px 19px #e53b2a, 20px 20px #e53b2a, 21px 21px #e53b2a, 22px 22px #e53b2a, 23px 23px #e53b2a, 24px 24px #e53b2a, 25px 25px #e53b2a, 26px 26px #e53b2a, 27px 27px #e53b2a, 28px 28px #e53b2a, 29px 29px #e53b2a, 30px 30px #e53b2a, 31px 31px #e53b2a, 32px 32px #e53b2a, 33px 33px #e53b2a, 34px 34px #e53b2a, 35px 35px #e53b2a, 36px 36px #e53b2a, 37px 37px #e53b2a, 38px 38px #e53b2a, 39px 39px #e53b2a, 40px 40px #e53b2a, 41px 41px #e53b2a, 42px 42px #e53b2a, 43px 43px #e53b2a, 44px 44px #e53b2a, 45px 45px #e53b2a, 46px 46px #e53b2a, 47px 47px #e53b2a, 48px 48px #e53b2a, 49px 49px #e53b2a, 50px 50px #e53b2a, 51px 51px #e53b2a, 52px 52px #e53b2a, 53px 53px #e53b2a, 54px 54px #e53b2a, 55px 55px #e53b2a, 56px 56px #e53b2a, 57px 57px #e53b2a, 58px 58px #e53b2a, 59px 59px #e53b2a, 60px 60px #e53b2a, 61px 61px #e53b2a, 62px 62px #e53b2a, 63px 63px #e53b2a, 64px 64px #e53b2a, 65px 65px #e53b2a, 66px 66px #e53b2a, 67px 67px #e53b2a, 68px 68px #e53b2a, 69px 69px #e53b2a, 70px 70px #e53b2a, 71px 71px #e53b2a, 72px 72px #e53b2a, 73px 73px #e53b2a, 74px 74px #e53b2a, 75px 75px #e53b2a, 76px 76px #e53b2a, 77px 77px #e53b2a, 78px 78px #e53b2a, 79px 79px #e53b2a, 80px 80px #e53b2a, 81px 81px #e53b2a, 82px 82px #e53b2a, 83px 83px #e53b2a, 84px 84px #e53b2a, 85px 85px #e53b2a, 86px 86px #e53b2a, 87px 87px #e53b2a, 88px 88px #e53b2a, 89px 89px #e53b2a, 90px 90px #e53b2a, 91px 91px #e53b2a, 92px 92px #e53b2a, 93px 93px #e53b2a, 94px 94px #e53b2a, 95px 95px #e53b2a, 96px 96px #e53b2a, 97px 97px #e53b2a, 98px 98px #e53b2a, 99px 99px #e53b2a, 100px 100px #e53b2a; }
-
-#options {
-  width: 100%;
-  height: 50%; }
-  #options a {
-    width: 50%;
-    height: auto;
-    float: left;
-    margin-top: 3.5em; }
-    #options a #replay, #options a #quit {
-      width: 60px;
-      height: 60px;
-      margin: auto;
-      border-radius: 50%; }
-    #options a #replay {
-      background: url(../assets/replay.svg) center;
-      background-repeat: no-repeat;
-      background-color: #1abc9c; }
-    #options a #quit {
-      background: url(../assets/exit.svg) center;
-      background-repeat: no-repeat;
-      background-color: #1abc9c; }
-
 #timer, #score {
   position: absolute;
   top: 0px;
   font-size: 2em;
   color: white;
-  background-color: #02ab98;
-  text-align: center; }
+  background-color: #e74c3c;
+  text-align: center;
+  opacity: 0.5; }
+  #timer p, #score p {
+    opacity: 1; }
 
 #score {
   left: 0px;
   border-bottom-right-radius: 50%;
   width: 50px;
-  height: 50px;
-  opacity: 0.5; }
+  height: 50px; }
 
 #timer {
   right: 0px;
   border-bottom-left-radius: 50%;
   width: 60px;
   height: 60px;
-  opacity: 0.5; }
+  line-height: 170%; }
