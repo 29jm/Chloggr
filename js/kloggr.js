@@ -27,12 +27,12 @@ Kloggr.State = {
 /* Equivalent of the good ol' init function */
 Kloggr.prototype.restart = function() {
 	// Other variables
+	this.state = Kloggr.State.Playing;
 	this.events = [];
 	this.keys_pressed = {};
 	this.score = 0;
 	this.counter = 0;
 	this.enemy_density = 3;
-	this.state = Kloggr.Playing
 
 	// Spawn gameobjects
 	this.respawnAll();
@@ -141,8 +141,6 @@ Kloggr.prototype.numberOfEnemies = function() {
 };
 
 Kloggr.prototype.respawnAll = function() {
-	console.log("respawnAll");
-
 	// Save player position
 	var player_x;
 	var player_y;

@@ -31,6 +31,7 @@ var mainloop = function() {
 		}
 
 		kloggr.state = state;
+
 		return kloggr.state;
 	}
 
@@ -57,8 +58,6 @@ var mainloop = function() {
 	var now = last;
 
 	setInterval(function() {
-		console.log("state = "+kloggr.state);
-
 		now = Date.now();
 		var delta_t = (now - last) / 1000;
 		last = now;
