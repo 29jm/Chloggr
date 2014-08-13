@@ -1,15 +1,6 @@
 "use strict";
  
 function Kloggr(width, height) {
-	// Used by update, draw etc... to know what to do and
-	// to generate events (not sure yet)
-	this.Events = {
-		NewHighscore:"NewHighscore",
-		StateChanged:"StateChanged",
-		ScoreChanged:"ScoreChanged",
-		TargetReached:"TargetReached"
-	};
- 
 	this.width = width;
 	this.height = height;
  
@@ -22,6 +13,13 @@ Kloggr.State = {
 	Paused:"Paused",
 	Dead:"Dead",
 	MainMenu:"MainMenu"
+};
+
+Kloggr.Events = {
+	NewHighscore:"NewHighscore",
+	StateChanged:"StateChanged",
+	ScoreChanged:"ScoreChanged",
+	TargetReached:"TargetReached"
 };
 
 /* Equivalent of the good ol' init function */
@@ -82,8 +80,8 @@ Kloggr.prototype.collisionDetection = function() {
  
 	if (Square.intersect(this.player, this.target)) {
 		this.score += 1;
-		this.newEvent(this.Events.TargetReached);
-		this.newEvent(this.Events.ScoreChanged, score);
+		this.newEvent(Kloggr.Events.TargetReached);
+		this.newEvent(Kloggr.Events.ScoreChanged, score);
 		this.respawnEnemies();
 	}
  
@@ -91,7 +89,7 @@ Kloggr.prototype.collisionDetection = function() {
 		if (this.gameobjects[i] instanceof Enemy) {
 			if (Square.intersect(this.player, this.gameobjects[i])) {
 				this.state = Kloggr.State.Dead;
-				this.newEvent(this.Events.StateChanged, this.state);
+				this.newEvent(Kloggr.Events.StateChanged, this.state);
 			}
 		}
 	}

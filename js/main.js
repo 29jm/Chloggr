@@ -5,14 +5,14 @@ var mainloop = function() {
 
 	function handleEvents(event) {
 		switch (event.name) {
-		case kloggr.Events.StateChanged:
+		case Kloggr.Events.StateChanged:
 			setState(event.value);
 			break;
-		case kloggr.Events.NewHighscore:
+		case Kloggr.Events.NewHighscore:
 			break;
-		case kloggr.Events.ScoreChanged:
+		case Kloggr.Events.ScoreChanged:
 			break;
-		case kloggr.Events.TargetReached:
+		case Kloggr.Events.TargetReached:
 			kloggr.restart();
 			break;
 		}
