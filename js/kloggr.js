@@ -22,9 +22,8 @@ Kloggr.Events = {
 	TargetReached:"TargetReached"
 };
 
-/* Equivalent of the good ol' init function */
 Kloggr.prototype.restart = function() {
-	// Other variables
+	// Set default values
 	this.state = Kloggr.State.Playing;
 	this.events = [];
 	this.keys_pressed = {};
@@ -45,7 +44,6 @@ Kloggr.prototype.setKeyState = function(key, state) {
 	}
 };
 
-// Essentially a big switch
 Kloggr.prototype.handleKeys = function() {
 	if (37 in this.keys_pressed) {
 		this.player.speed_x -= this.player.accel;
@@ -80,8 +78,11 @@ Kloggr.prototype.collisionDetection = function() {
  
 	if (Square.intersect(this.player, this.target)) {
 		this.score += 1;
+		this.enemy_density += 1;
+
 		this.newEvent(Kloggr.Events.TargetReached);
 		this.newEvent(Kloggr.Events.ScoreChanged, score);
+
 		this.respawnEnemies();
 	}
  
@@ -102,11 +103,10 @@ Kloggr.prototype.draw = function(context) {
 	}
 };
 
-/* newEvent and getEvents will be used by the main loop
- * to do things like update cookies, change html etc....
+/* These 2 functions are used to transmit messages
+ * to the external main loop.
  */
 Kloggr.prototype.newEvent = function(evt, val) {
-	// Is this the right syntax? TODO
 	this.events.push({
 		name:evt,
 		value:val
@@ -115,20 +115,18 @@ Kloggr.prototype.newEvent = function(evt, val) {
 
 Kloggr.prototype.getEvents = function() {
 	var tmp = this.events;
-	this.events = []; // Way to avoid copy? TODO
+	this.events = [];
  
 	return tmp;
 };
 
-/* Various functions used by the game */
+// Return the the number of enemies to create
 Kloggr.prototype.numberOfEnemies = function() {
 	var screen_w = getUnits(document.body, "width").cm;
 	var screen_h = getUnits(document.body, "height").cm;
 
-	if (screen_h != 0) {
-		console.log("tell me it happened");
-	}
-	else {
+	// One day, a clever man will find a solution
+	if (screen_h == 0) {
 		screen_h = screen_w/2;
 	}
 
@@ -178,6 +176,8 @@ Kloggr.prototype.respawnEnemies = function() {
 	console.log("spawning "+this.numberOfEnemies()+" enemies");
 
 	var num_enemies = this.numberOfEnemies();
+
+	// Remove enemies
 	while (true) {
 		var found = false;
 		for (var i = 0; i < this.gameobjects.length; i++) {
@@ -192,6 +192,10 @@ Kloggr.prototype.respawnEnemies = function() {
 			break;
 		}
 	}
+
+	for (var i = 0; i < num_enemies; i++) {
+		this.gameobjects.push(new BasicEnemy());
+	}
  
 	for (var i = 0; i < this.gameobjects.length; i++) {
 		// Respawn everything but the player
@@ -200,21 +204,5 @@ Kloggr.prototype.respawnEnemies = function() {
 				(this.gameobjects, this.width, this.height);
 		}
 	}
- 
-	for (var i = 0; i < num_enemies; i++) {
-		this.gameobjects.push(new BasicEnemy());
-	}
 };
 
-/* Main loop will be like:
- * - Get events from Kloggr and react accordingly
- * - Get key presses and send them to Kloggr
- * - Call black magic to get touchscreen events
- * - Call Kloggr.handleKeys
- * - Update Kloggr (need a timer, will refactor that too)
- * - Call Kloggr.collisionDetection
- * - Call Kloggr.draw with a canvas context we created
- * - Repeat
- * - ???
- * - Profit
- */
