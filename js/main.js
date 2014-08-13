@@ -40,7 +40,12 @@ var mainloop = function() {
 
 	window.addEventListener('keyup', function(event) {
 		kloggr.setKeyState(event.keyCode, false);
-	})
+	});
+
+	window.addEventListener('resize', function(event) {
+		canvas.width = kloggr.width = window.innerWidth;
+		canvas.height = kloggr.height = window.innerHeight;
+	});
 
 	var canvas = document.getElementById("canvas");
 	canvas.width = window.innerWidth;
