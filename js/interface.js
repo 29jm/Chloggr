@@ -73,5 +73,9 @@ KloggrInterface.prototype.changeState = function(new_state) {
 
 KloggrInterface.prototype.setScore = function(score) {
 	document.getElementById("score").innerHTML = score;
+};
+
+KloggrInterface.prototype.setTimer = function(time) {
+	document.getElementById("timer").innerHTML = time;
 }
 

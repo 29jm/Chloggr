@@ -19,7 +19,8 @@ Kloggr.Events = {
 	NewHighscore:"NewHighscore",
 	StateChanged:"StateChanged",
 	ScoreChanged:"ScoreChanged",
-	TargetReached:"TargetReached"
+	TargetReached:"TargetReached",
+	TimeChanged:"TimeChanged"
 };
 
 Kloggr.prototype.restart = function() {
@@ -64,6 +65,12 @@ Kloggr.prototype.handleKeys = function() {
 
 // Move objects
 Kloggr.prototype.update = function(delta_t) {
+	if (Math.floor(this.counter+delta_t)
+			> Math.floor(this.counter)) {
+		this.newEvent(Kloggr.Events.TimeChanged,
+				Math.floor(this.counter+delta_t));
+	}
+
 	this.counter += delta_t;
 
 	for (var i = 0; i < this.gameobjects.length; i++) {

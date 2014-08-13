@@ -11,11 +11,13 @@ var mainloop = (function() {
 		case Kloggr.Events.NewHighscore:
 			break;
 		case Kloggr.Events.ScoreChanged:
-			console.log("event.value="+event.value);
 			kloggr_interface.setScore(event.value);
 			break;
 		case Kloggr.Events.TargetReached:
 			kloggr.respawnAll();
+			break;
+		case Kloggr.Events.TimeChanged:
+			kloggr_interface.setTimer(event.value);
 			break;
 		}
 	}
