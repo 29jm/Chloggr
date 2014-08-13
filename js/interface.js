@@ -6,7 +6,7 @@ function KloggrInterface() {
 	this.toggle[Kloggr.State.Playing] = this.togglePlaying;
 	this.toggle[Kloggr.State.Paused] = this.togglePaused;
 	this.toggle[Kloggr.State.Dead] = this.toggleDead;
-};
+}
 
 KloggrInterface.prototype.toggleMainMenu = function() {
 	if (this.state == Kloggr.State.MainMenu) {
@@ -19,7 +19,7 @@ KloggrInterface.prototype.toggleMainMenu = function() {
 		document.getElementsByClassName("pause")[0].style.display = "none";
 		document.getElementsByClassName("lose")[0].style.display = "none";
 	}
-}
+};
 
 KloggrInterface.prototype.togglePlaying = function(other) {
 	if (this.state == Kloggr.State.Playing) {
@@ -33,7 +33,7 @@ KloggrInterface.prototype.togglePlaying = function(other) {
 		// Show pause button
 		document.getElementsByClassName("pause")[0].style.display = "initial";
 	}
-}
+};
 
 KloggrInterface.prototype.togglePaused = function() {
 	if (this.state == Kloggr.State.Paused) {
@@ -43,7 +43,7 @@ KloggrInterface.prototype.togglePaused = function() {
 	else {
 		pauseAnimation();
 	}
-}
+};
 
 KloggrInterface.prototype.toggleDead = function() {
 	if (this.state == Kloggr.State.Dead) {
@@ -53,7 +53,7 @@ KloggrInterface.prototype.toggleDead = function() {
 	else {
 		loseAnimation();
 	}
-}
+};
 
 KloggrInterface.prototype.changeState = function(new_state) {
 	if (new_state == this.state) {
@@ -70,3 +70,8 @@ KloggrInterface.prototype.changeState = function(new_state) {
 
 	this.state = new_state;
 };
+
+KloggrInterface.prototype.setScore = function(score) {
+	document.getElementById("score").innerHTML = score;
+}
+

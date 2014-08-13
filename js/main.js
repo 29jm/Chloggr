@@ -1,6 +1,6 @@
 "use strict";
 
-var mainloop = function() {
+var mainloop = (function() {
 	console.log("Kloggr start");
 
 	function handleEvents(event) {
@@ -11,6 +11,8 @@ var mainloop = function() {
 		case Kloggr.Events.NewHighscore:
 			break;
 		case Kloggr.Events.ScoreChanged:
+			console.log("event.value="+event.value);
+			kloggr_interface.setScore(event.value);
 			break;
 		case Kloggr.Events.TargetReached:
 			kloggr.respawnAll();
@@ -87,4 +89,4 @@ var mainloop = function() {
 	window.kloggr = kloggr; // TODO mainloop.kloggr
 	window.kloggr_interface = kloggr_interface;
 	window.setState = setState;
-}();
+}) ();
