@@ -1,8 +1,8 @@
-/*************GAME STYLING***********/
 #gameContainer {
   height: 100vh;
   width: 100vw;
-  display: none; }
+  display: none;
+  font-family: 'Open Sans' sans-serif; }
 
 #canvas {
   overflow: hidden;
@@ -14,38 +14,43 @@
   -webkit-box-shadow: inset 0 0 5px #000000;
   box-shadow: inset 0 0 5px #000000; }
 
-/*button*/
 .pause {
   position: fixed;
   height: 70px;
   width: 70px;
-  background-color: #e74c3c;
+  background-color: #1abc9c;
   border-top-left-radius: 50%;
   border-bottom-right-radius: 50%;
   border-top-right-radius: 50%;
   bottom: 0;
-  opacity: 0.5; }
+  opacity: 0.5;
+  -webkit-transition: opacity 0.3s ease-in-out;
+  -moz-transition: opacity 0.3s ease-in-out;
+  -o-transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out; }
 
 .pause:before, .pause:after {
   content: '';
   height: 50%;
   width: 15%;
   background-color: #ecf0f1;
-  opacity: 1; }
+  opacity: 1;
+  margin-top: 25%; }
 
 .pause:before {
-  margin-top: 25%;
   margin-left: 25%;
   float: left; }
 
 .pause:after {
-  margin-top: 25%;
   margin-right: 25%;
   float: right; }
 
+.pause:hover {
+  opacity: 1; }
+
 .play {
   position: absolute;
-  background-color: #e74c3c;
+  background-color: #f1c40f;
   margin-left: calc(50vw - 5em); }
 
 .play:after {
@@ -58,6 +63,31 @@
   border-left: 70px solid #ecf0f1;
   top: 1.75em;
   left: 55px; }
+
+.lose {
+  top: 1.5em;
+  margin-left: calc(50vw - 1.5em);
+  position: absolute;
+  width: 3em;
+  height: 3em;
+  overflow: hidden;
+  background-color: #1abc9c;
+  border-radius: 5em;
+  font-size: 4em;
+  text-align: center;
+  line-height: 2.5em;
+  color: white;
+  text-shadow: 0px 0px #18af91, 1px 1px #18af91, 2px 2px #18af91, 3px 3px #18af91, 4px 4px #18af91, 5px 5px #18af91, 6px 6px #18af91, 7px 7px #18af91, 8px 8px #18af91, 9px 9px #18af91, 10px 10px #18af91, 11px 11px #18af91, 12px 12px #18af91, 13px 13px #18af91, 14px 14px #18af91, 15px 15px #18af91, 16px 16px #18af91, 17px 17px #18af91, 18px 18px #18af91, 19px 19px #18af91, 20px 20px #18af91, 21px 21px #18af91, 22px 22px #18af91, 23px 23px #18af91, 24px 24px #18af91, 25px 25px #18af91, 26px 26px #18af91, 27px 27px #18af91, 28px 28px #18af91, 29px 29px #18af91, 30px 30px #18af91, 31px 31px #18af91, 32px 32px #18af91, 33px 33px #18af91, 34px 34px #18af91, 35px 35px #18af91, 36px 36px #18af91, 37px 37px #18af91, 38px 38px #18af91, 39px 39px #18af91, 40px 40px #18af91, 41px 41px #18af91, 42px 42px #18af91, 43px 43px #18af91, 44px 44px #18af91, 45px 45px #18af91, 46px 46px #18af91, 47px 47px #18af91, 48px 48px #18af91, 49px 49px #18af91, 50px 50px #18af91, 51px 51px #18af91, 52px 52px #18af91, 53px 53px #18af91, 54px 54px #18af91, 55px 55px #18af91, 56px 56px #18af91, 57px 57px #18af91, 58px 58px #18af91, 59px 59px #18af91, 60px 60px #18af91, 61px 61px #18af91, 62px 62px #18af91, 63px 63px #18af91, 64px 64px #18af91, 65px 65px #18af91, 66px 66px #18af91, 67px 67px #18af91, 68px 68px #18af91, 69px 69px #18af91, 70px 70px #18af91, 71px 71px #18af91, 72px 72px #18af91, 73px 73px #18af91, 74px 74px #18af91, 75px 75px #18af91, 76px 76px #18af91, 77px 77px #18af91, 78px 78px #18af91, 79px 79px #18af91, 80px 80px #18af91, 81px 81px #18af91, 82px 82px #18af91, 83px 83px #18af91, 84px 84px #18af91, 85px 85px #18af91, 86px 86px #18af91, 87px 87px #18af91, 88px 88px #18af91, 89px 89px #18af91, 90px 90px #18af91, 91px 91px #18af91, 92px 92px #18af91, 93px 93px #18af91, 94px 94px #18af91, 95px 95px #18af91, 96px 96px #18af91, 97px 97px #18af91, 98px 98px #18af91, 99px 99px #18af91, 100px 100px #18af91;
+  display: none; }
+
+.lose:after {
+  content: "";
+  width: 64px;
+  height: 64px;
+  background-image: url(../assets/coin.svg);
+  float: right;
+  margin-left: 7px;
+  position: absolute; }
 
 .options {
   position: fixed;
@@ -73,46 +103,42 @@
       width: 60px;
       height: 60px;
       margin: auto;
-      background: url(http://www.manoirdekervent.fr/chloggr/assets/replay.svg) center;
+      background: url(../assets/replay.svg) center;
       background-repeat: no-repeat;
-      background-color: #3498db;
+      background-color: #1abc9c;
       border-radius: 32px; }
     .options a .quit {
       width: 60px;
       height: 60px;
       margin: auto;
-      background: url(http://www.manoirdekervent.fr/chloggr/assets/exit.svg) center;
+      background: url(../assets/exit.svg) center;
       background-repeat: no-repeat;
-      background-color: #3498db;
+      background-color: #1abc9c;
       border-radius: 32px; }
-
-#menuLose {
-  top: 10%;
-  position: fixed;
-  display: none;
-  margin: auto;
-  width: 100vw; }
 
 #timer, #score {
   position: absolute;
   top: 0px;
-  font-size: 2em;
+  font-size: 1.60em;
   color: white;
-  background-color: #e74c3c;
+  background-color: #1abc9c;
   text-align: center;
   opacity: 0.5; }
-  #timer p, #score p {
-    opacity: 1; }
 
 #score {
   left: 0px;
-  border-bottom-right-radius: 50%;
   width: 50px;
-  height: 50px; }
+  height: 50px;
+  line-height: 200%;
+  border-bottom-left-radius: 50%;
+  border-bottom-right-radius: 50%;
+  border-top-right-radius: 50%; }
 
 #timer {
   right: 0px;
-  border-bottom-left-radius: 50%;
-  width: 60px;
-  height: 60px;
-  line-height: 170%; }
+  width: 50px;
+  height: 50px;
+  line-height: 200%;
+  border-top-left-radius: 50%;
+  border-bottom-right-radius: 50%;
+  border-bottom-left-radius: 50%; }

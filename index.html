@@ -37,8 +37,10 @@
 
 			<div onClick="setState(Kloggr.State.Paused)" class="pause"></div>
 
+			<div class="lose"></div>
+
 			<div class="options">
-				<a><div class="replay"></div></a>
+				<a><div class="replay" onClick="Kloggr.restart;"></div></a>
 				<a><div class="quit" onClick="setState(Kloggr.State.MainMenu)"></div></a>
 			</div>
 
