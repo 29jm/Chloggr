@@ -82,8 +82,6 @@ Kloggr.prototype.collisionDetection = function() {
 
 		this.newEvent(Kloggr.Events.TargetReached);
 		this.newEvent(Kloggr.Events.ScoreChanged, score);
-
-		this.respawnEnemies();
 	}
  
 	for (var i = 0; i < this.gameobjects.length; i++) {
