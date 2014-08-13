@@ -74,6 +74,10 @@ Kloggr.prototype.update = function(delta_t) {
 	this.counter += delta_t;
 
 	for (var i = 0; i < this.gameobjects.length; i++) {
+		if (this.gameobjects[i].to_update === false) {
+			continue;
+		}
+
 		this.gameobjects[i].update(delta_t);
 	}
 };
@@ -87,8 +91,9 @@ Kloggr.prototype.collisionDetection = function() {
 		this.score += 1;
 		this.enemy_density += 1;
 
+		// Kloggr.score has its own setter that calls
+		// Kloggr.newEvents, so no need for it here
 		this.newEvent(Kloggr.Events.TargetReached);
-		this.newEvent(Kloggr.Events.ScoreChanged, this.score);
 	}
  
 	for (var i = 0; i < this.gameobjects.length; i++) {
@@ -210,4 +215,16 @@ Kloggr.prototype.respawnEnemies = function() {
 		}
 	}
 };
+
+// Define getters/setters to automatize things
+Object.defineProperty(Kloggr.prototype, 'score', {
+	get: function() {
+		return this._score;
+	},
+
+	set: function(value) {
+		this._score = value;
+		this.newEvent(Kloggr.Events.ScoreChanged, value);
+	}
+});
 

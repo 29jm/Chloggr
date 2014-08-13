@@ -9,7 +9,8 @@ function Square(width, height, texture) {
 	this.x = 0;
 	this.y = 0;
 
-	var pattern = /#[0-9A-Z]{6}/i; // If it's a color then use canvas.fillRect()
+	// If it's a color then use canvas.fillRect()
+	var pattern = /#[0-9A-Z]{6}/i;
 
 	if (pattern.test(texture)) {
 		this.draw = Square.prototype.drawColor;
@@ -91,6 +92,7 @@ Enemy.prototype = Object.create(Square.prototype);
  */
 function BasicEnemy() {
 	Square.call(this, 15, 15, '#27AE60');
+	this.to_update = false;
 }
 
 BasicEnemy.prototype = Object.create(Enemy.prototype);
