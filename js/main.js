@@ -13,7 +13,7 @@ var mainloop = function() {
 		case Kloggr.Events.ScoreChanged:
 			break;
 		case Kloggr.Events.TargetReached:
-			kloggr.restart();
+			kloggr.respawnAll();
 			break;
 		}
 	}
