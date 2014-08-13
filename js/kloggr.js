@@ -32,6 +32,7 @@ Kloggr.prototype.restart = function() {
 	this.score = 0;
 	this.counter = 0;
 	this.enemy_density = 3;
+	this.state = Kloggr.Playing
 
 	// Spawn gameobjects
 	this.respawnAll();
