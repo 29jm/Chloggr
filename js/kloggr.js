@@ -81,7 +81,7 @@ Kloggr.prototype.collisionDetection = function() {
 		this.enemy_density += 1;
 
 		this.newEvent(Kloggr.Events.TargetReached);
-		this.newEvent(Kloggr.Events.ScoreChanged, score);
+		this.newEvent(Kloggr.Events.ScoreChanged, this.score);
 	}
  
 	for (var i = 0; i < this.gameobjects.length; i++) {
