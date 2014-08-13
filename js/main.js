@@ -25,12 +25,11 @@ var mainloop = function() {
 		// UI elements might decide to change the game state
 		var new_state = kloggr_interface.changeState(state);
 		if (new_state) {
-			// Possible infinite recursion
 			setState(new_state);
-			return kloggr.state;
 		}
-
-		kloggr.state = state;
+		else {
+			kloggr.state = state;
+		}
 
 		return kloggr.state;
 	}

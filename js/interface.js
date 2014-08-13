@@ -14,6 +14,10 @@ KloggrInterface.prototype.toggleMainMenu = function() {
 	}
 	else {
 		document.getElementById("menuContainer").style.display = "initial";
+
+		// Make sure we hide the pause button/dead menu
+		document.getElementsByClassName("pause")[0].style.display = "none";
+		document.getElementsByClassName("lose")[0].style.display = "none";
 	}
 }
 
@@ -25,6 +29,9 @@ KloggrInterface.prototype.togglePlaying = function(other) {
 	}
 	else {
 		document.getElementById("gameContainer").style.display = "initial";
+
+		// Show pause button
+		document.getElementsByClassName("pause")[0].style.display = "initial";
 	}
 }
 
