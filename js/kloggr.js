@@ -160,7 +160,6 @@ Kloggr.prototype.respawnAll = function() {
 	this.gameobjects = [];
 	this.gameobjects.push(new Player());
 	this.gameobjects.push(new Target());
-	this.respawnEnemies();
 
 	// Special game objects get special names
 	this.player = this.gameobjects[0];
@@ -171,15 +170,12 @@ Kloggr.prototype.respawnAll = function() {
 		this.player.x = player_x;
 		this.player.y = player_y;
 	}
-
-	for (var i = 0; i < this.gameobjects.length; i++) {
-		// Don't respawn player (except the 1st time)
-		if (!(this.gameobjects[i] instanceof Player &&
-			player_x && player_y)) {
-			this.gameobjects[i].init
-				(this.gameobjects, this.width, this.height);
-		}
+	else {
+		this.player.init(this.gameobjects, this.width, this.height);
+		this.target.init(this.gameobjects, this.width, this.height);
 	}
+
+	this.respawnEnemies();
 };
 
 Kloggr.prototype.respawnEnemies = function() {
