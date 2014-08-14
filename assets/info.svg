@@ -24,17 +24,22 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="640"
-     inkscape:window-height="480"
+     inkscape:window-width="1440"
+     inkscape:window-height="876"
      id="namedview8"
-     showgrid="false"
-     inkscape:zoom="3.6875"
-     inkscape:cx="32"
-     inkscape:cy="32"
-     inkscape:window-x="10"
-     inkscape:window-y="34"
-     inkscape:window-maximized="0"
-     inkscape:current-layer="svg3120" />
+     showgrid="true"
+     inkscape:zoom="7.375"
+     inkscape:cx="29.095105"
+     inkscape:cy="29.941766"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg3120"
+     inkscape:snap-bbox="true">
+    <inkscape:grid
+       type="xygrid"
+       id="grid2999" />
+  </sodipodi:namedview>
   <defs
      id="defs3122" />
   <metadata
@@ -50,20 +55,7 @@
     </rdf:RDF>
   </metadata>
   <path
-     d="m 57.181818,32.5 a 25.454546,25.045454 0 1 1 -50.9090919,0 25.454546,25.045454 0 1 1 50.9090919,0 z"
-     transform="matrix(1.2535714,0,0,1.2813067,-7.7724022,-9.5515593)"
-     id="path3131"
-     style="fill:#ecf0f1;fill-opacity:1" />
-  <rect
-     width="8.0909081"
-     height="35.909092"
-     x="27.818184"
-     y="19.636364"
-     id="rect3907"
-     style="fill:#4f6f8f;fill-opacity:1" />
-  <path
-     d="m 35.363636,12.363636 a 4.318182,4.3636365 0 1 1 -8.636364,0 4.318182,4.3636365 0 1 1 8.636364,0 z"
-     transform="translate(0.90909091,-0.63636364)"
-     id="path3911"
-     style="fill:#4f6f8f;fill-opacity:1" />
+     style="fill:#ffffff;fill-opacity:1"
+     d="M 32.9375 0 A 31.909091 32.090908 0 0 0 0.09375 32.09375 A 31.909091 32.090908 0 1 0 63.90625 32.09375 A 31.909091 32.090908 0 0 0 32.9375 0 z M 31.53125 7.375 A 4.1818185 4.3636365 0 0 1 36 11.71875 A 4.1875 4.369565 0 0 1 27.625 11.71875 A 4.1818185 4.3636365 0 0 1 31.53125 7.375 z M 27.8125 19.625 L 36 19.625 L 36 55.53125 L 27.8125 55.53125 L 27.8125 19.625 z "
+     id="path3131" />
 </svg>

@@ -28,9 +28,9 @@
      inkscape:window-height="876"
      id="namedview2995"
      showgrid="true"
-     inkscape:zoom="10.429825"
-     inkscape:cx="30.544189"
-     inkscape:cy="32.984227"
+     inkscape:zoom="7.375"
+     inkscape:cx="24.17284"
+     inkscape:cy="28.298718"
      inkscape:window-x="0"
      inkscape:window-y="24"
      inkscape:window-maximized="1"
@@ -59,50 +59,12 @@
     </rdf:RDF>
   </metadata>
   <path
-     d="m 65,32.590908 a 32.454546,32.590908 0 0 1 -64.90909215,0 32.454546,32.590908 0 1 1 64.90909215,0 z"
-     id="path3131"
      style="fill:#ffffff;fill-opacity:1"
-     inkscape:connector-curvature="0" />
-  <path
-     d="m 48,32.501934 a 15.5,15.498066 0 0 1 -31,0 15.5,15.498066 0 1 1 31,0 z"
-     id="path3911"
-     style="fill:#4f6f8f;fill-opacity:1"
-     inkscape:connector-curvature="0" />
-  <rect
-     width="9"
-     height="49.181816"
-     x="28"
-     y="-57"
-     transform="matrix(0,1,-1,0,0,0)"
-     id="rect3932-7"
-     style="fill:#4f6f8f;fill-opacity:1" />
-  <rect
-     width="9"
-     height="49.181816"
-     x="-37"
-     y="-57.181816"
-     transform="scale(-1,-1)"
-     id="rect3932-7-7"
-     style="fill:#4f6f8f;fill-opacity:1" />
-  <rect
-     width="9"
-     height="49.181816"
-     x="-4.4357185"
-     y="-70.617134"
-     transform="matrix(-0.70710678,0.70710678,-0.70710678,-0.70710678,0,0)"
-     id="rect3932-7-7-2"
-     style="fill:#4f6f8f;fill-opacity:1" />
-  <rect
-     width="9"
-     height="49.181816"
-     x="-50.526222"
-     y="-24.65519"
-     transform="matrix(-0.70710678,-0.70710678,0.70710678,-0.70710678,0,0)"
-     id="rect3932-7-7-5"
-     style="fill:#4f6f8f;fill-opacity:1" />
+     d="M 33.5 0 A 32.454546 32.590908 0 0 0 0.09375 32.59375 A 32.454546 32.590908 0 0 0 65 32.59375 A 32.454546 32.590908 0 0 0 33.5 0 z M 28 8 L 37 8 L 37 17.6875 A 15.5 15.498066 0 0 1 39.875 18.875 L 46.71875 12.03125 L 53.0625 18.375 L 46.1875 25.25 A 15.5 15.498066 0 0 1 47.3125 28 L 57 28 L 57 37 L 47.34375 37 A 15.5 15.498066 0 0 1 46.125 39.875 L 53.0625 46.8125 L 46.71875 53.15625 L 39.75 46.1875 A 15.5 15.498066 0 0 1 37 47.3125 L 37 57.1875 L 28 57.1875 L 28 47.3125 A 15.5 15.498066 0 0 1 25.25 46.1875 L 18.28125 53.15625 L 11.9375 46.8125 L 18.875 39.875 A 15.5 15.498066 0 0 1 17.6875 37 L 7.8125 37 L 7.8125 28 L 17.6875 28 A 15.5 15.498066 0 0 1 18.8125 25.25 L 11.9375 18.375 L 18.28125 12.03125 L 25.125 18.875 A 15.5 15.498066 0 0 1 28 17.6875 L 28 8 z "
+     id="path3131" />
   <path
      d="m 38,32.636364 a 5.454545,5.6363637 0 0 1 -10.90909,0 5.454545,5.6363637 0 1 1 10.90909,0 z"
      id="path4035"
-     style="fill:#ecf0f1;fill-opacity:1"
+     style="fill:#ffffff;fill-opacity:1"
      inkscape:connector-curvature="0" />
 </svg>
