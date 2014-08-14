@@ -1,5 +1,25 @@
 var marginLeft = window.innerWidth/2 - 80;
 var marginTop = window.innerHeight-70;
+var rollScore = 0;
+
+function scoreAnimation() {
+    if(kloggr.score !== 0) {
+        if(kloggr.score == rollScore) {
+            $("#scoreNumber").velocity('transition.bounceIn', 100);
+            rollScore = 0;
+            return;
+        }
+        else {
+            rollScore++;
+            $("#scoreNumber").velocity('transition.bounceDownIn', 100);
+            document.getElementById("scoreNumber").innerHTML = rollScore;
+            setTimeout(scoreAnimation, 100);
+        }
+    }
+    else {
+        document.getElementById("scoreNumber").innerHTML = 0;
+    }
+}
 
 function enterAnimation(menu) {
     if(menu === ".pause") {
@@ -16,6 +36,7 @@ function enterAnimation(menu) {
 
     if(menu === ".lose") {
         $( ".lose" ).velocity('transition.bounceUpIn');
+        $( "#coin" ).velocity('transition.bounceUpIn');
         $( ".options" ).velocity('transition.fadeIn');
     }
 
@@ -26,8 +47,6 @@ function enterAnimation(menu) {
     if(menu === "#menuContainer") {
         $( "#menuContainer" ).velocity('transition.bounceDownIn')
     }
-
-  	
 }
 
 function quitAnimation(menu) {
@@ -45,6 +64,7 @@ function quitAnimation(menu) {
 
     if(menu === ".lose") {
         $( ".lose" ).velocity('transition.bounceUpOut');
+        $( "#coin" ).velocity('transition.bounceUpOut');
         $( ".options" ).velocity('transition.fadeOut');
     }
 
@@ -55,6 +75,4 @@ function quitAnimation(menu) {
     if(menu === "#menuContainer") {
         $( "#menuContainer" ).velocity('transition.bounceDownOut')
     }
-
-    
 }

@@ -32,12 +32,16 @@
 
 			<canvas id="canvas"></canvas>
 
-			<div id="timer">0</div>
-			<div id="score">0</div>
+			<div id="timer" class="deadNumber">0</div>
+			<div id="score" class="highScore">0</div>
 
 			<div onClick="setState(Kloggr.State.Paused)" class="pause"></div>
 
-			<div class="lose"></div>
+			<div class="lose"> 
+				<span id="scoreNumber"></span> 
+			</div> 
+			
+			<span id="coin"></span>
 
 			<div class="options">
 				<a><div class="replay" onClick="kloggr.restart(); setState(Kloggr.State.Playing)"></div></a>
@@ -52,6 +56,5 @@
 	    <script src="js/interface.js"></script>
 	    <script src="js/main.js"></script>
 	    <script src="js/animations.js"></script>
-		<!-- <script src="js/game.js"></script> -->
 	</body>
 </html>
