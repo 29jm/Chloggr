@@ -33,7 +33,7 @@ Kloggr.prototype.restart = function() {
 	this.enemy_density = 3;
 
 	// Spawn gameobjects
-	this.respawnAll();
+	this.respawnAll(true);
 };
 
 Kloggr.prototype.setKeyState = function(key, state) {
@@ -98,9 +98,11 @@ Kloggr.prototype.collisionDetection = function() {
  
 	for (var i = 0; i < this.gameobjects.length; i++) {
 		if (this.gameobjects[i] instanceof Enemy) {
-			if (Square.intersect(this.player, this.gameobjects[i])) {
-				this.state = Kloggr.State.Dead;
-				this.newEvent(Kloggr.Events.StateChanged, this.state);
+			if (this.gameobjects[i].collidable) {
+				if (Square.intersect(this.player, this.gameobjects[i])) {
+					this.state = Kloggr.State.Dead;
+					this.newEvent(Kloggr.Events.StateChanged, this.state);
+				}
 			}
 		}
 	}
@@ -146,68 +148,54 @@ Kloggr.prototype.numberOfEnemies = function() {
 	return Math.round(enemy_ratio*screen_area);
 };
 
-Kloggr.prototype.respawnAll = function() {
-	// Save player position
-	var player_x;
-	var player_y;
+Kloggr.prototype.respawnAll = function(full_restart) {
+	if (!full_restart) {
+		var player_x = this.player.x;
+		var player_y = this.player.y;
 
-	if (this.player) {
-		player_x = this.player.x;
-		player_y = this.player.y;
-	}
-
-	// Respawn objects
-	this.gameobjects = [];
-	this.gameobjects.push(new Player());
-	this.gameobjects.push(new Target());
-
-	// Special game objects get special names
-	this.player = this.gameobjects[0];
-	this.target = this.gameobjects[1];
-
-	// Move player to its old position
-	if (player_x && player_y) {
+		this.player.respawn(this.gameobjects, this.width, this.height);
+		this.target.respawn(this.gameobjects, this.width, this.height);
+		
 		this.player.x = player_x;
 		this.player.y = player_y;
 	}
 	else {
-		this.player.init(this.gameobjects, this.width, this.height);
-		this.target.init(this.gameobjects, this.width, this.height);
+		this.gameobjects = [];
+		this.gameobjects.push(new Player());
+		this.gameobjects.push(new Target());
+
+		this.player = this.gameobjects[0];
+		this.target = this.gameobjects[1];
+
+		this.player.respawn(this.gameobjects, this.width, this.height);
+		this.target.respawn(this.gameobjects, this.width, this.height);
 	}
 
 	this.respawnEnemies();
 };
 
 Kloggr.prototype.respawnEnemies = function() {
-	console.log("spawning "+this.numberOfEnemies()+" enemies");
+	console.log("Spawning "+this.numberOfEnemies()+" enemies");
 
 	var num_enemies = this.numberOfEnemies();
-
-	// Remove enemies
-	while (true) {
-		var found = false;
-		for (var i = 0; i < this.gameobjects.length; i++) {
-			if (this.gameobjects[i] instanceof BasicEnemy) {
-				found = true;
-				this.gameobjects.splice(i, 1);
-				break;
-			}
-		}
- 
-		if (!found) {
-			break;
-		}
-	}
-
-	for (var i = 0; i < num_enemies; i++) {
-		this.gameobjects.push(new BasicEnemy());
-	}
- 
+	var enemy_count = 0;
 	for (var i = 0; i < this.gameobjects.length; i++) {
-		// Respawn everything but the player
-		if (!(this.gameobjects[i] instanceof Player)) {
-			this.gameobjects[i].init
-				(this.gameobjects, this.width, this.height);
+		if (this.gameobjects[i] instanceof BasicEnemy) {
+			enemy_count	+= 1;
+		}
+	}
+	
+	if (enemy_count < num_enemies) {
+		var diff = num_enemies - enemy_count;
+		for (var i = 0; i < diff; i++) {
+			this.gameobjects.push(new BasicEnemy());
+		}
+	}
+
+	for (var i = 0; i < this.gameobjects.length; i++) {
+		if (this.gameobjects[i] instanceof Enemy) {
+			this.gameobjects[i].
+				respawn(this.gameobjects, this.width, this.height);
 		}
 	}
 };
@@ -222,11 +210,21 @@ Object.defineProperty(Kloggr.prototype, 'score', {
 		this._score = value;
 		this.newEvent(Kloggr.Events.ScoreChanged, value);
 
-		// Change state of some objects
+		// Allow objects to change state
+		if (!this.gameobjects) {
+			return;
+		}
+
 		for (var i = 0; i < this.gameobjects.length; i++) {
 			if (this.gameobjects[i].updateState) {
 				this.gameobjects[i].updateState(value);
 			}
+		}
+
+		switch (value) {
+		case 10:
+			this.gameobjects.push(new Lazer());
+			break;
 		}
 	}
 });

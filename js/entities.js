@@ -8,6 +8,7 @@ function Square(width, height, texture) {
 	this.height = height;
 	this.x = 0;
 	this.y = 0;
+	this.collidable = true;
 
 	// If it's a color then use canvas.fillRect()
 	var pattern = /#[0-9A-Z]{6}/i;
@@ -42,7 +43,7 @@ Square.prototype.collideBox = function(box_x, box_y, box_w, box_h) {
 	}
 };
 
-Square.prototype.init = function(gameobjects, max_x, max_y) {
+Square.prototype.respawn = function(gameobjects, max_x, max_y) {
 	this.x = Math.random()*(max_x-this.width);
 	this.y = Math.random()*(max_y-this.height);
 };
@@ -97,11 +98,12 @@ function BasicEnemy() {
 
 BasicEnemy.prototype = Object.create(Enemy.prototype);
 
-BasicEnemy.prototype.init = function(gameobjects, max_x, max_y) {
+BasicEnemy.prototype.respawn = function(gameobjects, max_x, max_y) {
 	var location_found = false;
 
 	while (!location_found) {
-		Square.prototype.init.call(this, gameobjects, max_x, max_y);
+		Square.prototype.respawn.
+			call(this, gameobjects, max_x, max_y);
 		var good_location = true;
 
 		for (var i = 0; i < gameobjects.length; i++) {
@@ -134,11 +136,17 @@ function Player() {
 	this.max_speed = 300;
 	this.slowing_speed = 0.7;
 	this.accel = 7;
-
 	this.dead = false;
 }
 
 Player.prototype = Object.create(Square.prototype);
+
+Player.prototype.respawn = function(gameobjects, max_x, max_y) {
+	Square.prototype.respawn.
+		call(this, gameobjects, max_x, max_y);
+	this.speed_x = 0;
+	this.speed_y = 0;
+}
 
 Player.prototype.update = function(delta_t) {
 	var len = Math.sqrt((this.speed_x*this.speed_x)
@@ -181,9 +189,9 @@ function Target() {
 	Square.call(this, 40, 40, 'assets/target.svg');
 
 	this.State = {
-		Fix: "Fix",
-		Bouncing: "Bouncing",
-		Moving: "Moving"
+		Fix:"Fix",
+		Bouncing:"Bouncing",
+		Moving:"Moving"
 	};
 
 	this.speed_x = 0;
@@ -196,6 +204,36 @@ function Target() {
 }
 
 Target.prototype = Object.create(Square.prototype);
+
+Target.prototype.respawn = function(gameobjects, max_x, max_y) {
+	var location_found = false;
+
+	while (!location_found) {
+		Square.prototype.respawn.call(this, gameobjects, max_x, max_y);
+		var good_location = true;
+
+		for (var i = 0; i < gameobjects.length; i++) {
+			if (gameobjects[i] instanceof BasicEnemy) {
+				if (Square.intersect(gameobjects[i], this, true)) {
+					good_location = false;
+				}
+			}
+
+			if (gameobjects[i] instanceof Player) {
+				var half = ((max_x+max_y)/2)/2;
+
+				if (this.distanceTo(gameobjects[i]) < half) {
+					good_location = false;
+				}
+			}
+
+			if (good_location) {
+				location_found = true;
+				break;
+			}
+		}
+	}
+};
 
 Target.prototype.update = function(delta_t) {
 	var len = 0;
@@ -244,36 +282,6 @@ Target.prototype.distanceTo = function(b) {
 	return Math.sqrt((this.x-b.x)*(this.x-b.x) + (this.y-b.y)*(this.y-b.y));
 };
 
-Target.prototype.init = function(gameobjects, max_x, max_y) {
-	var location_found = false;
-
-	while (!location_found) {
-		Square.prototype.init.call(this, gameobjects, max_x, max_y);
-		var good_location = true;
-
-		for (var i = 0; i < gameobjects.length; i++) {
-			if (gameobjects[i] instanceof BasicEnemy) {
-				if (Square.intersect(gameobjects[i], this, true)) {
-					good_location = false;
-				}
-			}
-
-			if (gameobjects[i] instanceof Player) {
-				var half = ((max_x+max_y)/2)/2;
-
-				if (this.distanceTo(gameobjects[i]) < half) {
-					good_location = false;
-				}
-			}
-			
-			if (good_location) {
-				location_found = true;
-				break;
-			}
-		}
-	}
-};
-
 Target.prototype.updateState = function(score) {
 	switch (score) {
 	case 5:
@@ -282,16 +290,16 @@ Target.prototype.updateState = function(score) {
 	}
 }
 
-/* The Lazer class is an BasicEnemy, but it initializes from a Square.
+/* The Lazer class is an Enemy, but it initializes from a Square.
  * Its behavior is controlled through the State enumeration.
  */
 function Lazer() {
 	Square.call(this, 15, 120, "assets/lazer.png");
 
 	this.State = {
-		Inactive: "Inactive",
-		On: "On",
-		Off: "Off"
+		Inactive:"Inactive",
+		On:"On",
+		Off:"Off"
 	};
 
 	this.accumulator = 0;
@@ -301,7 +309,7 @@ function Lazer() {
 Lazer.prototype = Object.create(Enemy.prototype);
 
 // The lazer spawns between the payer and the target
-Lazer.prototype.init = function(gameobjects, max_x, max_y) {
+Lazer.prototype.respawn = function(gameobjects, max_x, max_y) {
 	var player;
 	var target;
 	for (var i = 0; i < gameobjects.length; i++) {
@@ -315,7 +323,8 @@ Lazer.prototype.init = function(gameobjects, max_x, max_y) {
 
 	var location_found = false;
 	while (!location_found) {
-		Square.prototype.init.call(this, gameobjects, max_x, max_y);
+		Square.prototype.respawn.
+			call(this, gameobjects, max_x, max_y);
 		this.y = 0;
 
 		if (player.x > target.x) {
@@ -326,7 +335,7 @@ Lazer.prototype.init = function(gameobjects, max_x, max_y) {
 		}
 		else if (player.x < target.x) {
 			if (this.x > player.x+player.width &&
-				this.x+this.width) < target.x) {
+				this.x+this.width < target.x) {
 				location_found = true;
 			}
 		}
@@ -346,14 +355,13 @@ Lazer.prototype.update = function(delta_t) {
 		this.accumulator = 0;
 		if (this.state == this.State.On) {
 			this.state = this.State.Off;
-
 			this.draw = function(context) {};
+			this.collidable = false;
 		}
 		else {
 			this.state = this.State.On;
-			// TODO: add (bool)to_draw
 			this.draw = Square.prototype.drawImage;
-			this.intersects = Square.prototype.intersects;
+			this.collidable = true;
 		}
 	}
 };
