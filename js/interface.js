@@ -52,7 +52,7 @@ KloggrInterface.prototype.toggleDead = function() {
 	}
 	else {
 		enterAnimation('.lose');
-		setTimeout(scoreAnimation, 250);
+		setTimeout(scoreAnimation, 50);
 	}
 };
 

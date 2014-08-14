@@ -1,19 +1,23 @@
 var marginLeft = window.innerWidth/2 - 80;
 var marginTop = window.innerHeight-70;
-var rollScore = 0;
+var score;
+var flag = 0;
 
 function scoreAnimation() {
+    score = Math.round(kloggr.score * 10 / kloggr.counter + kloggr.score * 5 );
+
     if(kloggr.score !== 0) {
-        if(kloggr.score == rollScore) {
+        if(flag == score) {
             $("#scoreNumber").velocity('transition.bounceIn', 100);
-            rollScore = 0;
+            score = 0;// reset value of score
+            flag = 0;
             return;
         }
         else {
-            rollScore++;
-            $("#scoreNumber").velocity('transition.bounceDownIn', 100);
-            document.getElementById("scoreNumber").innerHTML = rollScore;
-            setTimeout(scoreAnimation, 100);
+            $("#scoreNumber").velocity('transition.bounceDownIn', 25);
+            document.getElementById("scoreNumber").innerHTML = flag;
+            flag++;
+            setTimeout(scoreAnimation, 50);
         }
     }
     else {
@@ -46,6 +50,12 @@ function enterAnimation(menu) {
 
     if(menu === "#menuContainer") {
         $( "#menuContainer" ).velocity('transition.bounceDownIn')
+        $( ".deadNumber, .highScore" ).velocity({
+            opacity: '1', 
+            width: "70px", 
+            height: "70px", 
+            lineHeight: "70px"
+        });
     }
 }
 
