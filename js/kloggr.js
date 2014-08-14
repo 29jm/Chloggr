@@ -221,6 +221,13 @@ Object.defineProperty(Kloggr.prototype, 'score', {
 	set: function(value) {
 		this._score = value;
 		this.newEvent(Kloggr.Events.ScoreChanged, value);
+
+		// Change state of some objects
+		for (var i = 0; i < this.gameobjects.length; i++) {
+			if (this.gameobjects[i].updateState) {
+				this.gameobjects[i].updateState(value);
+			}
+		}
 	}
 });
 

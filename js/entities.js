@@ -274,6 +274,14 @@ Target.prototype.init = function(gameobjects, max_x, max_y) {
 	}
 };
 
+Target.prototype.updateState = function(score) {
+	switch (score) {
+	case 5:
+		this.state = this.State.Bouncing;
+		break;
+	}
+}
+
 /* The Lazer class is an BasicEnemy, but it initializes from a Square.
  * Its behavior is controlled through the State enumeration.
  */
@@ -311,12 +319,14 @@ Lazer.prototype.init = function(gameobjects, max_x, max_y) {
 		this.y = 0;
 
 		if (player.x > target.x) {
-			if ((this.x+this.width) < player.x && this.x > (target.x+target.width)) {
+			if (this.x+this.width < player.x &&
+				this.x > target.x+target.width) {
 				location_found = true;
 			}
 		}
 		else if (player.x < target.x) {
-			if (this.x > (player.x+player.width) && (this.x+this.width) < target.x) {
+			if (this.x > player.x+player.width &&
+				this.x+this.width) < target.x) {
 				location_found = true;
 			}
 		}
@@ -338,9 +348,6 @@ Lazer.prototype.update = function(delta_t) {
 			this.state = this.State.Off;
 
 			this.draw = function(context) {};
-			this.intersects = function(square) {
-				return false;
-			};
 		}
 		else {
 			this.state = this.State.On;
@@ -350,4 +357,12 @@ Lazer.prototype.update = function(delta_t) {
 		}
 	}
 };
+
+Lazer.prototype.updateState = function(score) {
+	switch (score) {
+	case 10:
+		this.state = this.State.On;
+		break;
+	}
+}
 
