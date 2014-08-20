@@ -69,9 +69,7 @@ Kloggr.prototype.handleTouchStart = function(event) {
 	this.touchmoves[0] = touchobj.pageX;
 	this.touchmoves[1] = touchobj.pageY;
 
-	if (this.state == Kloggr.State.Playing) {
-		event.preventDefault();
-	}
+	event.preventDefault();
 };
 
 Kloggr.prototype.handleTouchMove = function(event) {

@@ -65,9 +65,9 @@ var mainloop = (function() {
 		canvas.height = kloggr.height = window.innerHeight;
 	});
 
-	window.addEventListener('touchstart',
+	canvas.addEventListener('touchstart',
 			kloggr.handleTouchStart.bind(kloggr), false);
-	window.addEventListener('touchmove',
+	canvas.addEventListener('touchmove',
 			kloggr.handleTouchMove.bind(kloggr), false);
 
 	setInterval(function() {
