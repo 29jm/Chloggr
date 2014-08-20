@@ -38,19 +38,6 @@ var mainloop = (function() {
 		return kloggr.state;
 	}
 
-	window.addEventListener('keydown', function(event) {
-		kloggr.setKeyState(event.keyCode, true);
-	});
-
-	window.addEventListener('keyup', function(event) {
-		kloggr.setKeyState(event.keyCode, false);
-	});
-
-	window.addEventListener('resize', function(event) {
-		canvas.width = kloggr.width = window.innerWidth;
-		canvas.height = kloggr.height = window.innerHeight;
-	});
-
 	var canvas = document.getElementById("canvas");
 	canvas.width = window.innerWidth;
 	canvas.height = window.innerHeight;
@@ -64,6 +51,24 @@ var mainloop = (function() {
 	var kloggr_interface = new KloggrInterface();
 	var last = Date.now();
 	var now = last;
+
+	window.addEventListener('keydown', function(event) {
+		kloggr.setKeyState(event.keyCode, true);
+	});
+
+	window.addEventListener('keyup', function(event) {
+		kloggr.setKeyState(event.keyCode, false);
+	});
+
+	window.addEventListener('resize', function(event) {
+		canvas.width = kloggr.width = window.innerWidth;
+		canvas.height = kloggr.height = window.innerHeight;
+	});
+
+	window.addEventListener('touchstart',
+			kloggr.handleTouchStart.bind(kloggr), false);
+	window.addEventListener('touchmove',
+			kloggr.handleTouchMove.bind(kloggr), false);
 
 	setInterval(function() {
 		now = Date.now();

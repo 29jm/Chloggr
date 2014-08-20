@@ -28,6 +28,7 @@ Kloggr.prototype.restart = function() {
 	this.state = Kloggr.State.Playing;
 	this.events = [];
 	this.keys_pressed = {};
+	this.touchmoves = [0, 0];
 	this.score = 0;
 	this.counter = 0;
 	this.enemy_density = 3;
@@ -61,6 +62,31 @@ Kloggr.prototype.handleKeys = function() {
 	if (40 in this.keys_pressed) {
 		this.player.speed_y += this.player.accel;
 	}
+};
+
+Kloggr.prototype.handleTouchStart = function(event) {
+	var touchobj = event.changedTouches[0];
+	this.touchmoves[0] = touchobj.pageX;
+	this.touchmoves[1] = touchobj.pageY;
+
+	if (this.state == Kloggr.State.Playing) {
+		event.preventDefault();
+	}
+};
+
+Kloggr.prototype.handleTouchMove = function(event) {
+	var touchobj = event.changedTouches[0];
+	var dpr = window.devicePixelRatio;
+	var move_x = touchobj.pageX*dpr - this.touchmoves[0]*dpr;
+	var move_y = touchobj.pageY*dpr - this.touchmoves[1]*dpr;
+
+	// Should be done during update(), but hey, lack of funding
+	this.player.speed_x += move_x;
+	this.player.speed_y += move_y;
+
+	this.touchmoves[0] = touchobj.pageX;
+	this.touchmoves[1] = touchobj.pageY;
+	event.preventDefault();
 };
 
 // Move objects
