@@ -6,6 +6,9 @@ function KloggrInterface() {
 	this.toggle[Kloggr.State.Playing] = this.togglePlaying;
 	this.toggle[Kloggr.State.Paused] = this.togglePaused;
 	this.toggle[Kloggr.State.Dead] = this.toggleDead;
+
+	this.ingame_audio = new Audio('assets/ingame_kloggr.mp3');
+	this.ingame_audio.loop = true;
 }
 
 KloggrInterface.prototype.toggleMainMenu = function() {
@@ -18,6 +21,9 @@ KloggrInterface.prototype.toggleMainMenu = function() {
 		// Make sure we hide the pause button/dead menu
 		document.getElementsByClassName("pause")[0].style.display = "none";
 		document.getElementsByClassName("lose")[0].style.display = "none";
+
+		// Stop music
+		this.ingame_audio.pause();
 	}
 };
 
@@ -32,6 +38,9 @@ KloggrInterface.prototype.togglePlaying = function(other) {
 
 		// Show pause button
 		document.getElementsByClassName("pause")[0].style.display = "initial";
+
+		// Start playing music
+		this.ingame_audio.play();
 	}
 };
 
