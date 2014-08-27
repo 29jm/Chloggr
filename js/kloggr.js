@@ -113,7 +113,7 @@ Kloggr.prototype.collisionDetection = function() {
  
 	if (Square.intersect(this.player, this.target)) {
 		this.score += 1;
-		this.enemy_density += 1;
+		this.enemy_density += 0.5;
 
 		// Kloggr.score has its own setter that calls
 		// Kloggr.newEvents, so no need for it here
