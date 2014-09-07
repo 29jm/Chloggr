@@ -5,19 +5,19 @@ var flag = 0;
 
 function scoreAnimation() {
     score = Math.round(kloggr.score * 10 / kloggr.counter + kloggr.score * 5 );
+    speed = Math.cos(score) * 90;
 
     if(kloggr.score !== 0) {
         if(flag == score) {
-            $("#scoreNumber").velocity('transition.bounceIn', 100);
+            $("#scoreNumber").velocity('transition.bounceIn', 50);
             score = 0;// reset value of score
             flag = 0;
             return;
         }
         else {
-            $("#scoreNumber").velocity('transition.bounceDownIn', 25);
             document.getElementById("scoreNumber").innerHTML = flag;
             flag++;
-            setTimeout(scoreAnimation, 50);
+            setTimeout(scoreAnimation, speed);
         }
     }
     else {
