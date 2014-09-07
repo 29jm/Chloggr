@@ -1,0 +1,176 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300);
+
+/***************VARIABLES**************/
+$mainColor: #3498db;
+$circleColor: #f1c40f;
+$trianleColor: #ecf0f1;
+
+$-webkit-Margin1: -webkit-calc(30vh - 100px) auto auto auto;
+$-moz-Margin1: -moz-calc(30vh - 100px) auto auto auto;
+$-o-Margin1: -o-calc(30vh - 100px) auto auto auto; 
+
+$-webkit-Margin2: -webkit-calc(25vh - 64px) auto auto auto;
+$-moz-Margin2: -moz-calc(25vh - 64px) auto auto auto;
+$-o-Margin2: -o-calc(25vh - 64px) auto auto auto;
+
+/***********MIXINS*************/
+@mixin circle ($height) {
+    height: $height;
+    width: $height;
+    border-radius: $height / 2;
+    background-color: $circleColor;
+    margin: $-webkit-Margin1;
+    margin: $-moz-Margin1;
+    margin: $-o-Margin1;
+    position: relative;
+}
+@mixin trianle {
+    content:'';
+    width: 0; 
+    height: 0; 
+    position: absolute;
+    border-top: 27px solid transparent;
+    border-bottom: 27px solid transparent;
+    border-left: 37px solid $trianleColor;
+    top: 23px;
+    left: 37px;
+}
+@mixin animation($name, $duration) {
+    -webkit-animation: $name $duration ease-in-out;
+    -moz-animation: $name $duration ease-in-out;
+    -o-animation: $name $duration ease-in-out;
+    animation: $name $duration ease-in-out;
+}
+@mixin keyframes($animation-name) {
+    @-webkit-keyframes $animation-name {
+        @content;
+    }
+    @-moz-keyframes $animation-name {
+        @content;
+    }
+    @-o-keyframes $animation-name {
+        @content;
+    }
+    @keyframes $animation-name {
+        @content;
+    }
+}
+@include keyframes(rotate) {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+/*RESETS*/
+* {
+    font-family: inherit;
+    font-style: inherit;
+    padding: 0;
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    overflow: hidden;
+}
+
+/*********************GENERAL STYLING***************/
+
+#menuContainer {
+    background-color: $mainColor;
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+header {
+    height: 25vh;
+    width: auto;
+    position: relative;
+    background: url(../assets/header.svg) center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 100;
+}
+
+/*
+header:after{
+    content:"";
+    background: url(../assets/deadPlayer.svg);
+    height: 40px;
+    width: 40px;
+    float: right;
+    margin-top: 20vh;
+    position:relative;
+}
+
+header:before{
+    content:"";
+    background: url(../assets/highscore.svg);
+    height: 40px;
+    width: 40px;
+    float: left;
+    margin-top: 20vh;
+    position:relative;
+}
+*/
+#play{
+    @include circle (100px);
+    cursor: pointer;
+}
+#play:after{
+    @include trianle;
+}
+#play:hover{
+    @include animation(rotate, 0.5s);
+}
+
+footer{
+
+    a{
+        width: 50%;
+        height: auto;
+        float:left;
+
+    }
+    #settings{
+        width: 64px;
+        height: 64px;
+        margin: $-webkit-Margin2; 
+        margin: $-moz-Margin2; 
+        margin: $-o-Margin2;
+        background: url(../assets/settings.svg) center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        position: relative; 
+        border-radius: 50%;
+    }
+    #info{
+        @extend #settings;
+        background: url(../assets/info.svg) center;
+    }
+    #settings:hover, #info:hover{
+        @include animation(rotate, 0.5s);
+    }
+}
+
+/*      <script>
+            var highScore = Cookies.get('highScore');
+            var deathNumber = Cookies.get('deathNumber');
+
+            if (highScore == undefined || deathNumber == undefined) {
+                document.getElementById("highScore").innerHTML = "0";
+                document.getElementById("deadNumber").innerHTML = "0";
+            }
+            else {
+                document.getElementById("highScore").innerHTML = Cookies.get('highScore');
+                document.getElementById("deadNumber").innerHTML = Cookies.get('deathNumber');
+            }
+        </script>
+        
+*/
