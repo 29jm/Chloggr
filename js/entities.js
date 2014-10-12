@@ -58,7 +58,10 @@ Square.prototype.drawImage = function(context) {
 };
 
 // "Static" looking method
-Square.intersect = function(a, b, silent) {
+Square.prototype.intersect = function(b, silent) {
+	var a = this;
+	silent = (silent === undefined ? true : false);
+
 	if (b.x >= a.x+a.width ||
 		b.x+b.width <= a.x ||
 		b.y >= a.y+a.height ||
@@ -110,7 +113,7 @@ BasicEnemy.prototype.respawn = function(gameobjects, max_x, max_y) {
 		for (var i = 0; i < len; i++) {
 			if (gameobjects[i] instanceof Player ||
 				gameobjects[i] instanceof Target) {
-				if (Square.intersect(gameobjects[i], this, true)) {
+				if (this.intersect(gameobjects[i])) {
 					good_location = false;
 				}
 			}
@@ -211,26 +214,22 @@ Target.prototype.respawn = function(gameobjects, max_x, max_y) {
 
 	while (!location_found) {
 		Square.prototype.respawn.call(this, gameobjects, max_x, max_y);
-		var good_location = true;
 
 		var len = gameobjects.length;
 		for (var i = 0; i < len; i++) {
-			if (gameobjects[i] instanceof BasicEnemy) {
-				if (Square.intersect(gameobjects[i], this, true)) {
-					good_location = false;
-				}
+			if (this.intersect(gameobjects[i])) {
+				continue;
 			}
 
 			if (gameobjects[i] instanceof Player) {
 				var half = ((max_x+max_y)/2)/2;
 
-				if (this.distanceTo(gameobjects[i]) < half) {
-					good_location = false;
+				if (this.distanceTo(gameobjects[i]) > half) {
+					location_found = true;
 				}
 			}
 
-			if (good_location) {
-				location_found = true;
+			if (location_found) {
 				break;
 			}
 		}
@@ -331,6 +330,7 @@ Lazer.prototype.respawn = function(gameobjects, max_x, max_y) {
 	}
 
 	if (Math.abs(player.x-target.y) < this.texture.width) {
+		console.log("Not enough room for Lazer, going full retard");
 		Square.prototype.respawn.call(this, gameobjects, max_x, max_y);
 		return;
 	}

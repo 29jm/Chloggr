@@ -112,7 +112,7 @@ Kloggr.prototype.collisionDetection = function() {
 	this.player.collideBox(0, 0, this.width, this.height);
 	this.target.collideBox(0, 0, this.width, this.height);
  
-	if (Square.intersect(this.player, this.target)) {
+	if (Square.prototype.intersect.call(this.player, this.target)) {
 		this.score += 1;
 		this.enemy_density += 0.5;
 
@@ -125,7 +125,7 @@ Kloggr.prototype.collisionDetection = function() {
 	for (var i = 0; i < len; i++) {
 		if (this.gameobjects[i] instanceof Enemy) {
 			if (this.gameobjects[i].collidable) {
-				if (Square.intersect(this.player, this.gameobjects[i])) {
+				if (Square.prototype.intersect.call(this.player, this.gameobjects[i])) {
 					this.state = Kloggr.State.Dead;
 					this.newEvent(Kloggr.Events.StateChanged, this.state);
 				}
