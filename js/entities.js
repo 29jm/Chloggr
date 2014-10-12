@@ -106,7 +106,8 @@ BasicEnemy.prototype.respawn = function(gameobjects, max_x, max_y) {
 			call(this, gameobjects, max_x, max_y);
 		var good_location = true;
 
-		for (var i = 0; i < gameobjects.length; i++) {
+		var len = gameobjects.length;
+		for (var i = 0; i < len; i++) {
 			if (gameobjects[i] instanceof Player ||
 				gameobjects[i] instanceof Target) {
 				if (Square.intersect(gameobjects[i], this, true)) {
@@ -212,7 +213,8 @@ Target.prototype.respawn = function(gameobjects, max_x, max_y) {
 		Square.prototype.respawn.call(this, gameobjects, max_x, max_y);
 		var good_location = true;
 
-		for (var i = 0; i < gameobjects.length; i++) {
+		var len = gameobjects.length;
+		for (var i = 0; i < len; i++) {
 			if (gameobjects[i] instanceof BasicEnemy) {
 				if (Square.intersect(gameobjects[i], this, true)) {
 					good_location = false;
@@ -312,7 +314,8 @@ Lazer.prototype = Object.create(Enemy.prototype);
 Lazer.prototype.respawn = function(gameobjects, max_x, max_y) {
 	var player;
 	var target;
-	for (var i = 0; i < gameobjects.length; i++) {
+	var len = gameobjects.length;
+	for (var i = 0; i < len; i++) {
 		if (gameobjects[i] instanceof Player) {
 			player = gameobjects[i];
 		}

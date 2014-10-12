@@ -97,7 +97,8 @@ Kloggr.prototype.update = function(delta_t) {
 
 	this.counter += delta_t;
 
-	for (var i = 0; i < this.gameobjects.length; i++) {
+	var len = this.gameobjects.length;
+	for (var i = 0; i < len; i++) {
 		if (this.gameobjects[i].to_update === false) {
 			continue;
 		}
@@ -120,7 +121,8 @@ Kloggr.prototype.collisionDetection = function() {
 		this.newEvent(Kloggr.Events.TargetReached);
 	}
  
-	for (var i = 0; i < this.gameobjects.length; i++) {
+	var len = this.gameobjects.length;
+	for (var i = 0; i < len; i++) {
 		if (this.gameobjects[i] instanceof Enemy) {
 			if (this.gameobjects[i].collidable) {
 				if (Square.intersect(this.player, this.gameobjects[i])) {
@@ -134,7 +136,8 @@ Kloggr.prototype.collisionDetection = function() {
 
 // Draw objects
 Kloggr.prototype.draw = function(context) {
-	for (var i = 0; i < this.gameobjects.length; i++) {
+	var len = this.gameobjects.length;
+	for (var i = 0; i < len; i++) {
 		this.gameobjects[i].draw(context);
 	}
 };

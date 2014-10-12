@@ -83,13 +83,13 @@ var mainloop = (function() {
 		// Clear canvas
 		canvas.width = canvas.width;
 
+		kloggr.draw(ctx);
+
 		if (kloggr.state == Kloggr.State.Playing) {
 			kloggr.handleKeys();
 			kloggr.update(delta_t)
 			kloggr.collisionDetection();
 		}
-
-		kloggr.draw(ctx);
 	}, 2);
 
 	// Expose some symbols needed by other parts
