@@ -324,28 +324,20 @@ Lazer.prototype.respawn = function(gameobjects, max_x, max_y) {
 		}
 	}
 
-	var location_found = false;
-	while (!location_found) {
-		Square.prototype.respawn.
-			call(this, gameobjects, max_x, max_y);
-		this.y = 0;
-
-		if (player.x > target.x) {
-			if (this.x+this.width < player.x &&
-				this.x > target.x+target.width) {
-				location_found = true;
-			}
-		}
-		else if (player.x < target.x) {
-			if (this.x > player.x+player.width &&
-				this.x+this.width < target.x) {
-				location_found = true;
-			}
-		}
+	if (!player || !target) {
+		console.log("Lazer was spawned before player or target. FIX");
+		Square.prototype.respawn.call(this, gameobjects, max_x, max_y);
+		return;
 	}
-	
-	// the lazer is full screen in height
+
+	if (Math.abs(player.x-target.y) < this.texture.width) {
+		Square.prototype.respawn.call(this, gameobjects, max_x, max_y);
+		return;
+	}
+
 	this.height = max_y;
+	this.x = Math.abs(player.x+target.y-this.texture.width)/2;
+	this.y = 0;
 };
 
 Lazer.prototype.update = function(delta_t) {
