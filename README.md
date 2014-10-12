@@ -8,17 +8,17 @@ Get all those dummy cubes ! Kill 'em all !!!
 Features
 ========
 
-You're a blue cube, and you seek revenge over the evil red cube!
+You're a blue happy cube, and you seek revenge over the evil red cube!
 The red cube has strategies and allies to escape you, beware
 
 Todo list
 =========
 
 * Make info page
-* Sound
+* SFX
 
 Authors
 =======
 
-Johan Manuel - Javscript
+Johan Manuel - Javscript  
 gabs1234 - HTML/CSS/Javascript animations
