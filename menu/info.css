@@ -6,7 +6,8 @@
   font-family: 'Open Sans', sans-serif; }
 
 body {
-  background-color: #2980b9; }
+  background-color: #2980b9;
+  overflow: hidden; }
 
 #container {
   display: -webkit-flex;
@@ -33,8 +34,92 @@ body {
 #devs {
   position: absolute;
   display: block;
-  left: 0;
-  bottom: 0;
   max-width: 100%;
   min-width: 300px;
-  height: auto; }
+  height: auto;
+  bottom: 2vh; }
+
+#ground {
+  width: 100vw;
+  height: 2vh;
+  background-color: #2ecc71;
+  bottom: 0;
+  position: fixed; }
+
+.cloud {
+  width: 200px;
+  height: 60px;
+  background: #fff;
+  border-radius: 200px;
+  -moz-border-radius: 200px;
+  -webkit-border-radius: 200px;
+  position: absolute; }
+
+.cloud:before, .cloud:after {
+  content: '';
+  position: absolute;
+  background: #fff;
+  width: 100px;
+  height: 80px;
+  position: absolute;
+  top: -15px;
+  left: 10px;
+  border-radius: 100px;
+  -moz-border-radius: 100px;
+  -webkit-border-radius: 100px;
+  -webkit-transform: rotate(30deg);
+  transform: rotate(30deg);
+  -moz-transform: rotate(30deg); }
+
+.cloud:after {
+  width: 120px;
+  height: 120px;
+  top: -55px;
+  left: auto;
+  right: 15px; }
+
+.x1 {
+  -webkit-animation: moveclouds 25s linear infinite;
+  -moz-animation: moveclouds 25s linear infinite;
+  -o-animation: moveclouds 25s linear infinite; }
+
+.x2 {
+  left: 200px;
+  -webkit-transform: scale(0.6);
+  -moz-transform: scale(0.6);
+  transform: scale(0.6);
+  opacity: 0.6;
+  -webkit-animation: moveclouds 30s linear infinite;
+  -moz-animation: moveclouds 30s linear infinite;
+  -o-animation: moveclouds 30s linear infinite; }
+
+.x3 {
+  left: -250px;
+  top: 100px;
+  -webkit-transform: scale(0.8);
+  -moz-transform: scale(0.8);
+  transform: scale(0.8);
+  opacity: 0.8;
+  /*opacity proportional to the size*/
+  -webkit-animation: moveclouds 40s linear infinite;
+  -moz-animation: moveclouds 40s linear infinite;
+  -o-animation: moveclouds 40s linear infinite; }
+
+@-webkit-keyframes moveclouds {
+  0% {
+    margin-left: 100vw; }
+
+  100% {
+    margin-left: -100vw; } }
+@-moz-keyframes moveclouds {
+  0% {
+    margin-left: 100vw; }
+
+  100% {
+    margin-left: -100vw; } }
+@-o-keyframes moveclouds {
+  0% {
+    margin-left: 100vw; }
+
+  100% {
+    margin-left: -100vw; } }
